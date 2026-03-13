@@ -235,6 +235,15 @@
         "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcyzg3tc_/season_priors.csv"
       },
       "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp1yhtgny4/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T21:17:41.973166+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp1yhtgny4/season_priors.csv"
+      },
+      "duplicate_of_previous": false
     }
   },
   "prizepicks_lines": {
@@ -676,6 +685,24 @@
       "metadata": {
         "rows_in": 1,
         "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpczvpyu3a/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpdv1w2e9_/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T21:17:41.929765+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpdv1w2e9_/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp82cpr7q4/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T21:17:41.952886+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp82cpr7q4/prizepicks_lines.csv"
       },
       "duplicate_of_previous": false
     }

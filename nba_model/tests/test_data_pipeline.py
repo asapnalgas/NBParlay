@@ -139,6 +139,210 @@ class DataPipelineHardeningTests(unittest.TestCase):
             self.assertIn("drift_audit", status)
             self.assertGreaterEqual(status["drift_audit"]["summary"]["datasets_with_missing_required_columns"], 1)
 
+    def test_historical_import_idempotency_multiple_identical_payloads(self) -> None:
+        """Test that re-uploading identical historical payloads does not duplicate rows."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            output_path = root / "training.csv"
+            with self._patch_pipeline_paths(root):
+                payload = "\n".join(
+                    [
+                        "player_name,game_date,home,opponent,points,rebounds,assists,team",
+                        "Player A,2026-03-01,1,BOS,20,5,6,NYK",
+                        "Player B,2026-03-01,1,BOS,18,7,4,LAL",
+                    ]
+                )
+                first_result = imp.import_historical_text(payload, output_path=output_path)
+                second_result = imp.import_historical_text(payload, output_path=output_path)
+                third_result = imp.import_historical_text(payload, output_path=output_path)
+
+            self.assertEqual(first_result["rows_accepted"], 2)
+            self.assertTrue(bool(second_result.get("skipped")))
+            self.assertTrue(bool(third_result.get("skipped")))
+
+    def test_season_priors_duplicate_payload_skipped(self) -> None:
+        """Test that duplicate season priors ingestions are properly skipped."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            output_path = root / "season_priors.csv"
+            with self._patch_pipeline_paths(root):
+                payload = "\n".join(
+                    [
+                        "PLAYER,TEAM,GP,MIN,PTS,REB,AST",
+                        "Good Player,NYK,20,34,25,5,6",
+                        "Another Player,BOS,22,36,28,6,7",
+                    ]
+                )
+                first = imp.import_season_priors_text(payload, output_path=output_path)
+                second = imp.import_season_priors_text(payload, output_path=output_path)
+
+            self.assertEqual(first["rows_accepted"], 2)
+            self.assertTrue(bool(second.get("skipped")))
+
+    def test_drift_audit_detects_missing_required_columns(self) -> None:
+        """Test that drift audit detects when required columns are missing."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "config").mkdir(parents=True, exist_ok=True)
+
+            contracts = {
+                "broken_dataset": {
+                    "canonical_path": str(root / "data" / "broken.csv"),
+                    "required_columns": ["player_name", "game_date", "points"],
+                    "optional_columns": ["assists"],
+                }
+            }
+
+            broken_path = root / "data" / "broken.csv"
+            broken_path.parent.mkdir(parents=True, exist_ok=True)
+            # Missing 'points' column
+            pd.DataFrame(
+                [
+                    {"player_name": "Player A", "game_date": "2026-03-01", "assists": 5},
+                    {"player_name": "Player B", "game_date": "2026-03-01", "assists": 3},
+                ]
+            ).to_csv(broken_path, index=False)
+
+            with self._patch_pipeline_paths(root):
+                with mock.patch.object(dp, "DATA_CONTRACTS", contracts):
+                    audit = dp.run_contract_drift_audit()
+
+            self.assertEqual(audit["summary"]["datasets_total"], 1)
+            self.assertEqual(audit["summary"]["datasets_with_missing_required_columns"], 1)
+            self.assertEqual(
+                audit["datasets"][0]["missing_required_columns"],
+                ["points"]
+            )
+
+    def test_drift_audit_detects_unexpected_columns(self) -> None:
+        """Test that drift audit detects unexpected extra columns."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "config").mkdir(parents=True, exist_ok=True)
+
+            contracts = {
+                "strict_dataset": {
+                    "canonical_path": str(root / "data" / "strict.csv"),
+                    "required_columns": ["player_name", "team"],
+                    "optional_columns": [],
+                    "allow_additional_columns": False,
+                }
+            }
+
+            strict_path = root / "data" / "strict.csv"
+            strict_path.parent.mkdir(parents=True, exist_ok=True)
+            # Has unexpected columns
+            pd.DataFrame(
+                [
+                    {"player_name": "Player A", "team": "NYK", "unexpected_col": "xyz"},
+                ]
+            ).to_csv(strict_path, index=False)
+
+            with self._patch_pipeline_paths(root):
+                with mock.patch.object(dp, "DATA_CONTRACTS", contracts):
+                    audit = dp.run_contract_drift_audit()
+
+            self.assertEqual(audit["summary"]["datasets_with_unexpected_columns"], 1)
+            self.assertEqual(
+                audit["datasets"][0]["unexpected_columns"],
+                ["unexpected_col"]
+            )
+
+    def test_drift_audit_allows_additional_columns_when_permitted(self) -> None:
+        """Test that drift audit allows extra columns when explicitly permitted."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "config").mkdir(parents=True, exist_ok=True)
+
+            contracts = {
+                "flexible_dataset": {
+                    "canonical_path": str(root / "data" / "flexible.csv"),
+                    "required_columns": ["player_name"],
+                    "optional_columns": [],
+                    "allow_additional_columns": True,
+                }
+            }
+
+            flexible_path = root / "data" / "flexible.csv"
+            flexible_path.parent.mkdir(parents=True, exist_ok=True)
+            # Has extra columns but they're allowed
+            pd.DataFrame(
+                [
+                    {"player_name": "Player A", "extra1": "val1", "extra2": "val2"},
+                ]
+            ).to_csv(flexible_path, index=False)
+
+            with self._patch_pipeline_paths(root):
+                with mock.patch.object(dp, "DATA_CONTRACTS", contracts):
+                    audit = dp.run_contract_drift_audit()
+
+            self.assertEqual(audit["summary"]["datasets_ok"], 1)
+            self.assertEqual(
+                audit["datasets"][0]["additional_columns_detected"],
+                ["extra1", "extra2"]
+            )
+
+    def test_drift_audit_summary_counts_all_dataset_states(self) -> None:
+        """Test that drift audit summary properly counts datasets in each state."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "config").mkdir(parents=True, exist_ok=True)
+
+            contracts = {
+                "dataset_ok": {
+                    "canonical_path": str(root / "data" / "ok.csv"),
+                    "required_columns": ["col1"],
+                },
+                "dataset_missing": {
+                    "canonical_path": str(root / "data" / "missing.csv"),
+                    "required_columns": ["col1"],
+                },
+                "dataset_broken": {
+                    "canonical_path": str(root / "data" / "broken.csv"),
+                    "required_columns": ["col1", "col2"],
+                },
+            }
+
+            # Create only 'ok' and 'broken'
+            ok_path = root / "data" / "ok.csv"
+            ok_path.parent.mkdir(parents=True, exist_ok=True)
+            pd.DataFrame([{"col1": "value"}]).to_csv(ok_path, index=False)
+
+            broken_path = root / "data" / "broken.csv"
+            broken_path.parent.mkdir(parents=True, exist_ok=True)
+            # Missing col2
+            pd.DataFrame([{"col1": "value"}]).to_csv(broken_path, index=False)
+
+            with self._patch_pipeline_paths(root):
+                with mock.patch.object(dp, "DATA_CONTRACTS", contracts):
+                    audit = dp.run_contract_drift_audit()
+
+            summary = audit["summary"]
+            self.assertEqual(summary["datasets_total"], 3)
+            self.assertEqual(summary["datasets_ok"], 1)
+            self.assertEqual(summary["datasets_missing_file"], 1)
+            self.assertEqual(summary["datasets_with_missing_required_columns"], 1)
+
+    def test_ingestion_events_logged_for_all_outcomes(self) -> None:
+        """Test that ingestion events are properly logged for different outcomes."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            output_path = root / "training.csv"
+            with self._patch_pipeline_paths(root):
+                payload = "\n".join(
+                    [
+                        "player_name,game_date,home,opponent,points,rebounds,assists,team",
+                        "Valid,2026-03-01,1,BOS,20,5,6,NYK",
+                    ]
+                )
+                imp.import_historical_text(payload, output_path=output_path)
+                imp.import_historical_text(payload, output_path=output_path)  # Duplicate
+                events = dp.load_recent_ingestion_events(limit=10)
+
+            event_outcomes = [event.get("outcome") for event in events]
+            self.assertTrue(any("success" in str(outcome) for outcome in event_outcomes))
+            self.assertTrue(any("duplicate_skipped" in str(outcome) for outcome in event_outcomes))
+
 
 if __name__ == "__main__":
     unittest.main()
