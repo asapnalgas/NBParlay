@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-03-13T15:46:01.833487",
+  "last_sync": null,
+  "last_backtest": null,
+  "last_learning_cycle": null,
+  "last_projection_update": null,
+  "last_optimization": "2026-03-13T15:52:47.771479",
+  "total_runs": 0,
+  "failed_runs": 2,
+  "is_running": true,
+  "learning_phase": "historical_learning",
+  "status_messages": [],
+  "last_updated": "2026-03-13T15:52:47.771208"
+}

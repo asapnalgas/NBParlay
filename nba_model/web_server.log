@@ -1,0 +1,25 @@
+2026-03-13 15:56:49,943 - __main__ - INFO - ============================================================
+2026-03-13 15:56:49,943 - __main__ - INFO - NBA SELF-LEARNING PREDICTION SYSTEM - WEB UI
+2026-03-13 15:56:49,943 - __main__ - INFO - ============================================================
+2026-03-13 15:56:49,943 - src.self_learning_integration - INFO - Initializing Self-Learning System
+2026-03-13 15:56:50,087 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:56:50,088 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:56:50,233 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:56:50,234 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:56:50,343 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:56:50,343 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:56:50,449 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:56:50,449 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:56:50,449 - src.continuous_learning - INFO - Continuous Learning Orchestrator initialized
+2026-03-13 15:56:50,449 - src.self_learning_integration - INFO - Self-Learning System initialized successfully
+2026-03-13 15:56:50,449 - __main__ - INFO - ✓ Self-learning system initialized
+2026-03-13 15:56:50,449 - __main__ - INFO - 
+🎯 LAUNCHING WEB SERVER
+2026-03-13 15:56:50,449 - __main__ - INFO - 📱 Open in Safari/Browser: http://localhost:5000
+2026-03-13 15:56:50,449 - __main__ - INFO - ============================================================
+
+ * Serving Flask app 'web_app'
+ * Debug mode: off
+2026-03-13 15:56:50,491 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-13 15:56:50,491 - werkzeug - INFO - [33mPress CTRL+C to quit[0m

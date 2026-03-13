@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Self-Learning System - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>🏀 NBA Self-Learning System</h1>
+                    <p class="subtitle">Real-time AI-powered prediction learning with depth charts</p>
+                </div>
+                <div class="header-right">
+                    <div class="status-badge" id="system-status">
+                        <span class="status-indicator"></span>
+                        <span class="status-text">Initializing...</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            <!-- Top Stats Row -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <h3>Current Accuracy</h3>
+                        <p class="stat-value" id="current-accuracy">--%</p>
+                        <p class="stat-label">Starter Predictions</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🧠</div>
+                    <div class="stat-content">
+                        <h3>Predictions Made</h3>
+                        <p class="stat-value" id="predictions-total">0</p>
+                        <p class="stat-label">Total recorded</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <h3>Completed</h3>
+                        <p class="stat-value" id="predictions-completed">0</p>
+                        <p class="stat-label">With actual results</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-content">
+                        <h3>Learning Phase</h3>
+                        <p class="stat-value" id="learning-phase">-</p>
+                        <p class="stat-label">Currently running</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Control Panel -->
+            <section class="control-panel">
+                <h2>⚙️ System Controls</h2>
+                <div class="button-group">
+                    <button class="btn btn-success" onclick="startSystem()">
+                        <span class="btn-icon">▶️</span> Start System
+                    </button>
+                    <button class="btn btn-danger" onclick="stopSystem()">
+                        <span class="btn-icon">⏹️</span> Stop System
+                    </button>
+                    <button class="btn btn-primary" onclick="runBacktest()">
+                        <span class="btn-icon">📈</span> Run Backtest
+                    </button>
+                    <button class="btn btn-primary" onclick="runLearning()">
+                        <span class="btn-icon">🧠</span> Run Learning
+                    </button>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="chart-container">
+                    <h2>📈 Accuracy Trend</h2>
+                    <div class="chart-wrapper">
+                        <canvas id="accuracyChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h2>🎯 Error Analysis by Stat</h2>
+                    <div class="chart-wrapper">
+                        <canvas id="errorChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Learning Progress -->
+            <section class="progress-section">
+                <h2>🚀 Learning Progress</h2>
+                <div class="progress-item">
+                    <label>Starter Accuracy:</label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="starter-accuracy-bar" style="width: 0%"></div>
+                    </div>
+                    <span id="starter-accuracy-value">0%</span>
+                </div>
+
+                <h3>💡 AI Recommendations</h3>
+                <div class="recommendations-list" id="recommendations">
+                    <p class="loading">Loading recommendations...</p>
+                </div>
+            </section>
+
+            <!-- System Info -->
+            <section class="info-section">
+                <h2>ℹ️ System Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>Components Status</h4>
+                        <ul id="components-list">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>Recent Metrics</h4>
+                        <div id="recent-metrics">
+                            <p class="loading">Loading metrics...</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>Data Paths</h4>
+                        <ul id="data-paths" class="data-paths">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Live Logs -->
+            <section class="logs-section">
+                <h2>📝 Recent Activity</h2>
+                <div class="logs-container" id="logs-container">
+                    <p class="loading">Monitoring logs...</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>🏀 NBA Self-Learning Prediction System v1.0.0 | Last updated: <span id="last-update">--:--:--</span></p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,959 @@
+2026-03-13 15:52:47,300 - [INFO] - __main__ - ================================================================================
+2026-03-13 15:52:47,301 - [INFO] - __main__ - NBA SELF-LEARNING PREDICTION SYSTEM LAUNCHER
+2026-03-13 15:52:47,301 - [INFO] - __main__ - ================================================================================
+2026-03-13 15:52:47,301 - [INFO] - __main__ - Initializing self-learning system...
+2026-03-13 15:52:47,301 - [INFO] - src.self_learning_integration - Initializing Self-Learning System
+2026-03-13 15:52:47,430 - [INFO] - src.depth_chart_features - Built depth charts for 185 team/position combinations
+2026-03-13 15:52:47,430 - [INFO] - src.simulation_engine - Depth chart features initialized successfully
+2026-03-13 15:52:47,534 - [INFO] - src.depth_chart_features - Built depth charts for 185 team/position combinations
+2026-03-13 15:52:47,534 - [INFO] - src.simulation_engine - Depth chart features initialized successfully
+2026-03-13 15:52:47,662 - [INFO] - src.depth_chart_features - Built depth charts for 185 team/position combinations
+2026-03-13 15:52:47,663 - [INFO] - src.simulation_engine - Depth chart features initialized successfully
+2026-03-13 15:52:47,768 - [INFO] - src.depth_chart_features - Built depth charts for 185 team/position combinations
+2026-03-13 15:52:47,768 - [INFO] - src.simulation_engine - Depth chart features initialized successfully
+2026-03-13 15:52:47,769 - [INFO] - src.continuous_learning - Continuous Learning Orchestrator initialized
+2026-03-13 15:52:47,769 - [INFO] - src.self_learning_integration - Self-Learning System initialized successfully
+2026-03-13 15:52:47,769 - [INFO] - __main__ - ✓ System initialized
+2026-03-13 15:52:47,769 - [INFO] - __main__ - Starting system in hybrid mode...
+2026-03-13 15:52:47,769 - [INFO] - src.self_learning_integration - Integrating self-learning with app mode: hybrid
+2026-03-13 15:52:47,769 - [INFO] - src.self_learning_integration - Running in hybrid mode: existing app + background learning
+2026-03-13 15:52:47,769 - [INFO] - src.self_learning_integration - Starting Self-Learning System
+2026-03-13 15:52:47,769 - [INFO] - src.continuous_learning - Starting Continuous Learning Orchestrator
+2026-03-13 15:52:47,769 - [INFO] - src.continuous_learning - ESPN sync thread started
+2026-03-13 15:52:47,769 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:52:47,769 - [INFO] - src.continuous_learning - Backtest thread started
+2026-03-13 15:52:47,769 - [INFO] - src.continuous_learning - Learning thread started
+2026-03-13 15:52:47,769 - [INFO] - src.continuous_learning - Projection thread started
+2026-03-13 15:52:47,769 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:52:47,769 - [INFO] - src.continuous_learning - Optimization thread started
+2026-03-13 15:52:47,770 - [INFO] - src.continuous_learning - Running backtest cycle
+2026-03-13 15:52:47,770 - [INFO] - src.continuous_learning - Running learning cycle
+2026-03-13 15:52:47,770 - [INFO] - src.continuous_learning - Running projection cycle
+2026-03-13 15:52:47,770 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:52:47,770 - [INFO] - src.continuous_learning - Running optimization cycle
+2026-03-13 15:52:47,770 - [INFO] - src.self_learner - Starting backtest cycle: 20 games from last 365 days
+2026-03-13 15:52:47,770 - [INFO] - src.self_learner - Starting full historical learning with target accuracy: 95.00%
+2026-03-13 15:52:47,770 - [WARNING] - src.self_learner - Historical learning not complete, proceed with caution
+2026-03-13 15:52:47,770 - [INFO] - src.continuous_learning - Found 1 optimization opportunities
+2026-03-13 15:52:47,770 - [INFO] - src.continuous_learning - [orchestrator_start] Continuous learning system started
+2026-03-13 15:52:47,770 - [INFO] - src.self_learner - Learning iteration 1/50
+2026-03-13 15:52:47,771 - [INFO] - src.self_learner - Generating forward projections
+2026-03-13 15:52:47,771 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:52:47,771 - [INFO] - src.continuous_learning - Applying: Add more features related to depth chart and player status
+2026-03-13 15:52:47,771 - [INFO] - src.self_learner - Starting backtest cycle: 20 games from last 365 days
+2026-03-13 15:52:47,771 - [INFO] - src.continuous_learning - [optimization_complete] Optimization cycle: 1 recommendations generated
+2026-03-13 15:52:47,771 - [INFO] - src.self_learning_integration - Self-Learning System is running
+2026-03-13 15:52:47,772 - [INFO] - __main__ - Result: {
+  "mode": "hybrid",
+  "status": "running",
+  "message": "Self-learning system is running in background"
+}
+2026-03-13 15:52:47,772 - [INFO] - __main__ - Running as daemon, press Ctrl+C to stop...
+2026-03-13 15:52:47,775 - [INFO] - src.self_learner - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 15:52:47,775 - [INFO] - src.self_learner - Generated forward projections for 0 games
+2026-03-13 15:52:47,775 - [INFO] - src.continuous_learning - [projection_update] Forward projections updated: 0 games, 0 predictions
+2026-03-13 15:52:47,864 - [INFO] - src.self_learner - Loaded 987 unique games from training data
+2026-03-13 15:52:47,864 - [INFO] - src.self_learner - Backtest game 1/20: 2025-10-21 00:00:00 - 22500001
+2026-03-13 15:52:47,864 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500001 - OKC
+2026-03-13 15:52:47,864 - [INFO] - src.simulation_engine - Using depth chart features for OKC
+2026-03-13 15:52:47,912 - [INFO] - src.self_learner - Loaded 987 unique games from training data
+2026-03-13 15:52:47,913 - [INFO] - src.self_learner - Backtest game 1/20: 2025-10-21 00:00:00 - 22500001
+2026-03-13 15:52:47,913 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500001 - OKC
+2026-03-13 15:52:47,913 - [INFO] - src.simulation_engine - Using depth chart features for OKC
+2026-03-13 15:52:47,945 - [INFO] - src.simulation_engine - Predicting stat lines for 22500001
+2026-03-13 15:52:47,945 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500001 - HOU
+2026-03-13 15:52:47,945 - [INFO] - src.simulation_engine - Using depth chart features for HOU
+2026-03-13 15:52:47,953 - [INFO] - src.simulation_engine - Predicting stat lines for 22500001
+2026-03-13 15:52:47,953 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500001 - HOU
+2026-03-13 15:52:47,954 - [INFO] - src.simulation_engine - Using depth chart features for HOU
+2026-03-13 15:52:47,982 - [INFO] - src.simulation_engine - Predicting stat lines for 22500001
+2026-03-13 15:52:47,996 - [INFO] - src.simulation_engine - Predicting stat lines for 22500001
+2026-03-13 15:52:48,053 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500001
+2026-03-13 15:52:48,055 - [INFO] - src.self_learner - Backtest game 2/20: 2025-10-21 00:00:00 - 22500002
+2026-03-13 15:52:48,055 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500002 - LAL
+2026-03-13 15:52:48,055 - [INFO] - src.simulation_engine - Using depth chart features for LAL
+2026-03-13 15:52:48,068 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500001
+2026-03-13 15:52:48,072 - [INFO] - src.self_learner - Backtest game 2/20: 2025-10-21 00:00:00 - 22500002
+2026-03-13 15:52:48,072 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500002 - LAL
+2026-03-13 15:52:48,072 - [INFO] - src.simulation_engine - Using depth chart features for LAL
+2026-03-13 15:52:48,095 - [INFO] - src.simulation_engine - Predicting stat lines for 22500002
+2026-03-13 15:52:48,095 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500002 - GSW
+2026-03-13 15:52:48,095 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:48,115 - [INFO] - src.simulation_engine - Predicting stat lines for 22500002
+2026-03-13 15:52:48,115 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500002 - GSW
+2026-03-13 15:52:48,115 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:48,136 - [INFO] - src.simulation_engine - Predicting stat lines for 22500002
+2026-03-13 15:52:48,154 - [INFO] - src.simulation_engine - Predicting stat lines for 22500002
+2026-03-13 15:52:48,205 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500002
+2026-03-13 15:52:48,207 - [INFO] - src.self_learner - Backtest game 3/20: 2025-10-22 00:00:00 - 22500081
+2026-03-13 15:52:48,207 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500081 - MIA
+2026-03-13 15:52:48,207 - [INFO] - src.simulation_engine - Using depth chart features for MIA
+2026-03-13 15:52:48,223 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500002
+2026-03-13 15:52:48,224 - [INFO] - src.self_learner - Backtest game 3/20: 2025-10-22 00:00:00 - 22500081
+2026-03-13 15:52:48,224 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500081 - MIA
+2026-03-13 15:52:48,224 - [INFO] - src.simulation_engine - Using depth chart features for MIA
+2026-03-13 15:52:48,244 - [INFO] - src.simulation_engine - Predicting stat lines for 22500081
+2026-03-13 15:52:48,244 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500081 - ORL
+2026-03-13 15:52:48,244 - [INFO] - src.simulation_engine - Using depth chart features for ORL
+2026-03-13 15:52:48,261 - [INFO] - src.simulation_engine - Predicting stat lines for 22500081
+2026-03-13 15:52:48,261 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500081 - ORL
+2026-03-13 15:52:48,261 - [INFO] - src.simulation_engine - Using depth chart features for ORL
+2026-03-13 15:52:48,282 - [INFO] - src.simulation_engine - Predicting stat lines for 22500081
+2026-03-13 15:52:48,299 - [INFO] - src.simulation_engine - Predicting stat lines for 22500081
+2026-03-13 15:52:48,349 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500081
+2026-03-13 15:52:48,351 - [INFO] - src.self_learner - Backtest game 4/20: 2025-10-22 00:00:00 - 22500080
+2026-03-13 15:52:48,351 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500080 - CHA
+2026-03-13 15:52:48,351 - [INFO] - src.simulation_engine - Using depth chart features for CHA
+2026-03-13 15:52:48,366 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500081
+2026-03-13 15:52:48,368 - [INFO] - src.self_learner - Backtest game 4/20: 2025-10-22 00:00:00 - 22500080
+2026-03-13 15:52:48,368 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500080 - CHA
+2026-03-13 15:52:48,368 - [INFO] - src.simulation_engine - Using depth chart features for CHA
+2026-03-13 15:52:48,388 - [INFO] - src.simulation_engine - Predicting stat lines for 22500080
+2026-03-13 15:52:48,388 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500080 - BKN
+2026-03-13 15:52:48,388 - [INFO] - src.simulation_engine - Using depth chart features for BKN
+2026-03-13 15:52:48,406 - [INFO] - src.simulation_engine - Predicting stat lines for 22500080
+2026-03-13 15:52:48,406 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500080 - BKN
+2026-03-13 15:52:48,406 - [INFO] - src.simulation_engine - Using depth chart features for BKN
+2026-03-13 15:52:48,425 - [INFO] - src.simulation_engine - Predicting stat lines for 22500080
+2026-03-13 15:52:48,444 - [INFO] - src.simulation_engine - Predicting stat lines for 22500080
+2026-03-13 15:52:48,493 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500080
+2026-03-13 15:52:48,495 - [INFO] - src.self_learner - Backtest game 5/20: 2025-10-22 00:00:00 - 22500084
+2026-03-13 15:52:48,495 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500084 - DET
+2026-03-13 15:52:48,495 - [INFO] - src.simulation_engine - Using depth chart features for DET
+2026-03-13 15:52:48,511 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500080
+2026-03-13 15:52:48,513 - [INFO] - src.self_learner - Backtest game 5/20: 2025-10-22 00:00:00 - 22500084
+2026-03-13 15:52:48,513 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500084 - DET
+2026-03-13 15:52:48,513 - [INFO] - src.simulation_engine - Using depth chart features for DET
+2026-03-13 15:52:48,532 - [INFO] - src.simulation_engine - Predicting stat lines for 22500084
+2026-03-13 15:52:48,532 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500084 - CHI
+2026-03-13 15:52:48,532 - [INFO] - src.simulation_engine - Using depth chart features for CHI
+2026-03-13 15:52:48,550 - [INFO] - src.simulation_engine - Predicting stat lines for 22500084
+2026-03-13 15:52:48,550 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500084 - CHI
+2026-03-13 15:52:48,550 - [INFO] - src.simulation_engine - Using depth chart features for CHI
+2026-03-13 15:52:48,570 - [INFO] - src.simulation_engine - Predicting stat lines for 22500084
+2026-03-13 15:52:48,588 - [INFO] - src.simulation_engine - Predicting stat lines for 22500084
+2026-03-13 15:52:48,638 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500084
+2026-03-13 15:52:48,640 - [INFO] - src.self_learner - Backtest game 6/20: 2025-10-22 00:00:00 - 22500085
+2026-03-13 15:52:48,640 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500085 - NOP
+2026-03-13 15:52:48,640 - [INFO] - src.simulation_engine - Using depth chart features for NOP
+2026-03-13 15:52:48,657 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500084
+2026-03-13 15:52:48,659 - [INFO] - src.self_learner - Backtest game 6/20: 2025-10-22 00:00:00 - 22500085
+2026-03-13 15:52:48,659 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500085 - NOP
+2026-03-13 15:52:48,659 - [INFO] - src.simulation_engine - Using depth chart features for NOP
+2026-03-13 15:52:48,677 - [INFO] - src.simulation_engine - Predicting stat lines for 22500085
+2026-03-13 15:52:48,677 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500085 - MEM
+2026-03-13 15:52:48,677 - [INFO] - src.simulation_engine - Using depth chart features for MEM
+2026-03-13 15:52:48,697 - [INFO] - src.simulation_engine - Predicting stat lines for 22500085
+2026-03-13 15:52:48,697 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500085 - MEM
+2026-03-13 15:52:48,697 - [INFO] - src.simulation_engine - Using depth chart features for MEM
+2026-03-13 15:52:48,715 - [INFO] - src.simulation_engine - Predicting stat lines for 22500085
+2026-03-13 15:52:48,735 - [INFO] - src.simulation_engine - Predicting stat lines for 22500085
+2026-03-13 15:52:48,783 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500085
+2026-03-13 15:52:48,785 - [INFO] - src.self_learner - Backtest game 7/20: 2025-10-22 00:00:00 - 22500086
+2026-03-13 15:52:48,785 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500086 - WAS
+2026-03-13 15:52:48,786 - [INFO] - src.simulation_engine - Using depth chart features for WAS
+2026-03-13 15:52:48,804 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500085
+2026-03-13 15:52:48,806 - [INFO] - src.self_learner - Backtest game 7/20: 2025-10-22 00:00:00 - 22500086
+2026-03-13 15:52:48,806 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500086 - WAS
+2026-03-13 15:52:48,806 - [INFO] - src.simulation_engine - Using depth chart features for WAS
+2026-03-13 15:52:48,824 - [INFO] - src.simulation_engine - Predicting stat lines for 22500086
+2026-03-13 15:52:48,824 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500086 - MIL
+2026-03-13 15:52:48,824 - [INFO] - src.simulation_engine - Using depth chart features for MIL
+2026-03-13 15:52:48,844 - [INFO] - src.simulation_engine - Predicting stat lines for 22500086
+2026-03-13 15:52:48,844 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500086 - MIL
+2026-03-13 15:52:48,844 - [INFO] - src.simulation_engine - Using depth chart features for MIL
+2026-03-13 15:52:48,861 - [INFO] - src.simulation_engine - Predicting stat lines for 22500086
+2026-03-13 15:52:48,882 - [INFO] - src.simulation_engine - Predicting stat lines for 22500086
+2026-03-13 15:52:48,928 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500086
+2026-03-13 15:52:48,931 - [INFO] - src.self_learner - Backtest game 8/20: 2025-10-22 00:00:00 - 22500087
+2026-03-13 15:52:48,931 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500087 - LAC
+2026-03-13 15:52:48,931 - [INFO] - src.simulation_engine - Using depth chart features for LAC
+2026-03-13 15:52:48,971 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500086
+2026-03-13 15:52:48,974 - [INFO] - src.self_learner - Backtest game 8/20: 2025-10-22 00:00:00 - 22500087
+2026-03-13 15:52:48,974 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500087 - LAC
+2026-03-13 15:52:48,974 - [INFO] - src.simulation_engine - Using depth chart features for LAC
+2026-03-13 15:52:48,991 - [INFO] - src.simulation_engine - Predicting stat lines for 22500087
+2026-03-13 15:52:48,991 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500087 - UTA
+2026-03-13 15:52:48,991 - [INFO] - src.simulation_engine - Using depth chart features for UTA
+2026-03-13 15:52:49,012 - [INFO] - src.simulation_engine - Predicting stat lines for 22500087
+2026-03-13 15:52:49,012 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500087 - UTA
+2026-03-13 15:52:49,012 - [INFO] - src.simulation_engine - Using depth chart features for UTA
+2026-03-13 15:52:49,030 - [INFO] - src.simulation_engine - Predicting stat lines for 22500087
+2026-03-13 15:52:49,049 - [INFO] - src.simulation_engine - Predicting stat lines for 22500087
+2026-03-13 15:52:49,098 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500087
+2026-03-13 15:52:49,100 - [INFO] - src.self_learner - Backtest game 9/20: 2025-10-22 00:00:00 - 22500088
+2026-03-13 15:52:49,100 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500088 - PHX
+2026-03-13 15:52:49,100 - [INFO] - src.simulation_engine - Using depth chart features for PHX
+2026-03-13 15:52:49,116 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500087
+2026-03-13 15:52:49,118 - [INFO] - src.self_learner - Backtest game 9/20: 2025-10-22 00:00:00 - 22500088
+2026-03-13 15:52:49,118 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500088 - PHX
+2026-03-13 15:52:49,119 - [INFO] - src.simulation_engine - Using depth chart features for PHX
+2026-03-13 15:52:49,137 - [INFO] - src.simulation_engine - Predicting stat lines for 22500088
+2026-03-13 15:52:49,137 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500088 - SAC
+2026-03-13 15:52:49,137 - [INFO] - src.simulation_engine - Using depth chart features for SAC
+2026-03-13 15:52:49,156 - [INFO] - src.simulation_engine - Predicting stat lines for 22500088
+2026-03-13 15:52:49,156 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500088 - SAC
+2026-03-13 15:52:49,156 - [INFO] - src.simulation_engine - Using depth chart features for SAC
+2026-03-13 15:52:49,174 - [INFO] - src.simulation_engine - Predicting stat lines for 22500088
+2026-03-13 15:52:49,193 - [INFO] - src.simulation_engine - Predicting stat lines for 22500088
+2026-03-13 15:52:49,244 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500088
+2026-03-13 15:52:49,246 - [INFO] - src.self_learner - Backtest game 10/20: 2025-10-22 00:00:00 - 22500089
+2026-03-13 15:52:49,246 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500089 - MIN
+2026-03-13 15:52:49,246 - [INFO] - src.simulation_engine - Using depth chart features for MIN
+2026-03-13 15:52:49,266 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500088
+2026-03-13 15:52:49,268 - [INFO] - src.self_learner - Backtest game 10/20: 2025-10-22 00:00:00 - 22500089
+2026-03-13 15:52:49,268 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500089 - MIN
+2026-03-13 15:52:49,268 - [INFO] - src.simulation_engine - Using depth chart features for MIN
+2026-03-13 15:52:49,288 - [INFO] - src.simulation_engine - Predicting stat lines for 22500089
+2026-03-13 15:52:49,288 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500089 - POR
+2026-03-13 15:52:49,288 - [INFO] - src.simulation_engine - Using depth chart features for POR
+2026-03-13 15:52:49,306 - [INFO] - src.simulation_engine - Predicting stat lines for 22500089
+2026-03-13 15:52:49,306 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500089 - POR
+2026-03-13 15:52:49,306 - [INFO] - src.simulation_engine - Using depth chart features for POR
+2026-03-13 15:52:49,326 - [INFO] - src.simulation_engine - Predicting stat lines for 22500089
+2026-03-13 15:52:49,344 - [INFO] - src.simulation_engine - Predicting stat lines for 22500089
+2026-03-13 15:52:49,393 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500089
+2026-03-13 15:52:49,395 - [INFO] - src.self_learner - Backtest game 11/20: 2025-10-22 00:00:00 - 22500082
+2026-03-13 15:52:49,395 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500082 - TOR
+2026-03-13 15:52:49,395 - [INFO] - src.simulation_engine - Using depth chart features for TOR
+2026-03-13 15:52:49,412 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500089
+2026-03-13 15:52:49,413 - [INFO] - src.self_learner - Backtest game 11/20: 2025-10-22 00:00:00 - 22500082
+2026-03-13 15:52:49,413 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500082 - TOR
+2026-03-13 15:52:49,413 - [INFO] - src.simulation_engine - Using depth chart features for TOR
+2026-03-13 15:52:49,432 - [INFO] - src.simulation_engine - Predicting stat lines for 22500082
+2026-03-13 15:52:49,432 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500082 - ATL
+2026-03-13 15:52:49,432 - [INFO] - src.simulation_engine - Using depth chart features for ATL
+2026-03-13 15:52:49,451 - [INFO] - src.simulation_engine - Predicting stat lines for 22500082
+2026-03-13 15:52:49,451 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500082 - ATL
+2026-03-13 15:52:49,451 - [INFO] - src.simulation_engine - Using depth chart features for ATL
+2026-03-13 15:52:49,469 - [INFO] - src.simulation_engine - Predicting stat lines for 22500082
+2026-03-13 15:52:49,489 - [INFO] - src.simulation_engine - Predicting stat lines for 22500082
+2026-03-13 15:52:49,538 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500082
+2026-03-13 15:52:49,540 - [INFO] - src.self_learner - Backtest game 12/20: 2025-10-22 00:00:00 - 22500083
+2026-03-13 15:52:49,540 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500083 - PHI
+2026-03-13 15:52:49,540 - [INFO] - src.simulation_engine - Using depth chart features for PHI
+2026-03-13 15:52:49,556 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500082
+2026-03-13 15:52:49,558 - [INFO] - src.self_learner - Backtest game 12/20: 2025-10-22 00:00:00 - 22500083
+2026-03-13 15:52:49,558 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500083 - PHI
+2026-03-13 15:52:49,558 - [INFO] - src.simulation_engine - Using depth chart features for PHI
+2026-03-13 15:52:49,577 - [INFO] - src.simulation_engine - Predicting stat lines for 22500083
+2026-03-13 15:52:49,577 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500083 - BOS
+2026-03-13 15:52:49,577 - [INFO] - src.simulation_engine - Using depth chart features for BOS
+2026-03-13 15:52:49,595 - [INFO] - src.simulation_engine - Predicting stat lines for 22500083
+2026-03-13 15:52:49,595 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500083 - BOS
+2026-03-13 15:52:49,595 - [INFO] - src.simulation_engine - Using depth chart features for BOS
+2026-03-13 15:52:49,614 - [INFO] - src.simulation_engine - Predicting stat lines for 22500083
+2026-03-13 15:52:49,633 - [INFO] - src.simulation_engine - Predicting stat lines for 22500083
+2026-03-13 15:52:49,681 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500083
+2026-03-13 15:52:49,683 - [INFO] - src.self_learner - Backtest game 13/20: 2025-10-22 00:00:00 - 22500003
+2026-03-13 15:52:49,683 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500003 - CLE
+2026-03-13 15:52:49,683 - [INFO] - src.simulation_engine - Using depth chart features for CLE
+2026-03-13 15:52:49,700 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500083
+2026-03-13 15:52:49,702 - [INFO] - src.self_learner - Backtest game 13/20: 2025-10-22 00:00:00 - 22500003
+2026-03-13 15:52:49,702 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500003 - CLE
+2026-03-13 15:52:49,702 - [INFO] - src.simulation_engine - Using depth chart features for CLE
+2026-03-13 15:52:49,721 - [INFO] - src.simulation_engine - Predicting stat lines for 22500003
+2026-03-13 15:52:49,721 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500003 - NYK
+2026-03-13 15:52:49,721 - [INFO] - src.simulation_engine - Using depth chart features for NYK
+2026-03-13 15:52:49,740 - [INFO] - src.simulation_engine - Predicting stat lines for 22500003
+2026-03-13 15:52:49,740 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500003 - NYK
+2026-03-13 15:52:49,740 - [INFO] - src.simulation_engine - Using depth chart features for NYK
+2026-03-13 15:52:49,758 - [INFO] - src.simulation_engine - Predicting stat lines for 22500003
+2026-03-13 15:52:49,778 - [INFO] - src.simulation_engine - Predicting stat lines for 22500003
+2026-03-13 15:52:49,827 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500003
+2026-03-13 15:52:49,829 - [INFO] - src.self_learner - Backtest game 14/20: 2025-10-22 00:00:00 - 22500004
+2026-03-13 15:52:49,829 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500004 - SAS
+2026-03-13 15:52:49,829 - [INFO] - src.simulation_engine - Using depth chart features for SAS
+2026-03-13 15:52:49,846 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500003
+2026-03-13 15:52:49,847 - [INFO] - src.self_learner - Backtest game 14/20: 2025-10-22 00:00:00 - 22500004
+2026-03-13 15:52:49,847 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500004 - SAS
+2026-03-13 15:52:49,847 - [INFO] - src.simulation_engine - Using depth chart features for SAS
+2026-03-13 15:52:49,866 - [INFO] - src.simulation_engine - Predicting stat lines for 22500004
+2026-03-13 15:52:49,866 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500004 - DAL
+2026-03-13 15:52:49,866 - [INFO] - src.simulation_engine - Using depth chart features for DAL
+2026-03-13 15:52:49,885 - [INFO] - src.simulation_engine - Predicting stat lines for 22500004
+2026-03-13 15:52:49,885 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500004 - DAL
+2026-03-13 15:52:49,885 - [INFO] - src.simulation_engine - Using depth chart features for DAL
+2026-03-13 15:52:49,905 - [INFO] - src.simulation_engine - Predicting stat lines for 22500004
+2026-03-13 15:52:49,923 - [INFO] - src.simulation_engine - Predicting stat lines for 22500004
+2026-03-13 15:52:49,973 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500004
+2026-03-13 15:52:49,975 - [INFO] - src.self_learner - Backtest game 15/20: 2025-10-23 00:00:00 - 22500005
+2026-03-13 15:52:49,975 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500005 - IND
+2026-03-13 15:52:49,975 - [INFO] - src.simulation_engine - Using depth chart features for IND
+2026-03-13 15:52:49,991 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500004
+2026-03-13 15:52:49,993 - [INFO] - src.self_learner - Backtest game 15/20: 2025-10-23 00:00:00 - 22500005
+2026-03-13 15:52:49,994 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500005 - IND
+2026-03-13 15:52:49,994 - [INFO] - src.simulation_engine - Using depth chart features for IND
+2026-03-13 15:52:50,014 - [INFO] - src.simulation_engine - Predicting stat lines for 22500005
+2026-03-13 15:52:50,014 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500005 - OKC
+2026-03-13 15:52:50,014 - [INFO] - src.simulation_engine - Using depth chart features for OKC
+2026-03-13 15:52:50,032 - [INFO] - src.simulation_engine - Predicting stat lines for 22500005
+2026-03-13 15:52:50,032 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500005 - OKC
+2026-03-13 15:52:50,032 - [INFO] - src.simulation_engine - Using depth chart features for OKC
+2026-03-13 15:52:50,051 - [INFO] - src.simulation_engine - Predicting stat lines for 22500005
+2026-03-13 15:52:50,070 - [INFO] - src.simulation_engine - Predicting stat lines for 22500005
+2026-03-13 15:52:50,119 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500005
+2026-03-13 15:52:50,122 - [INFO] - src.self_learner - Backtest game 16/20: 2025-10-23 00:00:00 - 22500006
+2026-03-13 15:52:50,122 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500006 - DEN
+2026-03-13 15:52:50,122 - [INFO] - src.simulation_engine - Using depth chart features for DEN
+2026-03-13 15:52:50,139 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500005
+2026-03-13 15:52:50,141 - [INFO] - src.self_learner - Backtest game 16/20: 2025-10-23 00:00:00 - 22500006
+2026-03-13 15:52:50,141 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500006 - DEN
+2026-03-13 15:52:50,141 - [INFO] - src.simulation_engine - Using depth chart features for DEN
+2026-03-13 15:52:50,160 - [INFO] - src.simulation_engine - Predicting stat lines for 22500006
+2026-03-13 15:52:50,160 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500006 - GSW
+2026-03-13 15:52:50,160 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:50,179 - [INFO] - src.simulation_engine - Predicting stat lines for 22500006
+2026-03-13 15:52:50,180 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500006 - GSW
+2026-03-13 15:52:50,180 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:50,198 - [INFO] - src.simulation_engine - Predicting stat lines for 22500006
+2026-03-13 15:52:50,217 - [INFO] - src.simulation_engine - Predicting stat lines for 22500006
+2026-03-13 15:52:50,266 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500006
+2026-03-13 15:52:50,268 - [INFO] - src.self_learner - Backtest game 17/20: 2025-10-24 00:00:00 - 22500097
+2026-03-13 15:52:50,268 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500097 - POR
+2026-03-13 15:52:50,268 - [INFO] - src.simulation_engine - Using depth chart features for POR
+2026-03-13 15:52:50,286 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500006
+2026-03-13 15:52:50,288 - [INFO] - src.self_learner - Backtest game 17/20: 2025-10-24 00:00:00 - 22500097
+2026-03-13 15:52:50,288 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500097 - POR
+2026-03-13 15:52:50,288 - [INFO] - src.simulation_engine - Using depth chart features for POR
+2026-03-13 15:52:50,306 - [INFO] - src.simulation_engine - Predicting stat lines for 22500097
+2026-03-13 15:52:50,306 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500097 - GSW
+2026-03-13 15:52:50,306 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:50,325 - [INFO] - src.simulation_engine - Predicting stat lines for 22500097
+2026-03-13 15:52:50,325 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500097 - GSW
+2026-03-13 15:52:50,325 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:50,343 - [INFO] - src.simulation_engine - Predicting stat lines for 22500097
+2026-03-13 15:52:50,362 - [INFO] - src.simulation_engine - Predicting stat lines for 22500097
+2026-03-13 15:52:50,414 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500097
+2026-03-13 15:52:50,417 - [INFO] - src.self_learner - Backtest game 18/20: 2025-10-24 00:00:00 - 22500099
+2026-03-13 15:52:50,417 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500099 - PHX
+2026-03-13 15:52:50,417 - [INFO] - src.simulation_engine - Using depth chart features for PHX
+2026-03-13 15:52:50,436 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500097
+2026-03-13 15:52:50,439 - [INFO] - src.self_learner - Backtest game 18/20: 2025-10-24 00:00:00 - 22500099
+2026-03-13 15:52:50,439 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500099 - PHX
+2026-03-13 15:52:50,439 - [INFO] - src.simulation_engine - Using depth chart features for PHX
+2026-03-13 15:52:50,459 - [INFO] - src.simulation_engine - Predicting stat lines for 22500099
+2026-03-13 15:52:50,459 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500099 - LAC
+2026-03-13 15:52:50,459 - [INFO] - src.simulation_engine - Using depth chart features for LAC
+2026-03-13 15:52:50,480 - [INFO] - src.simulation_engine - Predicting stat lines for 22500099
+2026-03-13 15:52:50,480 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500099 - LAC
+2026-03-13 15:52:50,480 - [INFO] - src.simulation_engine - Using depth chart features for LAC
+2026-03-13 15:52:50,499 - [INFO] - src.simulation_engine - Predicting stat lines for 22500099
+2026-03-13 15:52:50,522 - [INFO] - src.simulation_engine - Predicting stat lines for 22500099
+2026-03-13 15:52:50,575 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500099
+2026-03-13 15:52:50,578 - [INFO] - src.self_learner - Backtest game 19/20: 2025-10-24 00:00:00 - 22500098
+2026-03-13 15:52:50,578 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500098 - SAC
+2026-03-13 15:52:50,578 - [INFO] - src.simulation_engine - Using depth chart features for SAC
+2026-03-13 15:52:50,595 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500099
+2026-03-13 15:52:50,597 - [INFO] - src.self_learner - Backtest game 19/20: 2025-10-24 00:00:00 - 22500098
+2026-03-13 15:52:50,598 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500098 - SAC
+2026-03-13 15:52:50,598 - [INFO] - src.simulation_engine - Using depth chart features for SAC
+2026-03-13 15:52:50,621 - [INFO] - src.simulation_engine - Predicting stat lines for 22500098
+2026-03-13 15:52:50,621 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500098 - UTA
+2026-03-13 15:52:50,621 - [INFO] - src.simulation_engine - Using depth chart features for UTA
+2026-03-13 15:52:50,640 - [INFO] - src.simulation_engine - Predicting stat lines for 22500098
+2026-03-13 15:52:50,640 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500098 - UTA
+2026-03-13 15:52:50,640 - [INFO] - src.simulation_engine - Using depth chart features for UTA
+2026-03-13 15:52:50,662 - [INFO] - src.simulation_engine - Predicting stat lines for 22500098
+2026-03-13 15:52:50,683 - [INFO] - src.simulation_engine - Predicting stat lines for 22500098
+2026-03-13 15:52:50,749 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500098
+2026-03-13 15:52:50,754 - [INFO] - src.self_learner - Backtest game 20/20: 2025-10-24 00:00:00 - 22500096
+2026-03-13 15:52:50,754 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500096 - WAS
+2026-03-13 15:52:50,754 - [INFO] - src.simulation_engine - Using depth chart features for WAS
+2026-03-13 15:52:50,778 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500098
+2026-03-13 15:52:50,782 - [INFO] - src.self_learner - Backtest game 20/20: 2025-10-24 00:00:00 - 22500096
+2026-03-13 15:52:50,782 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500096 - WAS
+2026-03-13 15:52:50,782 - [INFO] - src.simulation_engine - Using depth chart features for WAS
+2026-03-13 15:52:50,814 - [INFO] - src.simulation_engine - Predicting stat lines for 22500096
+2026-03-13 15:52:50,814 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500096 - DAL
+2026-03-13 15:52:50,814 - [INFO] - src.simulation_engine - Using depth chart features for DAL
+2026-03-13 15:52:50,835 - [INFO] - src.simulation_engine - Predicting stat lines for 22500096
+2026-03-13 15:52:50,835 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500096 - DAL
+2026-03-13 15:52:50,835 - [INFO] - src.simulation_engine - Using depth chart features for DAL
+2026-03-13 15:52:50,858 - [INFO] - src.simulation_engine - Predicting stat lines for 22500096
+2026-03-13 15:52:50,876 - [INFO] - src.simulation_engine - Predicting stat lines for 22500096
+2026-03-13 15:52:50,932 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500096
+2026-03-13 15:52:50,935 - [INFO] - src.self_learner - Starter prediction accuracy low: 0.00%
+2026-03-13 15:52:50,935 - [INFO] - src.self_learner - Applying correction for starter predictions
+2026-03-13 15:52:50,936 - [INFO] - src.self_learner - Backtest cycle complete: 20 games, improvement: 0.00%
+2026-03-13 15:52:50,937 - [INFO] - src.continuous_learning - [backtest_complete] Backtest: 20 games, improvement: +0.00%
+2026-03-13 15:52:50,948 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500096
+2026-03-13 15:52:50,952 - [INFO] - src.self_learner - Starter prediction accuracy low: 0.00%
+2026-03-13 15:52:50,952 - [INFO] - src.self_learner - Applying correction for starter predictions
+2026-03-13 15:52:50,953 - [INFO] - src.self_learner - Backtest cycle complete: 20 games, improvement: 0.00%
+2026-03-13 15:52:50,953 - [INFO] - src.self_learner - Iteration 1: Accuracy = 0.00%, Improvement = +0.00%
+2026-03-13 15:52:50,953 - [INFO] - src.self_learner - Learning iteration 2/50
+2026-03-13 15:52:50,953 - [INFO] - src.self_learner - Starting backtest cycle: 20 games from last 365 days
+2026-03-13 15:52:51,041 - [INFO] - src.self_learner - Loaded 987 unique games from training data
+2026-03-13 15:52:51,042 - [INFO] - src.self_learner - Backtest game 1/20: 2025-10-21 00:00:00 - 22500001
+2026-03-13 15:52:51,042 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500001 - OKC
+2026-03-13 15:52:51,042 - [INFO] - src.simulation_engine - Using depth chart features for OKC
+2026-03-13 15:52:51,073 - [INFO] - src.simulation_engine - Predicting stat lines for 22500001
+2026-03-13 15:52:51,073 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500001 - HOU
+2026-03-13 15:52:51,073 - [INFO] - src.simulation_engine - Using depth chart features for HOU
+2026-03-13 15:52:51,105 - [INFO] - src.simulation_engine - Predicting stat lines for 22500001
+2026-03-13 15:52:51,162 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500001
+2026-03-13 15:52:51,164 - [INFO] - src.self_learner - Backtest game 2/20: 2025-10-21 00:00:00 - 22500002
+2026-03-13 15:52:51,164 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500002 - LAL
+2026-03-13 15:52:51,164 - [INFO] - src.simulation_engine - Using depth chart features for LAL
+2026-03-13 15:52:51,195 - [INFO] - src.simulation_engine - Predicting stat lines for 22500002
+2026-03-13 15:52:51,195 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500002 - GSW
+2026-03-13 15:52:51,195 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:51,226 - [INFO] - src.simulation_engine - Predicting stat lines for 22500002
+2026-03-13 15:52:51,281 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500002
+2026-03-13 15:52:51,283 - [INFO] - src.self_learner - Backtest game 3/20: 2025-10-22 00:00:00 - 22500081
+2026-03-13 15:52:51,284 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500081 - MIA
+2026-03-13 15:52:51,284 - [INFO] - src.simulation_engine - Using depth chart features for MIA
+2026-03-13 15:52:51,314 - [INFO] - src.simulation_engine - Predicting stat lines for 22500081
+2026-03-13 15:52:51,314 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500081 - ORL
+2026-03-13 15:52:51,314 - [INFO] - src.simulation_engine - Using depth chart features for ORL
+2026-03-13 15:52:51,347 - [INFO] - src.simulation_engine - Predicting stat lines for 22500081
+2026-03-13 15:52:51,402 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500081
+2026-03-13 15:52:51,405 - [INFO] - src.self_learner - Backtest game 4/20: 2025-10-22 00:00:00 - 22500080
+2026-03-13 15:52:51,405 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500080 - CHA
+2026-03-13 15:52:51,405 - [INFO] - src.simulation_engine - Using depth chart features for CHA
+2026-03-13 15:52:51,435 - [INFO] - src.simulation_engine - Predicting stat lines for 22500080
+2026-03-13 15:52:51,435 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500080 - BKN
+2026-03-13 15:52:51,435 - [INFO] - src.simulation_engine - Using depth chart features for BKN
+2026-03-13 15:52:51,466 - [INFO] - src.simulation_engine - Predicting stat lines for 22500080
+2026-03-13 15:52:51,524 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500080
+2026-03-13 15:52:51,527 - [INFO] - src.self_learner - Backtest game 5/20: 2025-10-22 00:00:00 - 22500084
+2026-03-13 15:52:51,527 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500084 - DET
+2026-03-13 15:52:51,527 - [INFO] - src.simulation_engine - Using depth chart features for DET
+2026-03-13 15:52:51,558 - [INFO] - src.simulation_engine - Predicting stat lines for 22500084
+2026-03-13 15:52:51,558 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500084 - CHI
+2026-03-13 15:52:51,558 - [INFO] - src.simulation_engine - Using depth chart features for CHI
+2026-03-13 15:52:51,588 - [INFO] - src.simulation_engine - Predicting stat lines for 22500084
+2026-03-13 15:52:51,642 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500084
+2026-03-13 15:52:51,645 - [INFO] - src.self_learner - Backtest game 6/20: 2025-10-22 00:00:00 - 22500085
+2026-03-13 15:52:51,645 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500085 - NOP
+2026-03-13 15:52:51,645 - [INFO] - src.simulation_engine - Using depth chart features for NOP
+2026-03-13 15:52:51,675 - [INFO] - src.simulation_engine - Predicting stat lines for 22500085
+2026-03-13 15:52:51,675 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500085 - MEM
+2026-03-13 15:52:51,675 - [INFO] - src.simulation_engine - Using depth chart features for MEM
+2026-03-13 15:52:51,712 - [INFO] - src.simulation_engine - Predicting stat lines for 22500085
+2026-03-13 15:52:51,768 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500085
+2026-03-13 15:52:51,771 - [INFO] - src.self_learner - Backtest game 7/20: 2025-10-22 00:00:00 - 22500086
+2026-03-13 15:52:51,771 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500086 - WAS
+2026-03-13 15:52:51,771 - [INFO] - src.simulation_engine - Using depth chart features for WAS
+2026-03-13 15:52:51,800 - [INFO] - src.simulation_engine - Predicting stat lines for 22500086
+2026-03-13 15:52:51,800 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500086 - MIL
+2026-03-13 15:52:51,800 - [INFO] - src.simulation_engine - Using depth chart features for MIL
+2026-03-13 15:52:51,830 - [INFO] - src.simulation_engine - Predicting stat lines for 22500086
+2026-03-13 15:52:51,883 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500086
+2026-03-13 15:52:51,886 - [INFO] - src.self_learner - Backtest game 8/20: 2025-10-22 00:00:00 - 22500087
+2026-03-13 15:52:51,886 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500087 - LAC
+2026-03-13 15:52:51,886 - [INFO] - src.simulation_engine - Using depth chart features for LAC
+2026-03-13 15:52:51,917 - [INFO] - src.simulation_engine - Predicting stat lines for 22500087
+2026-03-13 15:52:51,917 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500087 - UTA
+2026-03-13 15:52:51,917 - [INFO] - src.simulation_engine - Using depth chart features for UTA
+2026-03-13 15:52:51,947 - [INFO] - src.simulation_engine - Predicting stat lines for 22500087
+2026-03-13 15:52:52,006 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500087
+2026-03-13 15:52:52,009 - [INFO] - src.self_learner - Backtest game 9/20: 2025-10-22 00:00:00 - 22500088
+2026-03-13 15:52:52,010 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500088 - PHX
+2026-03-13 15:52:52,010 - [INFO] - src.simulation_engine - Using depth chart features for PHX
+2026-03-13 15:52:52,051 - [INFO] - src.simulation_engine - Predicting stat lines for 22500088
+2026-03-13 15:52:52,052 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500088 - SAC
+2026-03-13 15:52:52,052 - [INFO] - src.simulation_engine - Using depth chart features for SAC
+2026-03-13 15:52:52,083 - [INFO] - src.simulation_engine - Predicting stat lines for 22500088
+2026-03-13 15:52:52,139 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500088
+2026-03-13 15:52:52,141 - [INFO] - src.self_learner - Backtest game 10/20: 2025-10-22 00:00:00 - 22500089
+2026-03-13 15:52:52,141 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500089 - MIN
+2026-03-13 15:52:52,141 - [INFO] - src.simulation_engine - Using depth chart features for MIN
+2026-03-13 15:52:52,172 - [INFO] - src.simulation_engine - Predicting stat lines for 22500089
+2026-03-13 15:52:52,172 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500089 - POR
+2026-03-13 15:52:52,172 - [INFO] - src.simulation_engine - Using depth chart features for POR
+2026-03-13 15:52:52,203 - [INFO] - src.simulation_engine - Predicting stat lines for 22500089
+2026-03-13 15:52:52,261 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500089
+2026-03-13 15:52:52,264 - [INFO] - src.self_learner - Backtest game 11/20: 2025-10-22 00:00:00 - 22500082
+2026-03-13 15:52:52,264 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500082 - TOR
+2026-03-13 15:52:52,264 - [INFO] - src.simulation_engine - Using depth chart features for TOR
+2026-03-13 15:52:52,295 - [INFO] - src.simulation_engine - Predicting stat lines for 22500082
+2026-03-13 15:52:52,295 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500082 - ATL
+2026-03-13 15:52:52,295 - [INFO] - src.simulation_engine - Using depth chart features for ATL
+2026-03-13 15:52:52,327 - [INFO] - src.simulation_engine - Predicting stat lines for 22500082
+2026-03-13 15:52:52,385 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500082
+2026-03-13 15:52:52,388 - [INFO] - src.self_learner - Backtest game 12/20: 2025-10-22 00:00:00 - 22500083
+2026-03-13 15:52:52,388 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500083 - PHI
+2026-03-13 15:52:52,388 - [INFO] - src.simulation_engine - Using depth chart features for PHI
+2026-03-13 15:52:52,418 - [INFO] - src.simulation_engine - Predicting stat lines for 22500083
+2026-03-13 15:52:52,418 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500083 - BOS
+2026-03-13 15:52:52,418 - [INFO] - src.simulation_engine - Using depth chart features for BOS
+2026-03-13 15:52:52,447 - [INFO] - src.simulation_engine - Predicting stat lines for 22500083
+2026-03-13 15:52:52,505 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500083
+2026-03-13 15:52:52,508 - [INFO] - src.self_learner - Backtest game 13/20: 2025-10-22 00:00:00 - 22500003
+2026-03-13 15:52:52,508 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500003 - CLE
+2026-03-13 15:52:52,508 - [INFO] - src.simulation_engine - Using depth chart features for CLE
+2026-03-13 15:52:52,540 - [INFO] - src.simulation_engine - Predicting stat lines for 22500003
+2026-03-13 15:52:52,540 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500003 - NYK
+2026-03-13 15:52:52,540 - [INFO] - src.simulation_engine - Using depth chart features for NYK
+2026-03-13 15:52:52,571 - [INFO] - src.simulation_engine - Predicting stat lines for 22500003
+2026-03-13 15:52:52,627 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500003
+2026-03-13 15:52:52,630 - [INFO] - src.self_learner - Backtest game 14/20: 2025-10-22 00:00:00 - 22500004
+2026-03-13 15:52:52,630 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500004 - SAS
+2026-03-13 15:52:52,630 - [INFO] - src.simulation_engine - Using depth chart features for SAS
+2026-03-13 15:52:52,663 - [INFO] - src.simulation_engine - Predicting stat lines for 22500004
+2026-03-13 15:52:52,663 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500004 - DAL
+2026-03-13 15:52:52,663 - [INFO] - src.simulation_engine - Using depth chart features for DAL
+2026-03-13 15:52:52,695 - [INFO] - src.simulation_engine - Predicting stat lines for 22500004
+2026-03-13 15:52:52,754 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500004
+2026-03-13 15:52:52,757 - [INFO] - src.self_learner - Backtest game 15/20: 2025-10-23 00:00:00 - 22500005
+2026-03-13 15:52:52,757 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500005 - IND
+2026-03-13 15:52:52,757 - [INFO] - src.simulation_engine - Using depth chart features for IND
+2026-03-13 15:52:52,790 - [INFO] - src.simulation_engine - Predicting stat lines for 22500005
+2026-03-13 15:52:52,790 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500005 - OKC
+2026-03-13 15:52:52,790 - [INFO] - src.simulation_engine - Using depth chart features for OKC
+2026-03-13 15:52:52,823 - [INFO] - src.simulation_engine - Predicting stat lines for 22500005
+2026-03-13 15:52:52,883 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500005
+2026-03-13 15:52:52,886 - [INFO] - src.self_learner - Backtest game 16/20: 2025-10-23 00:00:00 - 22500006
+2026-03-13 15:52:52,886 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500006 - DEN
+2026-03-13 15:52:52,887 - [INFO] - src.simulation_engine - Using depth chart features for DEN
+2026-03-13 15:52:52,922 - [INFO] - src.simulation_engine - Predicting stat lines for 22500006
+2026-03-13 15:52:52,922 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500006 - GSW
+2026-03-13 15:52:52,922 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:52,950 - [INFO] - src.simulation_engine - Predicting stat lines for 22500006
+2026-03-13 15:52:53,001 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500006
+2026-03-13 15:52:53,004 - [INFO] - src.self_learner - Backtest game 17/20: 2025-10-24 00:00:00 - 22500097
+2026-03-13 15:52:53,004 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500097 - POR
+2026-03-13 15:52:53,004 - [INFO] - src.simulation_engine - Using depth chart features for POR
+2026-03-13 15:52:53,032 - [INFO] - src.simulation_engine - Predicting stat lines for 22500097
+2026-03-13 15:52:53,032 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500097 - GSW
+2026-03-13 15:52:53,032 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:53,061 - [INFO] - src.simulation_engine - Predicting stat lines for 22500097
+2026-03-13 15:52:53,114 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500097
+2026-03-13 15:52:53,117 - [INFO] - src.self_learner - Backtest game 18/20: 2025-10-24 00:00:00 - 22500099
+2026-03-13 15:52:53,117 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500099 - PHX
+2026-03-13 15:52:53,117 - [INFO] - src.simulation_engine - Using depth chart features for PHX
+2026-03-13 15:52:53,145 - [INFO] - src.simulation_engine - Predicting stat lines for 22500099
+2026-03-13 15:52:53,145 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500099 - LAC
+2026-03-13 15:52:53,145 - [INFO] - src.simulation_engine - Using depth chart features for LAC
+2026-03-13 15:52:53,174 - [INFO] - src.simulation_engine - Predicting stat lines for 22500099
+2026-03-13 15:52:53,225 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500099
+2026-03-13 15:52:53,228 - [INFO] - src.self_learner - Backtest game 19/20: 2025-10-24 00:00:00 - 22500098
+2026-03-13 15:52:53,228 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500098 - SAC
+2026-03-13 15:52:53,228 - [INFO] - src.simulation_engine - Using depth chart features for SAC
+2026-03-13 15:52:53,256 - [INFO] - src.simulation_engine - Predicting stat lines for 22500098
+2026-03-13 15:52:53,256 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500098 - UTA
+2026-03-13 15:52:53,256 - [INFO] - src.simulation_engine - Using depth chart features for UTA
+2026-03-13 15:52:53,283 - [INFO] - src.simulation_engine - Predicting stat lines for 22500098
+2026-03-13 15:52:53,336 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500098
+2026-03-13 15:52:53,339 - [INFO] - src.self_learner - Backtest game 20/20: 2025-10-24 00:00:00 - 22500096
+2026-03-13 15:52:53,339 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500096 - WAS
+2026-03-13 15:52:53,339 - [INFO] - src.simulation_engine - Using depth chart features for WAS
+2026-03-13 15:52:53,368 - [INFO] - src.simulation_engine - Predicting stat lines for 22500096
+2026-03-13 15:52:53,368 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500096 - DAL
+2026-03-13 15:52:53,368 - [INFO] - src.simulation_engine - Using depth chart features for DAL
+2026-03-13 15:52:53,397 - [INFO] - src.simulation_engine - Predicting stat lines for 22500096
+2026-03-13 15:52:53,523 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500096
+2026-03-13 15:52:53,528 - [INFO] - src.self_learner - Starter prediction accuracy low: 0.00%
+2026-03-13 15:52:53,529 - [INFO] - src.self_learner - Applying correction for starter predictions
+2026-03-13 15:52:53,530 - [INFO] - src.self_learner - Backtest cycle complete: 20 games, improvement: 0.00%
+2026-03-13 15:52:53,531 - [INFO] - src.self_learner - Iteration 2: Accuracy = 0.00%, Improvement = +0.00%
+2026-03-13 15:52:53,531 - [INFO] - src.self_learner - Learning iteration 3/50
+2026-03-13 15:52:53,531 - [INFO] - src.self_learner - Starting backtest cycle: 20 games from last 365 days
+2026-03-13 15:52:53,608 - [INFO] - src.self_learner - Loaded 987 unique games from training data
+2026-03-13 15:52:53,610 - [INFO] - src.self_learner - Backtest game 1/20: 2025-10-21 00:00:00 - 22500001
+2026-03-13 15:52:53,610 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500001 - OKC
+2026-03-13 15:52:53,610 - [INFO] - src.simulation_engine - Using depth chart features for OKC
+2026-03-13 15:52:53,639 - [INFO] - src.simulation_engine - Predicting stat lines for 22500001
+2026-03-13 15:52:53,639 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500001 - HOU
+2026-03-13 15:52:53,639 - [INFO] - src.simulation_engine - Using depth chart features for HOU
+2026-03-13 15:52:53,667 - [INFO] - src.simulation_engine - Predicting stat lines for 22500001
+2026-03-13 15:52:53,718 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500001
+2026-03-13 15:52:53,722 - [INFO] - src.self_learner - Backtest game 2/20: 2025-10-21 00:00:00 - 22500002
+2026-03-13 15:52:53,722 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500002 - LAL
+2026-03-13 15:52:53,722 - [INFO] - src.simulation_engine - Using depth chart features for LAL
+2026-03-13 15:52:53,750 - [INFO] - src.simulation_engine - Predicting stat lines for 22500002
+2026-03-13 15:52:53,751 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500002 - GSW
+2026-03-13 15:52:53,751 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:53,777 - [INFO] - src.simulation_engine - Predicting stat lines for 22500002
+2026-03-13 15:52:53,828 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500002
+2026-03-13 15:52:53,831 - [INFO] - src.self_learner - Backtest game 3/20: 2025-10-22 00:00:00 - 22500081
+2026-03-13 15:52:53,831 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500081 - MIA
+2026-03-13 15:52:53,831 - [INFO] - src.simulation_engine - Using depth chart features for MIA
+2026-03-13 15:52:53,858 - [INFO] - src.simulation_engine - Predicting stat lines for 22500081
+2026-03-13 15:52:53,858 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500081 - ORL
+2026-03-13 15:52:53,858 - [INFO] - src.simulation_engine - Using depth chart features for ORL
+2026-03-13 15:52:53,886 - [INFO] - src.simulation_engine - Predicting stat lines for 22500081
+2026-03-13 15:52:53,935 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500081
+2026-03-13 15:52:53,938 - [INFO] - src.self_learner - Backtest game 4/20: 2025-10-22 00:00:00 - 22500080
+2026-03-13 15:52:53,938 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500080 - CHA
+2026-03-13 15:52:53,938 - [INFO] - src.simulation_engine - Using depth chart features for CHA
+2026-03-13 15:52:53,966 - [INFO] - src.simulation_engine - Predicting stat lines for 22500080
+2026-03-13 15:52:53,966 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500080 - BKN
+2026-03-13 15:52:53,966 - [INFO] - src.simulation_engine - Using depth chart features for BKN
+2026-03-13 15:52:53,993 - [INFO] - src.simulation_engine - Predicting stat lines for 22500080
+2026-03-13 15:52:54,044 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500080
+2026-03-13 15:52:54,047 - [INFO] - src.self_learner - Backtest game 5/20: 2025-10-22 00:00:00 - 22500084
+2026-03-13 15:52:54,047 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500084 - DET
+2026-03-13 15:52:54,047 - [INFO] - src.simulation_engine - Using depth chart features for DET
+2026-03-13 15:52:54,075 - [INFO] - src.simulation_engine - Predicting stat lines for 22500084
+2026-03-13 15:52:54,075 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500084 - CHI
+2026-03-13 15:52:54,075 - [INFO] - src.simulation_engine - Using depth chart features for CHI
+2026-03-13 15:52:54,103 - [INFO] - src.simulation_engine - Predicting stat lines for 22500084
+2026-03-13 15:52:54,151 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500084
+2026-03-13 15:52:54,154 - [INFO] - src.self_learner - Backtest game 6/20: 2025-10-22 00:00:00 - 22500085
+2026-03-13 15:52:54,154 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500085 - NOP
+2026-03-13 15:52:54,154 - [INFO] - src.simulation_engine - Using depth chart features for NOP
+2026-03-13 15:52:54,180 - [INFO] - src.simulation_engine - Predicting stat lines for 22500085
+2026-03-13 15:52:54,180 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500085 - MEM
+2026-03-13 15:52:54,180 - [INFO] - src.simulation_engine - Using depth chart features for MEM
+2026-03-13 15:52:54,207 - [INFO] - src.simulation_engine - Predicting stat lines for 22500085
+2026-03-13 15:52:54,259 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500085
+2026-03-13 15:52:54,263 - [INFO] - src.self_learner - Backtest game 7/20: 2025-10-22 00:00:00 - 22500086
+2026-03-13 15:52:54,263 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500086 - WAS
+2026-03-13 15:52:54,263 - [INFO] - src.simulation_engine - Using depth chart features for WAS
+2026-03-13 15:52:54,291 - [INFO] - src.simulation_engine - Predicting stat lines for 22500086
+2026-03-13 15:52:54,291 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500086 - MIL
+2026-03-13 15:52:54,291 - [INFO] - src.simulation_engine - Using depth chart features for MIL
+2026-03-13 15:52:54,318 - [INFO] - src.simulation_engine - Predicting stat lines for 22500086
+2026-03-13 15:52:54,367 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500086
+2026-03-13 15:52:54,371 - [INFO] - src.self_learner - Backtest game 8/20: 2025-10-22 00:00:00 - 22500087
+2026-03-13 15:52:54,371 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500087 - LAC
+2026-03-13 15:52:54,371 - [INFO] - src.simulation_engine - Using depth chart features for LAC
+2026-03-13 15:52:54,398 - [INFO] - src.simulation_engine - Predicting stat lines for 22500087
+2026-03-13 15:52:54,398 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500087 - UTA
+2026-03-13 15:52:54,398 - [INFO] - src.simulation_engine - Using depth chart features for UTA
+2026-03-13 15:52:54,424 - [INFO] - src.simulation_engine - Predicting stat lines for 22500087
+2026-03-13 15:52:54,480 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500087
+2026-03-13 15:52:54,484 - [INFO] - src.self_learner - Backtest game 9/20: 2025-10-22 00:00:00 - 22500088
+2026-03-13 15:52:54,484 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500088 - PHX
+2026-03-13 15:52:54,484 - [INFO] - src.simulation_engine - Using depth chart features for PHX
+2026-03-13 15:52:54,518 - [INFO] - src.simulation_engine - Predicting stat lines for 22500088
+2026-03-13 15:52:54,518 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500088 - SAC
+2026-03-13 15:52:54,518 - [INFO] - src.simulation_engine - Using depth chart features for SAC
+2026-03-13 15:52:54,549 - [INFO] - src.simulation_engine - Predicting stat lines for 22500088
+2026-03-13 15:52:54,601 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500088
+2026-03-13 15:52:54,605 - [INFO] - src.self_learner - Backtest game 10/20: 2025-10-22 00:00:00 - 22500089
+2026-03-13 15:52:54,605 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500089 - MIN
+2026-03-13 15:52:54,605 - [INFO] - src.simulation_engine - Using depth chart features for MIN
+2026-03-13 15:52:54,634 - [INFO] - src.simulation_engine - Predicting stat lines for 22500089
+2026-03-13 15:52:54,634 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500089 - POR
+2026-03-13 15:52:54,634 - [INFO] - src.simulation_engine - Using depth chart features for POR
+2026-03-13 15:52:54,662 - [INFO] - src.simulation_engine - Predicting stat lines for 22500089
+2026-03-13 15:52:54,714 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500089
+2026-03-13 15:52:54,717 - [INFO] - src.self_learner - Backtest game 11/20: 2025-10-22 00:00:00 - 22500082
+2026-03-13 15:52:54,717 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500082 - TOR
+2026-03-13 15:52:54,717 - [INFO] - src.simulation_engine - Using depth chart features for TOR
+2026-03-13 15:52:54,750 - [INFO] - src.simulation_engine - Predicting stat lines for 22500082
+2026-03-13 15:52:54,750 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500082 - ATL
+2026-03-13 15:52:54,750 - [INFO] - src.simulation_engine - Using depth chart features for ATL
+2026-03-13 15:52:54,780 - [INFO] - src.simulation_engine - Predicting stat lines for 22500082
+2026-03-13 15:52:54,839 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500082
+2026-03-13 15:52:54,842 - [INFO] - src.self_learner - Backtest game 12/20: 2025-10-22 00:00:00 - 22500083
+2026-03-13 15:52:54,842 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500083 - PHI
+2026-03-13 15:52:54,842 - [INFO] - src.simulation_engine - Using depth chart features for PHI
+2026-03-13 15:52:54,875 - [INFO] - src.simulation_engine - Predicting stat lines for 22500083
+2026-03-13 15:52:54,875 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500083 - BOS
+2026-03-13 15:52:54,875 - [INFO] - src.simulation_engine - Using depth chart features for BOS
+2026-03-13 15:52:54,906 - [INFO] - src.simulation_engine - Predicting stat lines for 22500083
+2026-03-13 15:52:54,963 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500083
+2026-03-13 15:52:54,967 - [INFO] - src.self_learner - Backtest game 13/20: 2025-10-22 00:00:00 - 22500003
+2026-03-13 15:52:54,967 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500003 - CLE
+2026-03-13 15:52:54,967 - [INFO] - src.simulation_engine - Using depth chart features for CLE
+2026-03-13 15:52:55,004 - [INFO] - src.simulation_engine - Predicting stat lines for 22500003
+2026-03-13 15:52:55,004 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500003 - NYK
+2026-03-13 15:52:55,004 - [INFO] - src.simulation_engine - Using depth chart features for NYK
+2026-03-13 15:52:55,041 - [INFO] - src.simulation_engine - Predicting stat lines for 22500003
+2026-03-13 15:52:55,092 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500003
+2026-03-13 15:52:55,095 - [INFO] - src.self_learner - Backtest game 14/20: 2025-10-22 00:00:00 - 22500004
+2026-03-13 15:52:55,095 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500004 - SAS
+2026-03-13 15:52:55,095 - [INFO] - src.simulation_engine - Using depth chart features for SAS
+2026-03-13 15:52:55,123 - [INFO] - src.simulation_engine - Predicting stat lines for 22500004
+2026-03-13 15:52:55,123 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500004 - DAL
+2026-03-13 15:52:55,123 - [INFO] - src.simulation_engine - Using depth chart features for DAL
+2026-03-13 15:52:55,152 - [INFO] - src.simulation_engine - Predicting stat lines for 22500004
+2026-03-13 15:52:55,201 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500004
+2026-03-13 15:52:55,206 - [INFO] - src.self_learner - Backtest game 15/20: 2025-10-23 00:00:00 - 22500005
+2026-03-13 15:52:55,206 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500005 - IND
+2026-03-13 15:52:55,206 - [INFO] - src.simulation_engine - Using depth chart features for IND
+2026-03-13 15:52:55,234 - [INFO] - src.simulation_engine - Predicting stat lines for 22500005
+2026-03-13 15:52:55,234 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500005 - OKC
+2026-03-13 15:52:55,234 - [INFO] - src.simulation_engine - Using depth chart features for OKC
+2026-03-13 15:52:55,262 - [INFO] - src.simulation_engine - Predicting stat lines for 22500005
+2026-03-13 15:52:55,312 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500005
+2026-03-13 15:52:55,315 - [INFO] - src.self_learner - Backtest game 16/20: 2025-10-23 00:00:00 - 22500006
+2026-03-13 15:52:55,316 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500006 - DEN
+2026-03-13 15:52:55,316 - [INFO] - src.simulation_engine - Using depth chart features for DEN
+2026-03-13 15:52:55,343 - [INFO] - src.simulation_engine - Predicting stat lines for 22500006
+2026-03-13 15:52:55,343 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500006 - GSW
+2026-03-13 15:52:55,343 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:55,371 - [INFO] - src.simulation_engine - Predicting stat lines for 22500006
+2026-03-13 15:52:55,423 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500006
+2026-03-13 15:52:55,426 - [INFO] - src.self_learner - Backtest game 17/20: 2025-10-24 00:00:00 - 22500097
+2026-03-13 15:52:55,426 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500097 - POR
+2026-03-13 15:52:55,426 - [INFO] - src.simulation_engine - Using depth chart features for POR
+2026-03-13 15:52:55,456 - [INFO] - src.simulation_engine - Predicting stat lines for 22500097
+2026-03-13 15:52:55,456 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500097 - GSW
+2026-03-13 15:52:55,456 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:55,484 - [INFO] - src.simulation_engine - Predicting stat lines for 22500097
+2026-03-13 15:52:55,537 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500097
+2026-03-13 15:52:55,541 - [INFO] - src.self_learner - Backtest game 18/20: 2025-10-24 00:00:00 - 22500099
+2026-03-13 15:52:55,541 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500099 - PHX
+2026-03-13 15:52:55,541 - [INFO] - src.simulation_engine - Using depth chart features for PHX
+2026-03-13 15:52:55,570 - [INFO] - src.simulation_engine - Predicting stat lines for 22500099
+2026-03-13 15:52:55,570 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500099 - LAC
+2026-03-13 15:52:55,570 - [INFO] - src.simulation_engine - Using depth chart features for LAC
+2026-03-13 15:52:55,598 - [INFO] - src.simulation_engine - Predicting stat lines for 22500099
+2026-03-13 15:52:55,648 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500099
+2026-03-13 15:52:55,652 - [INFO] - src.self_learner - Backtest game 19/20: 2025-10-24 00:00:00 - 22500098
+2026-03-13 15:52:55,652 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500098 - SAC
+2026-03-13 15:52:55,652 - [INFO] - src.simulation_engine - Using depth chart features for SAC
+2026-03-13 15:52:55,680 - [INFO] - src.simulation_engine - Predicting stat lines for 22500098
+2026-03-13 15:52:55,681 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500098 - UTA
+2026-03-13 15:52:55,681 - [INFO] - src.simulation_engine - Using depth chart features for UTA
+2026-03-13 15:52:55,708 - [INFO] - src.simulation_engine - Predicting stat lines for 22500098
+2026-03-13 15:52:55,758 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500098
+2026-03-13 15:52:55,762 - [INFO] - src.self_learner - Backtest game 20/20: 2025-10-24 00:00:00 - 22500096
+2026-03-13 15:52:55,762 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500096 - WAS
+2026-03-13 15:52:55,762 - [INFO] - src.simulation_engine - Using depth chart features for WAS
+2026-03-13 15:52:55,790 - [INFO] - src.simulation_engine - Predicting stat lines for 22500096
+2026-03-13 15:52:55,790 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500096 - DAL
+2026-03-13 15:52:55,790 - [INFO] - src.simulation_engine - Using depth chart features for DAL
+2026-03-13 15:52:55,817 - [INFO] - src.simulation_engine - Predicting stat lines for 22500096
+2026-03-13 15:52:55,867 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500096
+2026-03-13 15:52:55,874 - [INFO] - src.self_learner - Starter prediction accuracy low: 0.00%
+2026-03-13 15:52:55,874 - [INFO] - src.self_learner - Applying correction for starter predictions
+2026-03-13 15:52:55,877 - [INFO] - src.self_learner - Backtest cycle complete: 20 games, improvement: 0.00%
+2026-03-13 15:52:55,877 - [INFO] - src.self_learner - Iteration 3: Accuracy = 0.00%, Improvement = +0.00%
+2026-03-13 15:52:55,877 - [INFO] - src.self_learner - Learning iteration 4/50
+2026-03-13 15:52:55,877 - [INFO] - src.self_learner - Starting backtest cycle: 20 games from last 365 days
+2026-03-13 15:52:55,950 - [INFO] - src.self_learner - Loaded 987 unique games from training data
+2026-03-13 15:52:55,953 - [INFO] - src.self_learner - Backtest game 1/20: 2025-10-21 00:00:00 - 22500001
+2026-03-13 15:52:55,953 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500001 - OKC
+2026-03-13 15:52:55,953 - [INFO] - src.simulation_engine - Using depth chart features for OKC
+2026-03-13 15:52:55,981 - [INFO] - src.simulation_engine - Predicting stat lines for 22500001
+2026-03-13 15:52:55,981 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500001 - HOU
+2026-03-13 15:52:55,981 - [INFO] - src.simulation_engine - Using depth chart features for HOU
+2026-03-13 15:52:56,009 - [INFO] - src.simulation_engine - Predicting stat lines for 22500001
+2026-03-13 15:52:56,062 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500001
+2026-03-13 15:52:56,065 - [INFO] - src.self_learner - Backtest game 2/20: 2025-10-21 00:00:00 - 22500002
+2026-03-13 15:52:56,065 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500002 - LAL
+2026-03-13 15:52:56,065 - [INFO] - src.simulation_engine - Using depth chart features for LAL
+2026-03-13 15:52:56,093 - [INFO] - src.simulation_engine - Predicting stat lines for 22500002
+2026-03-13 15:52:56,093 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-21 00:00:00 - 22500002 - GSW
+2026-03-13 15:52:56,093 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:56,121 - [INFO] - src.simulation_engine - Predicting stat lines for 22500002
+2026-03-13 15:52:56,172 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500002
+2026-03-13 15:52:56,176 - [INFO] - src.self_learner - Backtest game 3/20: 2025-10-22 00:00:00 - 22500081
+2026-03-13 15:52:56,176 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500081 - MIA
+2026-03-13 15:52:56,176 - [INFO] - src.simulation_engine - Using depth chart features for MIA
+2026-03-13 15:52:56,205 - [INFO] - src.simulation_engine - Predicting stat lines for 22500081
+2026-03-13 15:52:56,205 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500081 - ORL
+2026-03-13 15:52:56,205 - [INFO] - src.simulation_engine - Using depth chart features for ORL
+2026-03-13 15:52:56,234 - [INFO] - src.simulation_engine - Predicting stat lines for 22500081
+2026-03-13 15:52:56,284 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500081
+2026-03-13 15:52:56,288 - [INFO] - src.self_learner - Backtest game 4/20: 2025-10-22 00:00:00 - 22500080
+2026-03-13 15:52:56,288 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500080 - CHA
+2026-03-13 15:52:56,288 - [INFO] - src.simulation_engine - Using depth chart features for CHA
+2026-03-13 15:52:56,316 - [INFO] - src.simulation_engine - Predicting stat lines for 22500080
+2026-03-13 15:52:56,316 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500080 - BKN
+2026-03-13 15:52:56,316 - [INFO] - src.simulation_engine - Using depth chart features for BKN
+2026-03-13 15:52:56,343 - [INFO] - src.simulation_engine - Predicting stat lines for 22500080
+2026-03-13 15:52:56,393 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500080
+2026-03-13 15:52:56,397 - [INFO] - src.self_learner - Backtest game 5/20: 2025-10-22 00:00:00 - 22500084
+2026-03-13 15:52:56,397 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500084 - DET
+2026-03-13 15:52:56,397 - [INFO] - src.simulation_engine - Using depth chart features for DET
+2026-03-13 15:52:56,425 - [INFO] - src.simulation_engine - Predicting stat lines for 22500084
+2026-03-13 15:52:56,425 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500084 - CHI
+2026-03-13 15:52:56,425 - [INFO] - src.simulation_engine - Using depth chart features for CHI
+2026-03-13 15:52:56,453 - [INFO] - src.simulation_engine - Predicting stat lines for 22500084
+2026-03-13 15:52:56,502 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500084
+2026-03-13 15:52:56,507 - [INFO] - src.self_learner - Backtest game 6/20: 2025-10-22 00:00:00 - 22500085
+2026-03-13 15:52:56,507 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500085 - NOP
+2026-03-13 15:52:56,507 - [INFO] - src.simulation_engine - Using depth chart features for NOP
+2026-03-13 15:52:56,545 - [INFO] - src.simulation_engine - Predicting stat lines for 22500085
+2026-03-13 15:52:56,545 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500085 - MEM
+2026-03-13 15:52:56,545 - [INFO] - src.simulation_engine - Using depth chart features for MEM
+2026-03-13 15:52:56,581 - [INFO] - src.simulation_engine - Predicting stat lines for 22500085
+2026-03-13 15:52:56,638 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500085
+2026-03-13 15:52:56,642 - [INFO] - src.self_learner - Backtest game 7/20: 2025-10-22 00:00:00 - 22500086
+2026-03-13 15:52:56,642 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500086 - WAS
+2026-03-13 15:52:56,642 - [INFO] - src.simulation_engine - Using depth chart features for WAS
+2026-03-13 15:52:56,673 - [INFO] - src.simulation_engine - Predicting stat lines for 22500086
+2026-03-13 15:52:56,673 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500086 - MIL
+2026-03-13 15:52:56,673 - [INFO] - src.simulation_engine - Using depth chart features for MIL
+2026-03-13 15:52:56,704 - [INFO] - src.simulation_engine - Predicting stat lines for 22500086
+2026-03-13 15:52:56,765 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500086
+2026-03-13 15:52:56,772 - [INFO] - src.self_learner - Backtest game 8/20: 2025-10-22 00:00:00 - 22500087
+2026-03-13 15:52:56,772 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500087 - LAC
+2026-03-13 15:52:56,772 - [INFO] - src.simulation_engine - Using depth chart features for LAC
+2026-03-13 15:52:56,805 - [INFO] - src.simulation_engine - Predicting stat lines for 22500087
+2026-03-13 15:52:56,805 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500087 - UTA
+2026-03-13 15:52:56,805 - [INFO] - src.simulation_engine - Using depth chart features for UTA
+2026-03-13 15:52:56,833 - [INFO] - src.simulation_engine - Predicting stat lines for 22500087
+2026-03-13 15:52:56,883 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500087
+2026-03-13 15:52:56,888 - [INFO] - src.self_learner - Backtest game 9/20: 2025-10-22 00:00:00 - 22500088
+2026-03-13 15:52:56,888 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500088 - PHX
+2026-03-13 15:52:56,888 - [INFO] - src.simulation_engine - Using depth chart features for PHX
+2026-03-13 15:52:56,916 - [INFO] - src.simulation_engine - Predicting stat lines for 22500088
+2026-03-13 15:52:56,916 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500088 - SAC
+2026-03-13 15:52:56,916 - [INFO] - src.simulation_engine - Using depth chart features for SAC
+2026-03-13 15:52:56,944 - [INFO] - src.simulation_engine - Predicting stat lines for 22500088
+2026-03-13 15:52:56,994 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500088
+2026-03-13 15:52:56,998 - [INFO] - src.self_learner - Backtest game 10/20: 2025-10-22 00:00:00 - 22500089
+2026-03-13 15:52:56,998 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500089 - MIN
+2026-03-13 15:52:56,998 - [INFO] - src.simulation_engine - Using depth chart features for MIN
+2026-03-13 15:52:57,026 - [INFO] - src.simulation_engine - Predicting stat lines for 22500089
+2026-03-13 15:52:57,026 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500089 - POR
+2026-03-13 15:52:57,026 - [INFO] - src.simulation_engine - Using depth chart features for POR
+2026-03-13 15:52:57,055 - [INFO] - src.simulation_engine - Predicting stat lines for 22500089
+2026-03-13 15:52:57,108 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500089
+2026-03-13 15:52:57,112 - [INFO] - src.self_learner - Backtest game 11/20: 2025-10-22 00:00:00 - 22500082
+2026-03-13 15:52:57,112 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500082 - TOR
+2026-03-13 15:52:57,112 - [INFO] - src.simulation_engine - Using depth chart features for TOR
+2026-03-13 15:52:57,151 - [INFO] - src.simulation_engine - Predicting stat lines for 22500082
+2026-03-13 15:52:57,151 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500082 - ATL
+2026-03-13 15:52:57,151 - [INFO] - src.simulation_engine - Using depth chart features for ATL
+2026-03-13 15:52:57,180 - [INFO] - src.simulation_engine - Predicting stat lines for 22500082
+2026-03-13 15:52:57,232 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500082
+2026-03-13 15:52:57,236 - [INFO] - src.self_learner - Backtest game 12/20: 2025-10-22 00:00:00 - 22500083
+2026-03-13 15:52:57,236 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500083 - PHI
+2026-03-13 15:52:57,236 - [INFO] - src.simulation_engine - Using depth chart features for PHI
+2026-03-13 15:52:57,265 - [INFO] - src.simulation_engine - Predicting stat lines for 22500083
+2026-03-13 15:52:57,265 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500083 - BOS
+2026-03-13 15:52:57,265 - [INFO] - src.simulation_engine - Using depth chart features for BOS
+2026-03-13 15:52:57,292 - [INFO] - src.simulation_engine - Predicting stat lines for 22500083
+2026-03-13 15:52:57,343 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500083
+2026-03-13 15:52:57,346 - [INFO] - src.self_learner - Backtest game 13/20: 2025-10-22 00:00:00 - 22500003
+2026-03-13 15:52:57,346 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500003 - CLE
+2026-03-13 15:52:57,346 - [INFO] - src.simulation_engine - Using depth chart features for CLE
+2026-03-13 15:52:57,375 - [INFO] - src.simulation_engine - Predicting stat lines for 22500003
+2026-03-13 15:52:57,375 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500003 - NYK
+2026-03-13 15:52:57,375 - [INFO] - src.simulation_engine - Using depth chart features for NYK
+2026-03-13 15:52:57,402 - [INFO] - src.simulation_engine - Predicting stat lines for 22500003
+2026-03-13 15:52:57,452 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500003
+2026-03-13 15:52:57,457 - [INFO] - src.self_learner - Backtest game 14/20: 2025-10-22 00:00:00 - 22500004
+2026-03-13 15:52:57,457 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500004 - SAS
+2026-03-13 15:52:57,457 - [INFO] - src.simulation_engine - Using depth chart features for SAS
+2026-03-13 15:52:57,485 - [INFO] - src.simulation_engine - Predicting stat lines for 22500004
+2026-03-13 15:52:57,485 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-22 00:00:00 - 22500004 - DAL
+2026-03-13 15:52:57,485 - [INFO] - src.simulation_engine - Using depth chart features for DAL
+2026-03-13 15:52:57,513 - [INFO] - src.simulation_engine - Predicting stat lines for 22500004
+2026-03-13 15:52:57,564 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500004
+2026-03-13 15:52:57,569 - [INFO] - src.self_learner - Backtest game 15/20: 2025-10-23 00:00:00 - 22500005
+2026-03-13 15:52:57,569 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500005 - IND
+2026-03-13 15:52:57,569 - [INFO] - src.simulation_engine - Using depth chart features for IND
+2026-03-13 15:52:57,597 - [INFO] - src.simulation_engine - Predicting stat lines for 22500005
+2026-03-13 15:52:57,597 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500005 - OKC
+2026-03-13 15:52:57,597 - [INFO] - src.simulation_engine - Using depth chart features for OKC
+2026-03-13 15:52:57,625 - [INFO] - src.simulation_engine - Predicting stat lines for 22500005
+2026-03-13 15:52:57,675 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500005
+2026-03-13 15:52:57,679 - [INFO] - src.self_learner - Backtest game 16/20: 2025-10-23 00:00:00 - 22500006
+2026-03-13 15:52:57,679 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500006 - DEN
+2026-03-13 15:52:57,679 - [INFO] - src.simulation_engine - Using depth chart features for DEN
+2026-03-13 15:52:57,707 - [INFO] - src.simulation_engine - Predicting stat lines for 22500006
+2026-03-13 15:52:57,707 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-23 00:00:00 - 22500006 - GSW
+2026-03-13 15:52:57,707 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:57,735 - [INFO] - src.simulation_engine - Predicting stat lines for 22500006
+2026-03-13 15:52:57,786 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500006
+2026-03-13 15:52:57,790 - [INFO] - src.self_learner - Backtest game 17/20: 2025-10-24 00:00:00 - 22500097
+2026-03-13 15:52:57,790 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500097 - POR
+2026-03-13 15:52:57,790 - [INFO] - src.simulation_engine - Using depth chart features for POR
+2026-03-13 15:52:57,818 - [INFO] - src.simulation_engine - Predicting stat lines for 22500097
+2026-03-13 15:52:57,818 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500097 - GSW
+2026-03-13 15:52:57,818 - [INFO] - src.simulation_engine - Using depth chart features for GSW
+2026-03-13 15:52:57,846 - [INFO] - src.simulation_engine - Predicting stat lines for 22500097
+2026-03-13 15:52:57,896 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500097
+2026-03-13 15:52:57,901 - [INFO] - src.self_learner - Backtest game 18/20: 2025-10-24 00:00:00 - 22500099
+2026-03-13 15:52:57,901 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500099 - PHX
+2026-03-13 15:52:57,901 - [INFO] - src.simulation_engine - Using depth chart features for PHX
+2026-03-13 15:52:57,928 - [INFO] - src.simulation_engine - Predicting stat lines for 22500099
+2026-03-13 15:52:57,928 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500099 - LAC
+2026-03-13 15:52:57,929 - [INFO] - src.simulation_engine - Using depth chart features for LAC
+2026-03-13 15:52:57,956 - [INFO] - src.simulation_engine - Predicting stat lines for 22500099
+2026-03-13 15:52:58,006 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500099
+2026-03-13 15:52:58,011 - [INFO] - src.self_learner - Backtest game 19/20: 2025-10-24 00:00:00 - 22500098
+2026-03-13 15:52:58,012 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500098 - SAC
+2026-03-13 15:52:58,012 - [INFO] - src.simulation_engine - Using depth chart features for SAC
+2026-03-13 15:52:58,039 - [INFO] - src.simulation_engine - Predicting stat lines for 22500098
+2026-03-13 15:52:58,039 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500098 - UTA
+2026-03-13 15:52:58,039 - [INFO] - src.simulation_engine - Using depth chart features for UTA
+2026-03-13 15:52:58,067 - [INFO] - src.simulation_engine - Predicting stat lines for 22500098
+2026-03-13 15:52:58,121 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500098
+2026-03-13 15:52:58,126 - [INFO] - src.self_learner - Backtest game 20/20: 2025-10-24 00:00:00 - 22500096
+2026-03-13 15:52:58,126 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500096 - WAS
+2026-03-13 15:52:58,126 - [INFO] - src.simulation_engine - Using depth chart features for WAS
+2026-03-13 15:52:58,156 - [INFO] - src.simulation_engine - Predicting stat lines for 22500096
+2026-03-13 15:52:58,156 - [INFO] - src.simulation_engine - Predicting starters for 2025-10-24 00:00:00 - 22500096 - DAL
+2026-03-13 15:52:58,156 - [INFO] - src.simulation_engine - Using depth chart features for DAL
+2026-03-13 15:52:58,187 - [INFO] - src.simulation_engine - Predicting stat lines for 22500096
+2026-03-13 15:52:58,243 - [INFO] - src.simulation_engine - Comparing predictions with actual results for 22500096
+2026-03-13 15:52:58,252 - [INFO] - src.self_learner - Starter prediction accuracy low: 0.00%
+2026-03-13 15:52:58,252 - [INFO] - src.self_learner - Applying correction for starter predictions
+2026-03-13 15:52:58,257 - [INFO] - src.self_learner - Backtest cycle complete: 20 games, improvement: 0.00%
+2026-03-13 15:52:58,257 - [INFO] - src.self_learner - Iteration 4: Accuracy = 0.00%, Improvement = +0.00%
+2026-03-13 15:52:58,257 - [INFO] - src.self_learner - Minimal improvement detected, learning plateauing
+2026-03-13 15:52:58,262 - [INFO] - src.continuous_learning - [learning_cycle_complete] Learning cycle: 4 cycles, final accuracy: 0.00%
+2026-03-13 15:53:17,778 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:53:17,782 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:17,782 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:17,783 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:47,790 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:53:47,792 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:47,793 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:47,794 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:17,800 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:54:17,802 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:17,803 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:17,805 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:47,811 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:54:47,812 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:47,812 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:47,814 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:17,821 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:55:17,826 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:17,826 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:17,828 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:47,834 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:55:47,836 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:47,836 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:47,837 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:17,843 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:56:17,846 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:17,847 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:17,848 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:47,854 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:56:47,855 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:47,855 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:47,857 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     2026-03-13 15:52:51,145 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:52:51,146 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:52:51,146 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:52:51,146 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:21,152 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:53:21,154 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:21,154 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:21,156 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:51,162 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:53:51,164 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:51,164 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:53:51,166 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:21,172 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:54:21,174 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:21,175 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:21,177 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:51,182 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:54:51,183 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:51,183 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:54:51,184 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:21,192 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:55:21,193 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:21,194 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:21,195 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:51,197 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:55:51,198 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:51,198 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:55:51,199 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:21,204 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:56:21,206 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:21,206 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:21,208 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:51,214 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:56:51,216 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:51,216 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:51,217 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:32,040 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:56:32,041 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:32,042 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:56:32,042 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
