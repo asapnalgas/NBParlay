@@ -1134,7 +1134,7 @@ def _prediction_quality_gate(prediction_frame: pd.DataFrame) -> pd.DataFrame:
     player_name = gated.get("player_name", pd.Series("", index=gated.index)).fillna("").astype(str).str.strip()
     _flag(player_name.eq(""), "missing_player_name")
 
-    game_date = pd.to_datetime(gated.get("game_date", pd.Series(pd.NaT, index=gated.index)), errors="coerce")
+    game_date = pd.to_datetime(gated.get("game_date", pd.Series(pd.NaT, index=gated.index)), format="%Y-%m-%d", errors="coerce")
     _flag(game_date.isna(), "invalid_game_date")
 
     if "team" in gated.columns:
