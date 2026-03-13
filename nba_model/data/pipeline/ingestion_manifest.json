@@ -262,6 +262,42 @@
         "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpl71cnws3/season_priors.csv"
       },
       "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp3edk25u2/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T21:27:15.672559+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp3edk25u2/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpwmwlxe4h/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T21:31:57.681137+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpwmwlxe4h/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp8eenent5/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T21:32:07.678594+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp8eenent5/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp9kjye2fd/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T21:39:51.628108+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp9kjye2fd/season_priors.csv"
+      },
+      "duplicate_of_previous": false
     }
   },
   "prizepicks_lines": {
@@ -757,6 +793,78 @@
       "metadata": {
         "rows_in": 1,
         "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpmspv_6nu/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpwsnxwoz7/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T21:27:15.588164+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpwsnxwoz7/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_xzf9j9g/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T21:27:15.632247+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_xzf9j9g/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp7_11p3i_/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T21:31:57.599586+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp7_11p3i_/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpy6c4lnsf/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T21:31:57.641755+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpy6c4lnsf/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpjsv52vm4/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T21:32:07.581965+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpjsv52vm4/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpv5pwhz6c/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T21:32:07.629518+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpv5pwhz6c/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpaqb5qayv/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T21:39:51.529203+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpaqb5qayv/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpp28ulyrm/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T21:39:51.579004+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpp28ulyrm/prizepicks_lines.csv"
       },
       "duplicate_of_previous": false
     }

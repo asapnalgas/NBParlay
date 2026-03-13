@@ -142,7 +142,7 @@ SCHEDULE_URL = "https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_9.js
 DAILY_LINEUPS_URL_TEMPLATE = "https://stats.nba.com/js/data/leaders/00_daily_lineups_{yyyymmdd}.json"
 ESPN_SCOREBOARD_URL_TEMPLATE = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={yyyymmdd}"
 ESPN_SUMMARY_URL_TEMPLATE = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event={event_id}"
-ROTOWIRE_PRIZEPICKS_LINES_URL = "https://www.rotowire.com/picks/api/lines.php"
+ESPN_STATS_API_BASE = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba"
 
 # Operational interval guardrails. Fast UI/data refresh is useful, but expensive
 # background tasks must run on slower cadences to avoid stalling live sync.
@@ -176,11 +176,11 @@ DEFAULT_LIVE_CONFIG = {
     "force_provider_refresh_allowlist": [
         "odds",
         "player_props",
-        "rotowire_prizepicks",
         "lineups",
         "live_rosters",
         "injuries",
         "espn_live",
+        "espn_learning",
     ],
     "fetch_retry_attempts": 3,
     "fetch_retry_base_delay_seconds": 0.5,
@@ -272,19 +272,13 @@ DEFAULT_LIVE_CONFIG = {
             "odds_format": "american",
             "date_format": "iso",
         },
-        "rotowire_prizepicks": {
+        "espn_learning": {
             "enabled": True,
-            "lines_url": ROTOWIRE_PRIZEPICKS_LINES_URL,
-            "book": "prizepicks",
-            "referer": "https://www.rotowire.com/picks/prizepicks/",
-            "prefer_non_promo_lines": True,
-            "refresh_interval_seconds": DEFAULT_ROTOWIRE_REFRESH_INTERVAL_SECONDS,
+            "description": "ESPN continuous learning system - learns from live data and adjusts projections",
+            "refresh_interval_seconds": 600,
             "request_timeout_seconds": DEFAULT_PROVIDER_REQUEST_TIMEOUT_SECONDS,
-        },
-        "betr": {
-            "enabled": False,
-            "board_url": "https://www.betr.app/",
-            "note": "No stable public BETR props API is available; use manual line import for BETR entries.",
+            "min_recalibration_gap_minutes": 30,
+            "error_threshold_std_dev": 2.0,
         },
         "lineups": {
             "enabled": True,
@@ -5287,75 +5281,6 @@ def _rotowire_market_column(market_name: object) -> str | None:
     return mapping.get(normalized)
 
 
-def _select_rotowire_prizepicks_line_meta(
-    line_entries: object,
-    book: str = "prizepicks",
-    prefer_non_promo: bool = True,
-) -> dict[str, float] | None:
-    if not isinstance(line_entries, list):
-        return None
-
-    candidates: list[dict[str, object]] = []
-    target_book = str(book or "prizepicks").strip().lower()
-    for entry in line_entries:
-        if not isinstance(entry, dict):
-            continue
-        entry_book = str(entry.get("book") or "").strip().lower()
-        if entry_book != target_book:
-            continue
-        line_value = pd.to_numeric(pd.Series([entry.get("line")]), errors="coerce").iloc[0]
-        if pd.isna(line_value):
-            continue
-        line_time = pd.to_numeric(pd.Series([entry.get("lineTime")]), errors="coerce").iloc[0]
-        candidates.append(
-            {
-                "line": float(line_value),
-                "line_time": float(line_time) if pd.notna(line_time) else -1.0,
-                "promo": bool(entry.get("promo", False)),
-            }
-        )
-
-    if not candidates:
-        return None
-
-    usable = candidates
-    if prefer_non_promo:
-        non_promo = [entry for entry in candidates if not bool(entry.get("promo", False))]
-        if non_promo:
-            usable = non_promo
-
-    best = max(usable, key=lambda entry: float(entry.get("line_time", -1.0)))
-    lines = pd.Series([float(entry.get("line", 0.0)) for entry in usable], dtype=float)
-    consensus = float(lines.median()) if not lines.empty else float(best["line"])
-    stddev = float(lines.std(ddof=0)) if len(lines) > 1 else 0.0
-    books = 1 if usable else 0
-    age_minutes = pd.NA
-    if float(best.get("line_time", -1.0)) > 0:
-        age_minutes = max(0.0, (time.time() - float(best["line_time"])) / 60.0)
-    return {
-        "line": float(best["line"]),
-        "consensus": float(consensus),
-        "stddev": float(stddev),
-        "books": int(books),
-        "age_minutes": float(age_minutes) if pd.notna(age_minutes) else pd.NA,
-    }
-
-
-def _select_rotowire_prizepicks_line(
-    line_entries: object,
-    book: str = "prizepicks",
-    prefer_non_promo: bool = True,
-) -> float | None:
-    payload = _select_rotowire_prizepicks_line_meta(
-        line_entries,
-        book=book,
-        prefer_non_promo=prefer_non_promo,
-    )
-    if payload is None:
-        return None
-    return float(payload["line"])
-
-
 def _enrich_prop_line_columns(provider_frame: pd.DataFrame) -> pd.DataFrame:
     if provider_frame.empty:
         return provider_frame
@@ -5481,249 +5406,6 @@ def _enrich_prop_line_columns(provider_frame: pd.DataFrame) -> pd.DataFrame:
         ).max(axis=1)
     )
     return enriched
-
-
-def _extract_rotowire_prizepicks_rows(
-    payload: object,
-    book: str = "prizepicks",
-    prefer_non_promo: bool = True,
-) -> pd.DataFrame:
-    if not isinstance(payload, dict):
-        return pd.DataFrame(columns=CONTEXT_KEY_COLUMNS + PROP_LINE_CONTEXT_COLUMNS)
-
-    markets = payload.get("markets", [])
-    entities = payload.get("entities", [])
-    events = payload.get("events", [])
-    props = payload.get("props", [])
-    if not all(isinstance(value, list) for value in [markets, entities, events, props]):
-        return pd.DataFrame(columns=CONTEXT_KEY_COLUMNS + PROP_LINE_CONTEXT_COLUMNS)
-
-    market_to_column: dict[object, str] = {}
-    for market in markets:
-        if not isinstance(market, dict):
-            continue
-        market_id = market.get("marketID", market.get("id"))
-        sport = str(market.get("sport") or "").strip().upper()
-        if sport != "NBA":
-            continue
-        market_name = market.get("marketName", market.get("name"))
-        column = _rotowire_market_column(market_name)
-        if market_id is None or not column:
-            continue
-        market_to_column[market_id] = column
-
-    entity_lookup: dict[object, dict] = {}
-    for entity in entities:
-        if not isinstance(entity, dict):
-            continue
-        entity_id = entity.get("entityID", entity.get("id"))
-        sport = str(entity.get("sport") or "").strip().upper()
-        player_name = str(entity.get("name") or "").strip()
-        team_code = _normalize_team_code(entity.get("team"))
-        if entity_id is None or sport != "NBA" or not player_name or not team_code:
-            continue
-        event_id = entity.get("eventID", entity.get("eventId"))
-        entity_lookup[entity_id] = {
-            "player_name": player_name,
-            "team": team_code,
-            "event_id": event_id,
-        }
-
-    event_lookup: dict[object, dict] = {}
-    for event in events:
-        if not isinstance(event, dict):
-            continue
-        event_id = event.get("eventID", event.get("id"))
-        if event_id is None:
-            continue
-        event_lookup[event_id] = event
-
-    aggregated: dict[tuple[str, str, str], dict] = {}
-    for prop in props:
-        if not isinstance(prop, dict):
-            continue
-        market_id = prop.get("marketID", prop.get("marketId", prop.get("market")))
-        context_column = market_to_column.get(market_id)
-        if not context_column:
-            continue
-
-        entity_ids = prop.get("entities")
-        if isinstance(entity_ids, list):
-            resolved_entity_ids = entity_ids
-        elif entity_ids is None:
-            resolved_entity_ids = []
-        else:
-            resolved_entity_ids = [entity_ids]
-        if len(resolved_entity_ids) != 1:
-            continue
-        entity_info = entity_lookup.get(resolved_entity_ids[0])
-        if not entity_info:
-            continue
-
-        event = event_lookup.get(entity_info["event_id"], {})
-        event_time_raw = event.get("eventTime", event.get("date"))
-        tipoff_utc: datetime | None = None
-        if isinstance(event_time_raw, (int, float)) and not pd.isna(event_time_raw):
-            tipoff_utc = datetime.fromtimestamp(float(event_time_raw), tz=timezone.utc)
-        else:
-            tipoff_utc = _parse_iso_datetime(str(event_time_raw or ""))
-        game_date = _game_date_from_tipoff(tipoff_utc)
-        if not game_date:
-            continue
-
-        line_payload = _select_rotowire_prizepicks_line_meta(
-            prop.get("lines"),
-            book=book,
-            prefer_non_promo=prefer_non_promo,
-        )
-        if line_payload is None:
-            continue
-
-        key = (str(entity_info["player_name"]), str(entity_info["team"]), game_date)
-        row = aggregated.setdefault(
-            key,
-            {
-                "player_name": str(entity_info["player_name"]),
-                "team": str(entity_info["team"]),
-                "game_date": game_date,
-            },
-        )
-        row[context_column] = float(line_payload["line"])
-        consensus_meta = LINE_CONSENSUS_COLUMNS.get(context_column)
-        if consensus_meta:
-            row[consensus_meta["consensus"]] = float(line_payload.get("consensus", line_payload["line"]))
-            row[consensus_meta["stddev"]] = float(line_payload.get("stddev", 0.0))
-            row[consensus_meta["books"]] = int(line_payload.get("books", 1))
-            row[consensus_meta["age"]] = (
-                float(line_payload["age_minutes"])
-                if pd.notna(line_payload.get("age_minutes"))
-                else pd.NA
-            )
-
-    frame = pd.DataFrame(list(aggregated.values()))
-    if frame.empty:
-        return pd.DataFrame(columns=CONTEXT_KEY_COLUMNS + PROP_LINE_CONTEXT_COLUMNS)
-    frame = _enrich_prop_line_columns(frame)
-    frame = frame.drop_duplicates(subset=CONTEXT_KEY_COLUMNS, keep="last")
-    return frame
-
-
-def _compare_prop_line_frames(primary: pd.DataFrame, comparison: pd.DataFrame) -> dict[str, float | int]:
-    if primary.empty or comparison.empty:
-        return {
-            "compared_rows": 0,
-            "compared_values": 0,
-            "changed_values": 0,
-            "median_abs_delta": 0.0,
-            "max_abs_delta": 0.0,
-        }
-
-    left = primary[CONTEXT_KEY_COLUMNS + [column for column in PROP_LINE_COLUMNS if column in primary.columns]].copy()
-    right = comparison[CONTEXT_KEY_COLUMNS + [column for column in PROP_LINE_COLUMNS if column in comparison.columns]].copy()
-    merged = left.merge(right, on=CONTEXT_KEY_COLUMNS, how="inner", suffixes=("_base", "_compare"))
-    if merged.empty:
-        return {
-            "compared_rows": 0,
-            "compared_values": 0,
-            "changed_values": 0,
-            "median_abs_delta": 0.0,
-            "max_abs_delta": 0.0,
-        }
-
-    abs_deltas: list[float] = []
-    changed_values = 0
-    compared_values = 0
-    for column in PROP_LINE_COLUMNS:
-        base_column = f"{column}_base"
-        compare_column = f"{column}_compare"
-        if base_column not in merged.columns or compare_column not in merged.columns:
-            continue
-        base_series = pd.to_numeric(merged[base_column], errors="coerce")
-        compare_series = pd.to_numeric(merged[compare_column], errors="coerce")
-        mask = base_series.notna() & compare_series.notna()
-        if not mask.any():
-            continue
-        delta = (compare_series[mask] - base_series[mask]).abs()
-        compared_values += int(mask.sum())
-        changed_values += int((delta > 1e-9).sum())
-        abs_deltas.extend([float(value) for value in delta.tolist() if pd.notna(value)])
-
-    if abs_deltas:
-        delta_series = pd.Series(abs_deltas, dtype=float)
-        median_abs_delta = float(round(delta_series.median(), 3))
-        max_abs_delta = float(round(delta_series.max(), 3))
-    else:
-        median_abs_delta = 0.0
-        max_abs_delta = 0.0
-
-    return {
-        "compared_rows": int(len(merged)),
-        "compared_values": int(compared_values),
-        "changed_values": int(changed_values),
-        "median_abs_delta": median_abs_delta,
-        "max_abs_delta": max_abs_delta,
-    }
-
-
-def _fetch_rotowire_prizepicks_rows(upcoming_frame: pd.DataFrame, provider_config: dict) -> tuple[pd.DataFrame, dict]:
-    status = {
-        "enabled": bool(provider_config.get("enabled", True)),
-        "rows": 0,
-        "records_loaded": 0,
-        "props_seen": 0,
-        "last_error": None,
-        "note": None,
-        "source": "RotoWire PrizePicks lines",
-        "endpoint": str(provider_config.get("lines_url") or ROTOWIRE_PRIZEPICKS_LINES_URL),
-    }
-    empty_columns = CONTEXT_KEY_COLUMNS + PROP_LINE_CONTEXT_COLUMNS
-    if not status["enabled"]:
-        status["note"] = "RotoWire PrizePicks provider is disabled."
-        return pd.DataFrame(columns=empty_columns), status
-    if upcoming_frame.empty:
-        status["note"] = "No upcoming slate rows are available for RotoWire PrizePicks matching."
-        return pd.DataFrame(columns=empty_columns), status
-
-    url = str(provider_config.get("lines_url") or ROTOWIRE_PRIZEPICKS_LINES_URL).strip()
-    if not url:
-        status["note"] = "RotoWire lines_url is missing."
-        return pd.DataFrame(columns=empty_columns), status
-    request_timeout_seconds = _coerce_positive_int(
-        provider_config.get("request_timeout_seconds", DEFAULT_PROVIDER_REQUEST_TIMEOUT_SECONDS),
-        DEFAULT_PROVIDER_REQUEST_TIMEOUT_SECONDS,
-    )
-
-    try:
-        payload = fetch_json(
-            url,
-            timeout=request_timeout_seconds,
-            headers={
-                "Accept": "application/json, text/plain, */*",
-                "Referer": str(provider_config.get("referer") or "https://www.rotowire.com/picks/prizepicks/"),
-            },
-            provider_name="rotowire_prizepicks",
-        )
-        if isinstance(payload, dict):
-            status["props_seen"] = int(len(payload.get("props", []) or []))
-
-        raw_frame = _extract_rotowire_prizepicks_rows(
-            payload,
-            book=str(provider_config.get("book") or "prizepicks"),
-            prefer_non_promo=bool(provider_config.get("prefer_non_promo_lines", True)),
-        )
-        status["records_loaded"] = int(len(raw_frame))
-        if raw_frame.empty:
-            status["note"] = "RotoWire payload loaded, but no NBA PrizePicks rows were parsed."
-            return pd.DataFrame(columns=empty_columns), status
-
-        aligned = _align_provider_rows_to_upcoming(upcoming_frame, raw_frame)
-        status["rows"] = int(len(aligned))
-        if aligned.empty:
-            status["note"] = "RotoWire PrizePicks rows were parsed but did not align to the current slate."
-        return aligned, status
-    except (HTTPError, URLError, ValueError, OSError, subprocess.SubprocessError) as exc:
-        status["last_error"] = _sanitize_error_message(exc)
-        return pd.DataFrame(columns=empty_columns), status
 
 
 def _extract_player_prop_rows(event_payload: dict) -> list[dict]:
