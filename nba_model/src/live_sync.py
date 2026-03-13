@@ -2182,16 +2182,26 @@ def _configured_provider_context_path(config: dict) -> Path:
 #   - fetch_text(url) -> _fetch_bytes_with_retry()
 #   - fetch_binary(url) -> _fetch_bytes_with_retry()
 #
-# Configuration via live_sync.json:
+# Global configuration via live_sync.json:
 #   - fetch_retry_attempts (default: 3)
 #   - fetch_retry_base_delay_seconds (default: 0.5)
 #   - fetch_retry_jitter_seconds (default: 0.2)
+#
+# Per-Provider Overrides via live_sync.json:
+#   - provider_retry_overrides[provider_name]["fetch_retry_*"] (optional)
+#   - Examples:
+#       - injuries: 4 attempts, 0.8s base (BallDontLie can be slower)
+#       - odds/player_props: 3 attempts, 0.5s base (critical, stable)
+#       - rotowire_prizepicks: 2 attempts, 0.4s base (reliable, lenient)
+#       - lineups/playstyle: 2 attempts, 0.3s base (NBA Stats, very reliable)
 # ============================================================================
 FETCH_RETRY_SETTINGS = {
     "attempts": int(DEFAULT_LIVE_CONFIG.get("fetch_retry_attempts", 3)),
     "base_delay_seconds": float(DEFAULT_LIVE_CONFIG.get("fetch_retry_base_delay_seconds", 0.5)),
     "jitter_seconds": float(DEFAULT_LIVE_CONFIG.get("fetch_retry_jitter_seconds", 0.2)),
 }
+
+PROVIDER_RETRY_OVERRIDES: dict[str, dict[str, float | int]] = {}
 
 TEAMMATE_SYNERGY_CACHE: dict[str, object] = {
     "signature": None,
@@ -2201,6 +2211,8 @@ TEAMMATE_SYNERGY_CACHE: dict[str, object] = {
 
 
 def _update_fetch_retry_settings_from_config(config: dict) -> None:
+    """Update global and per-provider retry settings from configuration."""
+    global PROVIDER_RETRY_OVERRIDES
     FETCH_RETRY_SETTINGS["attempts"] = max(1, _coerce_positive_int(config.get("fetch_retry_attempts", 1), 1))
     base_delay_raw = pd.to_numeric(
         pd.Series([config.get("fetch_retry_base_delay_seconds", 0.3)]),
@@ -2211,10 +2223,53 @@ def _update_fetch_retry_settings_from_config(config: dict) -> None:
     jitter_value = pd.to_numeric(pd.Series([config.get("fetch_retry_jitter_seconds", 0.1)]), errors="coerce").iloc[0]
     FETCH_RETRY_SETTINGS["jitter_seconds"] = float(max(0.0, jitter_value if pd.notna(jitter_value) else 0.1))
 
+    # Load per-provider retry overrides
+    overrides = config.get("provider_retry_overrides", {})
+    PROVIDER_RETRY_OVERRIDES.clear()
+    if isinstance(overrides, dict):
+        for provider_name, provider_settings in overrides.items():
+            if not isinstance(provider_settings, dict):
+                continue
+            normalized_settings = {}
+            attempts_val = provider_settings.get("fetch_retry_attempts")
+            if attempts_val is not None:
+                normalized_settings["attempts"] = max(1, _coerce_positive_int(attempts_val, 1))
+            base_delay_val = provider_settings.get("fetch_retry_base_delay_seconds")
+            if base_delay_val is not None:
+                base_delay_numeric = pd.to_numeric(pd.Series([base_delay_val]), errors="coerce").iloc[0]
+                if pd.notna(base_delay_numeric):
+                    normalized_settings["base_delay_seconds"] = float(max(0.1, float(base_delay_numeric)))
+            jitter_val = provider_settings.get("fetch_retry_jitter_seconds")
+            if jitter_val is not None:
+                jitter_numeric = pd.to_numeric(pd.Series([jitter_val]), errors="coerce").iloc[0]
+                if pd.notna(jitter_numeric):
+                    normalized_settings["jitter_seconds"] = float(max(0.0, float(jitter_numeric)))
+            if normalized_settings:
+                PROVIDER_RETRY_OVERRIDES[provider_name] = normalized_settings
 
-def _retry_sleep_seconds(attempt: int) -> float:
-    base_delay = float(FETCH_RETRY_SETTINGS.get("base_delay_seconds", 1.5))
-    jitter = float(FETCH_RETRY_SETTINGS.get("jitter_seconds", 0.4))
+
+def _get_retry_settings_for_provider(provider_name: str | None) -> dict[str, float | int]:
+    """Get retry settings for a specific provider, falling back to global settings."""
+    if provider_name and provider_name in PROVIDER_RETRY_OVERRIDES:
+        override = PROVIDER_RETRY_OVERRIDES[provider_name]
+        return {
+            "attempts": override.get("attempts", FETCH_RETRY_SETTINGS["attempts"]),
+            "base_delay_seconds": override.get("base_delay_seconds", FETCH_RETRY_SETTINGS["base_delay_seconds"]),
+            "jitter_seconds": override.get("jitter_seconds", FETCH_RETRY_SETTINGS["jitter_seconds"]),
+        }
+    return {
+        "attempts": FETCH_RETRY_SETTINGS["attempts"],
+        "base_delay_seconds": FETCH_RETRY_SETTINGS["base_delay_seconds"],
+        "jitter_seconds": FETCH_RETRY_SETTINGS["jitter_seconds"],
+    }
+
+
+def _retry_sleep_seconds(attempt: int, base_delay: float | None = None, jitter: float | None = None) -> float:
+    """Calculate sleep duration with exponential backoff and jitter."""
+    if base_delay is None:
+        base_delay = float(FETCH_RETRY_SETTINGS.get("base_delay_seconds", 1.5))
+    if jitter is None:
+        jitter = float(FETCH_RETRY_SETTINGS.get("jitter_seconds", 0.4))
     exponential = base_delay * (attempt + 1)
     return max(0.1, exponential + random.uniform(0.0, jitter))
 
@@ -2266,9 +2321,24 @@ def _fetch_bytes_with_retry(
     url: str,
     timeout: int = DEFAULT_PROVIDER_REQUEST_TIMEOUT_SECONDS,
     headers: dict[str, str] | None = None,
+    provider_name: str | None = None,
 ) -> bytes:
+    """Fetch bytes with exponential backoff and jitter.
+    
+    Args:
+        url: URL to fetch
+        timeout: Request timeout in seconds
+        headers: Optional request headers
+        provider_name: Optional provider name for per-provider retry overrides
+    
+    Returns:
+        Response bytes
+    """
+    retry_settings = _get_retry_settings_for_provider(provider_name)
     request_headers = _default_request_headers(headers)
-    attempts = max(1, int(FETCH_RETRY_SETTINGS.get("attempts", 3)))
+    attempts = int(retry_settings.get("attempts", 3))
+    base_delay = float(retry_settings.get("base_delay_seconds", 0.5))
+    jitter = float(retry_settings.get("jitter_seconds", 0.2))
     last_error: Exception | None = None
     for attempt in range(attempts):
         request = Request(url, headers=request_headers)
@@ -2290,7 +2360,7 @@ def _fetch_bytes_with_retry(
             except subprocess.SubprocessError as curl_error:
                 last_error = curl_error
         if attempt < (attempts - 1):
-            time.sleep(_retry_sleep_seconds(attempt))
+            time.sleep(_retry_sleep_seconds(attempt, base_delay=base_delay, jitter=jitter))
     if last_error is not None:
         raise last_error
     raise ValueError("Failed to fetch payload and no error details were captured.")
@@ -2300,8 +2370,20 @@ def fetch_json(
     url: str,
     timeout: int = DEFAULT_PROVIDER_REQUEST_TIMEOUT_SECONDS,
     headers: dict[str, str] | None = None,
+    provider_name: str | None = None,
 ) -> dict:
-    payload = _fetch_bytes_with_retry(url=url, timeout=timeout, headers=headers)
+    """Fetch and decode JSON from URL, with provider-specific retry settings.
+    
+    Args:
+        url: URL to fetch
+        timeout: Request timeout in seconds
+        headers: Optional request headers
+        provider_name: Optional provider name for per-provider retry overrides
+    
+    Returns:
+        Parsed JSON dictionary
+    """
+    payload = _fetch_bytes_with_retry(url=url, timeout=timeout, headers=headers, provider_name=provider_name)
     return json.loads(payload.decode("utf-8"))
 
 
@@ -2309,8 +2391,20 @@ def fetch_text(
     url: str,
     timeout: int = DEFAULT_PROVIDER_REQUEST_TIMEOUT_SECONDS,
     headers: dict[str, str] | None = None,
+    provider_name: str | None = None,
 ) -> str:
-    payload = _fetch_bytes_with_retry(url=url, timeout=timeout, headers=headers)
+    """Fetch and decode text from URL, with provider-specific retry settings.
+    
+    Args:
+        url: URL to fetch
+        timeout: Request timeout in seconds
+        headers: Optional request headers
+        provider_name: Optional provider name for per-provider retry overrides
+    
+    Returns:
+        Response text
+    """
+    payload = _fetch_bytes_with_retry(url=url, timeout=timeout, headers=headers, provider_name=provider_name)
     return payload.decode("utf-8")
 
 
@@ -2318,8 +2412,20 @@ def fetch_binary(
     url: str,
     timeout: int = DEFAULT_PROVIDER_REQUEST_TIMEOUT_SECONDS,
     headers: dict[str, str] | None = None,
+    provider_name: str | None = None,
 ) -> bytes:
-    return _fetch_bytes_with_retry(url=url, timeout=timeout, headers=headers)
+    """Fetch binary data from URL, with provider-specific retry settings.
+    
+    Args:
+        url: URL to fetch
+        timeout: Request timeout in seconds
+        headers: Optional request headers
+        provider_name: Optional provider name for per-provider retry overrides
+    
+    Returns:
+        Response bytes
+    """
+    return _fetch_bytes_with_retry(url=url, timeout=timeout, headers=headers, provider_name=provider_name)
 
 
 def fetch_scoreboard() -> dict:
@@ -4065,6 +4171,7 @@ def _fetch_odds_events(provider_config: dict, lookahead_hours: int) -> tuple[lis
         events = fetch_json(
             f"{base_url}/sports/{sport}/odds/?{query}",
             timeout=timeout_seconds,
+            provider_name="odds",
         )
         if not isinstance(events, list):
             raise ValueError("Odds provider returned an unexpected payload.")
@@ -4931,7 +5038,7 @@ def _fetch_espn_pickcenter_markets(
         event_lookup: dict[tuple[str, str, str], str] = {}
         for game_date in game_dates:
             yyyymmdd = game_date.replace("-", "")
-            scoreboard_payload = fetch_json(scoreboard_template.format(yyyymmdd=yyyymmdd))
+            scoreboard_payload = fetch_json(scoreboard_template.format(yyyymmdd=yyyymmdd), provider_name="espn_live")
             for event in scoreboard_payload.get("events", []):
                 event_id = str(event.get("id") or "").strip()
                 if not event_id:
@@ -4969,7 +5076,7 @@ def _fetch_espn_pickcenter_markets(
         game_markets: dict[tuple[str, str], dict[str, float | None]] = {}
         for game_key, event_id in event_lookup.items():
             _, home_code, away_code = game_key
-            summary_payload = fetch_json(summary_template.format(event_id=event_id))
+            summary_payload = fetch_json(summary_template.format(event_id=event_id), provider_name="espn_live")
             market_summary = _extract_pickcenter_market_summary(summary_payload)
             if not market_summary:
                 continue
@@ -5594,6 +5701,7 @@ def _fetch_rotowire_prizepicks_rows(upcoming_frame: pd.DataFrame, provider_confi
                 "Accept": "application/json, text/plain, */*",
                 "Referer": str(provider_config.get("referer") or "https://www.rotowire.com/picks/prizepicks/"),
             },
+            provider_name="rotowire_prizepicks",
         )
         if isinstance(payload, dict):
             status["props_seen"] = int(len(payload.get("props", []) or []))
@@ -5818,6 +5926,7 @@ def _fetch_odds_player_props_rows(
                     event_payload = fetch_json(
                         f"{base_url}/sports/{sport}/events/{event_id}/odds/?{query}",
                         timeout=request_timeout_seconds,
+                        provider_name="player_props",
                     )
                     break
                 except (HTTPError, URLError, ValueError, OSError, subprocess.SubprocessError):
@@ -5927,6 +6036,7 @@ def _fetch_nba_daily_lineups_rows(upcoming_frame: pd.DataFrame, provider_config:
                     "Accept": "application/json, text/plain, */*",
                     "Referer": "https://www.nba.com/",
                 },
+                provider_name="lineups",
             )
         except (HTTPError, URLError, ValueError, OSError, subprocess.SubprocessError) as exc:
             status["last_error"] = _sanitize_error_message(exc)
@@ -6502,6 +6612,7 @@ def _fetch_balldontlie_injury_rows(upcoming_frame: pd.DataFrame, provider_config
         f"{base_url}/player_injuries?{query}",
         timeout=timeout_seconds,
         headers={"Authorization": api_key},
+        provider_name="injuries",
     )
     records = _extract_json_records(payload, "")
     status["records_loaded"] = int(len(records))
@@ -6972,7 +7083,7 @@ def _fetch_nba_stats_frame(
 ) -> pd.DataFrame:
     query = urlencode({key: value for key, value in params.items() if value is not None}, doseq=True)
     url = f"{base_url.rstrip('/')}/{endpoint.lstrip('/')}?{query}"
-    payload = fetch_json(url, timeout=timeout_seconds, headers=_nba_stats_request_headers())
+    payload = fetch_json(url, timeout=timeout_seconds, headers=_nba_stats_request_headers(), provider_name="playstyle")
     return _nba_resultset_to_frame(payload, preferred_result_set=preferred_result_set)
 
 

@@ -15,6 +15,62 @@
   "fetch_retry_attempts": 3,
   "fetch_retry_base_delay_seconds": 0.5,
   "fetch_retry_jitter_seconds": 0.2,
+  "provider_retry_overrides": {
+    "odds": {
+      "fetch_retry_attempts": 3,
+      "fetch_retry_base_delay_seconds": 0.5,
+      "fetch_retry_jitter_seconds": 0.2,
+      "note": "Critical provider - odds API is stable"
+    },
+    "player_props": {
+      "fetch_retry_attempts": 3,
+      "fetch_retry_base_delay_seconds": 0.5,
+      "fetch_retry_jitter_seconds": 0.2,
+      "note": "Critical provider - The Odds API is very stable"
+    },
+    "injuries": {
+      "fetch_retry_attempts": 4,
+      "fetch_retry_base_delay_seconds": 0.8,
+      "fetch_retry_jitter_seconds": 0.3,
+      "note": "Important provider - BallDontLie can be slower, benefit from extra retries"
+    },
+    "rotowire_prizepicks": {
+      "fetch_retry_attempts": 2,
+      "fetch_retry_base_delay_seconds": 0.4,
+      "fetch_retry_jitter_seconds": 0.15,
+      "note": "RotoWire is usually reliable, lenient backoff"
+    },
+    "lineups": {
+      "fetch_retry_attempts": 2,
+      "fetch_retry_base_delay_seconds": 0.3,
+      "fetch_retry_jitter_seconds": 0.1,
+      "note": "NBA Stats is very reliable, minimal retries needed"
+    },
+    "playstyle": {
+      "fetch_retry_attempts": 2,
+      "fetch_retry_base_delay_seconds": 0.3,
+      "fetch_retry_jitter_seconds": 0.1,
+      "note": "NBA Stats is very reliable, less critical than lineups"
+    },
+    "espn_live": {
+      "fetch_retry_attempts": 3,
+      "fetch_retry_base_delay_seconds": 0.5,
+      "fetch_retry_jitter_seconds": 0.15,
+      "note": "ESPN is stable, standard retry policy"
+    },
+    "news": {
+      "fetch_retry_attempts": 2,
+      "fetch_retry_base_delay_seconds": 0.3,
+      "fetch_retry_jitter_seconds": 0.1,
+      "note": "News feeds are best-effort, minimal retries"
+    },
+    "player_profiles": {
+      "fetch_retry_attempts": 2,
+      "fetch_retry_base_delay_seconds": 0.3,
+      "fetch_retry_jitter_seconds": 0.1,
+      "note": "Wikipedia is very reliable, cached heavily"
+    }
+  },
   "auto_backfill_recent_history": true,
   "history_backfill_days": 180,
   "history_backfill_max_games_per_cycle": 180,
