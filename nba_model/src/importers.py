@@ -392,7 +392,7 @@ def import_prizepicks_lines_frame(frame: pd.DataFrame, output_path: Path = DEFAU
     if "source" not in normalized.columns:
         normalized["source"] = "manual"
     if "captured_at" not in normalized.columns:
-        normalized["captured_at"] = pd.Timestamp.utcnow().isoformat()
+        normalized["captured_at"] = pd.Timestamp.now("UTC").isoformat()
 
     normalized["player_name"] = normalized["player_name"].astype(str).str.strip()
     normalized["team"] = normalized["team"].map(normalize_team_code)

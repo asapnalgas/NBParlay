@@ -238,7 +238,7 @@ class RegressionTests(unittest.TestCase):
         self.assertGreaterEqual(float(blended.iloc[0]["pregame_anchor_sources_points"]), 2.0)
 
     def test_completed_games_from_schedule_filters_recent_finals(self) -> None:
-        now_utc = pd.Timestamp.utcnow()
+        now_utc = pd.Timestamp.now("UTC")
         within_window = (now_utc - pd.Timedelta(days=3)).strftime("%Y-%m-%dT%H:%M:%SZ")
         outside_window = (now_utc - pd.Timedelta(days=70)).strftime("%Y-%m-%dT%H:%M:%SZ")
         payload = {

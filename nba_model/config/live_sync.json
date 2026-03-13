@@ -12,9 +12,9 @@
     "injuries",
     "espn_live"
   ],
-  "fetch_retry_attempts": 1,
-  "fetch_retry_base_delay_seconds": 0.3,
-  "fetch_retry_jitter_seconds": 0.1,
+  "fetch_retry_attempts": 3,
+  "fetch_retry_base_delay_seconds": 0.5,
+  "fetch_retry_jitter_seconds": 0.2,
   "auto_backfill_recent_history": true,
   "history_backfill_days": 180,
   "history_backfill_max_games_per_cycle": 180,

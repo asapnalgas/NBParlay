@@ -182,9 +182,9 @@ DEFAULT_LIVE_CONFIG = {
         "injuries",
         "espn_live",
     ],
-    "fetch_retry_attempts": 1,
-    "fetch_retry_base_delay_seconds": 0.3,
-    "fetch_retry_jitter_seconds": 0.1,
+    "fetch_retry_attempts": 3,
+    "fetch_retry_base_delay_seconds": 0.5,
+    "fetch_retry_jitter_seconds": 0.2,
     "auto_backfill_recent_history": True,
     "history_backfill_days": 42,
     "history_backfill_max_games_per_cycle": 120,
@@ -2168,10 +2168,29 @@ def _configured_provider_context_path(config: dict) -> Path:
     return Path(config.get("provider_context_path") or DEFAULT_PROVIDER_CONTEXT_PATH)
 
 
+# ============================================================================
+# CENTRALIZED RETRY POLICY FOR ALL PROVIDER FETCHES
+# ============================================================================
+# All HTTP requests from live_sync use exponential backoff with jitter:
+#   - Attempts: number of retries (e.g., 3 = try, retry, retry)
+#   - Base delay: initial wait time (0.5 sec)
+#   - Jitter: randomness added (0-0.2 sec) to avoid thundering herd
+#   - Formula: wait_time = base_delay * (attempt_number + 1) + random(0, jitter)
+#
+# This is applied via:
+#   - fetch_json(url) -> _fetch_bytes_with_retry()
+#   - fetch_text(url) -> _fetch_bytes_with_retry()
+#   - fetch_binary(url) -> _fetch_bytes_with_retry()
+#
+# Configuration via live_sync.json:
+#   - fetch_retry_attempts (default: 3)
+#   - fetch_retry_base_delay_seconds (default: 0.5)
+#   - fetch_retry_jitter_seconds (default: 0.2)
+# ============================================================================
 FETCH_RETRY_SETTINGS = {
-    "attempts": int(DEFAULT_LIVE_CONFIG.get("fetch_retry_attempts", 1)),
-    "base_delay_seconds": float(DEFAULT_LIVE_CONFIG.get("fetch_retry_base_delay_seconds", 0.3)),
-    "jitter_seconds": float(DEFAULT_LIVE_CONFIG.get("fetch_retry_jitter_seconds", 0.1)),
+    "attempts": int(DEFAULT_LIVE_CONFIG.get("fetch_retry_attempts", 3)),
+    "base_delay_seconds": float(DEFAULT_LIVE_CONFIG.get("fetch_retry_base_delay_seconds", 0.5)),
+    "jitter_seconds": float(DEFAULT_LIVE_CONFIG.get("fetch_retry_jitter_seconds", 0.2)),
 }
 
 TEAMMATE_SYNERGY_CACHE: dict[str, object] = {
