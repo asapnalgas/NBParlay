@@ -1,0 +1,88 @@
+2026-03-13 15:46:05,598 - __main__ - INFO - ============================================================
+2026-03-13 15:46:05,598 - __main__ - INFO - SYSTEM HEALTH CHECK
+2026-03-13 15:46:05,598 - __main__ - INFO - ============================================================
+2026-03-13 15:46:05,598 - src.self_learning_integration - INFO - Initializing Self-Learning System
+2026-03-13 15:46:05,754 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:46:05,754 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:46:05,873 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:46:05,874 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:46:29,262 - __main__ - INFO - ============================================================
+2026-03-13 15:46:29,262 - __main__ - INFO - SYSTEM HEALTH CHECK
+2026-03-13 15:46:29,262 - __main__ - INFO - ============================================================
+2026-03-13 15:46:29,262 - src.self_learning_integration - INFO - Initializing Self-Learning System
+2026-03-13 15:46:29,391 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:46:29,392 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:46:29,495 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:46:29,495 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:46:29,621 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:46:29,622 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:46:29,727 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:46:29,728 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:46:29,728 - src.continuous_learning - INFO - Continuous Learning Orchestrator initialized
+2026-03-13 15:46:29,728 - src.self_learning_integration - INFO - Self-Learning System initialized successfully
+2026-03-13 15:46:29,728 - __main__ - ERROR - Error during health check: 'ContinuousLearningOrchestrator' object has no attribute 'current_phase'
+Traceback (most recent call last):
+  File "/Users/josephdelallera/Desktop/NBParlay/nba_model/monitor.py", line 232, in check_system_health
+    learning_phase = system.orchestrator.current_phase if system.orchestrator else None
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ContinuousLearningOrchestrator' object has no attribute 'current_phase'
+2026-03-13 15:46:29,729 - __main__ - INFO - Status: ERROR
+2026-03-13 15:46:29,729 - __main__ - INFO -   system_running: warning
+2026-03-13 15:46:29,729 - __main__ - INFO -     -> False
+2026-03-13 15:46:29,729 - __main__ - INFO -     -> System is not currently running
+2026-03-13 15:46:29,729 - __main__ - INFO -   predictions: warning
+2026-03-13 15:46:29,729 - __main__ - INFO -   accuracy: warning
+2026-03-13 15:46:29,729 - __main__ - INFO -   errors: ok
+2026-03-13 15:46:29,729 - __main__ - INFO -     -> Error rates within acceptable ranges
+2026-03-13 15:46:29,729 - __main__ - INFO -   recommendations: unknown
+2026-03-13 15:46:29,729 - __main__ - INFO -   error: error
+2026-03-13 15:46:29,729 - __main__ - INFO -     -> 'ContinuousLearningOrchestrator' object has no attribute 'current_phase'
+2026-03-13 15:46:29,729 - __main__ - WARNING -   ⚠️  System is not running - learning is paused
+2026-03-13 15:46:29,729 - __main__ - WARNING -   ⚠️  Starter accuracy (0.0%) below target (55.0%)
+2026-03-13 15:46:29,729 - __main__ - INFO -   💡 Add more features related to depth chart and player status
+2026-03-13 15:46:29,729 - __main__ - INFO - Check completed in 0.47s
+2026-03-13 15:46:29,729 - __main__ - INFO - 
+Suggested Fixes:
+2026-03-13 15:46:29,729 - __main__ - INFO -   [HIGH] System is not running
+2026-03-13 15:46:29,729 - __main__ - INFO -   -> python self_learning_launcher.py --mode hybrid --daemon
+2026-03-13 15:46:29,729 - __main__ - INFO -   [MEDIUM] Starter accuracy low (0.0%)
+2026-03-13 15:46:29,729 - __main__ - INFO -   -> python self_learning_launcher.py --backtest
+2026-03-13 15:46:29,729 - __main__ - INFO -   [MEDIUM] Starter prediction accuracy: 0.00%
+2026-03-13 15:46:43,402 - __main__ - INFO - ============================================================
+2026-03-13 15:46:43,402 - __main__ - INFO - SYSTEM HEALTH CHECK
+2026-03-13 15:46:43,402 - __main__ - INFO - ============================================================
+2026-03-13 15:46:43,402 - src.self_learning_integration - INFO - Initializing Self-Learning System
+2026-03-13 15:46:43,544 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:46:43,545 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:46:43,681 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:46:43,687 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:46:43,891 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:46:43,892 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:46:44,001 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 15:46:44,001 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 15:46:44,002 - src.continuous_learning - INFO - Continuous Learning Orchestrator initialized
+2026-03-13 15:46:44,002 - src.self_learning_integration - INFO - Self-Learning System initialized successfully
+2026-03-13 15:46:44,002 - __main__ - INFO - Status: CRITICAL
+2026-03-13 15:46:44,002 - __main__ - INFO -   system_running: warning
+2026-03-13 15:46:44,002 - __main__ - INFO -     -> False
+2026-03-13 15:46:44,002 - __main__ - INFO -     -> System is not currently running
+2026-03-13 15:46:44,002 - __main__ - INFO -   predictions: warning
+2026-03-13 15:46:44,002 - __main__ - INFO -   accuracy: warning
+2026-03-13 15:46:44,002 - __main__ - INFO -   errors: ok
+2026-03-13 15:46:44,002 - __main__ - INFO -     -> Error rates within acceptable ranges
+2026-03-13 15:46:44,002 - __main__ - INFO -   recommendations: unknown
+2026-03-13 15:46:44,002 - __main__ - INFO -   learning_phase: unknown
+2026-03-13 15:46:44,002 - __main__ - INFO -     -> Currently in historical_learning phase
+2026-03-13 15:46:44,002 - __main__ - WARNING -   ⚠️  System is not running - learning is paused
+2026-03-13 15:46:44,002 - __main__ - WARNING -   ⚠️  Starter accuracy (0.0%) below target (55.0%)
+2026-03-13 15:46:44,002 - __main__ - INFO -   💡 Add more features related to depth chart and player status
+2026-03-13 15:46:44,002 - __main__ - INFO - Check completed in 0.60s
+2026-03-13 15:46:44,003 - __main__ - INFO - 
+Suggested Fixes:
+2026-03-13 15:46:44,003 - __main__ - INFO -   [CRITICAL] System health is critical
+2026-03-13 15:46:44,003 - __main__ - INFO -   -> python self_learning_launcher.py --mode hybrid --daemon
+2026-03-13 15:46:44,003 - __main__ - INFO -   [HIGH] System is not running
+2026-03-13 15:46:44,003 - __main__ - INFO -   -> python self_learning_launcher.py --mode hybrid --daemon
+2026-03-13 15:46:44,003 - __main__ - INFO -   [MEDIUM] Starter accuracy low (0.0%)
+2026-03-13 15:46:44,003 - __main__ - INFO -   -> python self_learning_launcher.py --backtest
+2026-03-13 15:46:44,003 - __main__ - INFO -   [MEDIUM] Starter prediction accuracy: 0.00%

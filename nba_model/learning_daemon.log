@@ -957,3 +957,10 @@
 2026-03-13 15:56:32,041 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
 2026-03-13 15:56:32,042 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
 2026-03-13 15:56:32,042 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+<<<<<<< Updated upstream
+=======
+2026-03-13 15:57:02,048 - [INFO] - src.continuous_learning - Running ESPN sync cycle
+2026-03-13 15:57:02,049 - [ERROR] - src.continuous_learning - Sync cycle failed: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:57:02,049 - [ERROR] - src.continuous_learning - Error in sync loop: 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+2026-03-13 15:57:02,050 - [ERROR] - src.continuous_learning - [sync_error] 'LiveSyncManager' object has no attribute 'sync_scoreboard'
+>>>>>>> Stashed changes

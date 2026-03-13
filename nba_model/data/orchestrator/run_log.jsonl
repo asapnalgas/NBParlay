@@ -65,3 +65,18 @@
 {"timestamp": "2026-03-13T15:56:32.042067", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
 {"timestamp": "2026-03-13T15:56:47.855461", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
 {"timestamp": "2026-03-13T15:56:51.216962", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+<<<<<<< Updated upstream
+=======
+{"timestamp": "2026-03-13T15:57:02.049984", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+>>>>>>> Stashed changes
+{"timestamp": "2026-03-13T15:57:17.871501", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+{"timestamp": "2026-03-13T15:57:21.226502", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+{"timestamp": "2026-03-13T15:57:32.059289", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+{"timestamp": "2026-03-13T15:57:47.886660", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+{"timestamp": "2026-03-13T15:57:51.238105", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+{"timestamp": "2026-03-13T15:58:02.065686", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+{"timestamp": "2026-03-13T15:58:17.899493", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+{"timestamp": "2026-03-13T15:58:21.248311", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+{"timestamp": "2026-03-13T15:58:32.076954", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+{"timestamp": "2026-03-13T15:58:47.910671", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
+{"timestamp": "2026-03-13T15:58:51.257622", "event_type": "sync_error", "level": "error", "message": "'LiveSyncManager' object has no attribute 'sync_scoreboard'", "context": {}}
