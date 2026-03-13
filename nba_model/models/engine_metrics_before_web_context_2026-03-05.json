@@ -1,0 +1,72 @@
+{
+  "training_data_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/training_data.csv",
+  "trained_targets": [
+    "points",
+    "rebounds",
+    "assists",
+    "steals",
+    "blocks",
+    "turnovers",
+    "three_points_made"
+  ],
+  "per_target_metrics": {
+    "points": {
+      "train_rows": 16168,
+      "deployment_rows": 20210,
+      "test_rows": 4042,
+      "mae": 4.623431901911906,
+      "rmse": 6.038426665262527,
+      "mape": 0.6226928002889717
+    },
+    "rebounds": {
+      "train_rows": 16168,
+      "deployment_rows": 20210,
+      "test_rows": 4042,
+      "mae": 1.883219608623707,
+      "rmse": 2.47394603188953,
+      "mape": 0.6162331802725783
+    },
+    "assists": {
+      "train_rows": 16168,
+      "deployment_rows": 20210,
+      "test_rows": 4042,
+      "mae": 1.3651089275428474,
+      "rmse": 1.851160179898758,
+      "mape": 0.5607750005757342
+    },
+    "steals": {
+      "train_rows": 16168,
+      "deployment_rows": 20210,
+      "test_rows": 4042,
+      "mae": 0.72674825349541,
+      "rmse": 0.9516390967795643,
+      "mape": 0.4394347192304466
+    },
+    "blocks": {
+      "train_rows": 16168,
+      "deployment_rows": 20210,
+      "test_rows": 4042,
+      "mae": 0.5369337367551779,
+      "rmse": 0.7722021852216989,
+      "mape": 0.572275477291564
+    },
+    "turnovers": {
+      "train_rows": 16168,
+      "deployment_rows": 20210,
+      "test_rows": 4042,
+      "mae": 0.9156378728155862,
+      "rmse": 1.210390083618408,
+      "mape": 0.47560475844589356
+    },
+    "three_points_made": {
+      "train_rows": 16168,
+      "deployment_rows": 20210,
+      "test_rows": 4042,
+      "mae": 0.8882284424533116,
+      "rmse": 1.2316339311452587,
+      "mape": 0.4949115678350462
+    }
+  },
+  "fantasy_projection_ready": true,
+  "notes": []
+}

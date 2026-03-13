@@ -1,0 +1,344 @@
+{
+  "plan_id": "competitive_parity_v1",
+  "name": "Competitive Parity Plan (Betr/Roto/Lineman)",
+  "version": "1.0.0",
+  "strict_order": true,
+  "weeks": [
+    {
+      "week": 1,
+      "name": "Data Foundation",
+      "goals": [
+        "Canonical pipeline directories exist",
+        "Import events are being persisted"
+      ],
+      "gates": [
+        {
+          "id": "w1_pipeline_bronze_exists",
+          "type": "dir_exists",
+          "path": "data/pipeline/bronze"
+        },
+        {
+          "id": "w1_pipeline_silver_exists",
+          "type": "dir_exists",
+          "path": "data/pipeline/silver"
+        },
+        {
+          "id": "w1_pipeline_gold_exists",
+          "type": "dir_exists",
+          "path": "data/pipeline/gold"
+        },
+        {
+          "id": "w1_pipeline_rejections_exists",
+          "type": "dir_exists",
+          "path": "data/pipeline/rejections"
+        },
+        {
+          "id": "w1_ingestion_events_populated",
+          "type": "jsonl_count_cmp",
+          "path": "data/pipeline/ingestion_events.jsonl",
+          "op": ">=",
+          "target": 100
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "name": "Pipeline Hardening",
+      "goals": [
+        "Idempotency manifest exists",
+        "Duplicate payloads are detected and logged"
+      ],
+      "gates": [
+        {
+          "id": "w2_manifest_exists",
+          "type": "path_exists",
+          "path": "data/pipeline/ingestion_manifest.json"
+        },
+        {
+          "id": "w2_duplicate_skips_observed",
+          "type": "jsonl_field_count_cmp",
+          "path": "data/pipeline/ingestion_events.jsonl",
+          "field": "outcome",
+          "equals": "duplicate_skipped",
+          "op": ">=",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "name": "Runtime Performance",
+      "goals": [
+        "Player-board latency is within interactive bounds",
+        "Cold-start latency remains controlled"
+      ],
+      "gates": [
+        {
+          "id": "w3_player_board_p50",
+          "type": "json_value_cmp",
+          "path": "models/perf_pass_optimized.json",
+          "pointer": "/endpoint_latency/GET ~1api~1player-board/p50_ms",
+          "op": "<=",
+          "target": 250
+        },
+        {
+          "id": "w3_player_board_p95",
+          "type": "json_value_cmp",
+          "path": "models/perf_pass_optimized.json",
+          "pointer": "/endpoint_latency/GET ~1api~1player-board/p95_ms",
+          "op": "<=",
+          "target": 500
+        },
+        {
+          "id": "w3_startup_p95",
+          "type": "json_value_cmp",
+          "path": "models/startup_profile_optimized.json",
+          "pointer": "/p95_ms",
+          "op": "<=",
+          "target": 2000
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "name": "Live Reliability",
+      "goals": [
+        "Live sync completes under target runtime and memory bounds",
+        "Critical providers are populated"
+      ],
+      "gates": [
+        {
+          "id": "w4_live_sync_elapsed_ms",
+          "type": "json_value_cmp",
+          "path": "models/live_sync_profile_optimized.json",
+          "pointer": "/elapsed_ms",
+          "op": "<=",
+          "target": 40000
+        },
+        {
+          "id": "w4_live_sync_peak_memory",
+          "type": "json_value_cmp",
+          "path": "models/live_sync_profile_optimized.json",
+          "pointer": "/tracemalloc_peak_bytes",
+          "op": "<=",
+          "target": 262144000
+        },
+        {
+          "id": "w4_lineup_rows",
+          "type": "json_value_cmp",
+          "path": "data/live_sync_state.json",
+          "pointer": "/providers/lineups/rows",
+          "op": ">=",
+          "target": 80
+        },
+        {
+          "id": "w4_injury_rows",
+          "type": "json_value_cmp",
+          "path": "data/live_sync_state.json",
+          "pointer": "/providers/injuries/rows",
+          "op": ">=",
+          "target": 20
+        },
+        {
+          "id": "w4_live_module_healthy",
+          "type": "json_value_cmp",
+          "path": "data/live_sync_state.json",
+          "pointer": "/support_modules/live_ingest/health",
+          "op": "==",
+          "target": "healthy"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "name": "Benchmark Data Sufficiency",
+      "goals": [
+        "Benchmark sample size is statistically useful",
+        "All core markets are represented"
+      ],
+      "gates": [
+        {
+          "id": "w5_rows_evaluated",
+          "type": "json_value_cmp",
+          "path": "models/rotowire_benchmark_report.json",
+          "pointer": "/rows_evaluated",
+          "op": ">=",
+          "target": 400
+        },
+        {
+          "id": "w5_actionable_rows",
+          "type": "json_value_cmp",
+          "path": "models/rotowire_benchmark_report.json",
+          "pointer": "/rows_with_actionable_picks",
+          "op": ">=",
+          "target": 40
+        },
+        {
+          "id": "w5_markets_present",
+          "type": "json_object_array_key_contains",
+          "path": "models/rotowire_benchmark_report.json",
+          "pointer": "/per_market",
+          "key": "market",
+          "values": [
+            "points",
+            "rebounds",
+            "assists",
+            "pra"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "name": "Benchmark Competitiveness",
+      "goals": [
+        "MAE gap versus baseline lines is narrowed",
+        "Hit rate and CLV are non-negative and improving"
+      ],
+      "gates": [
+        {
+          "id": "w6_mae_delta_vs_line",
+          "type": "json_value_cmp",
+          "path": "models/rotowire_benchmark_report.json",
+          "pointer": "/mae_delta_vs_rotowire_line",
+          "op": ">=",
+          "target": -0.2
+        },
+        {
+          "id": "w6_hit_rate",
+          "type": "json_value_cmp",
+          "path": "models/rotowire_benchmark_report.json",
+          "pointer": "/hit_rate",
+          "op": ">=",
+          "target": 0.48
+        },
+        {
+          "id": "w6_avg_clv",
+          "type": "json_value_cmp",
+          "path": "models/rotowire_benchmark_report.json",
+          "pointer": "/avg_clv",
+          "op": ">=",
+          "target": 0.0
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "name": "Calibration and Error Reduction",
+      "goals": [
+        "Operational error floor moves toward target range",
+        "Points MAE reduced to acceptable pre-production level"
+      ],
+      "gates": [
+        {
+          "id": "w7_overall_prop_floor",
+          "type": "json_value_cmp",
+          "path": "models/engine_recheck.json",
+          "pointer": "/overall/mean_abs_pct_error_prop_floor",
+          "op": "<=",
+          "target": 30.0
+        },
+        {
+          "id": "w7_operational_prop_floor",
+          "type": "json_value_cmp",
+          "path": "models/engine_recheck.json",
+          "pointer": "/operational_subset/mean_abs_pct_error_prop_floor",
+          "op": "<=",
+          "target": 25.0
+        },
+        {
+          "id": "w7_points_mae",
+          "type": "json_value_cmp",
+          "path": "models/engine_recheck.json",
+          "pointer": "/per_target/points/mae",
+          "op": "<=",
+          "target": 4.5
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "name": "Coverage Depth",
+      "goals": [
+        "Projection board covers broad active player pool",
+        "Live pipeline keeps full slate rows populated"
+      ],
+      "gates": [
+        {
+          "id": "w8_prediction_rows_used",
+          "type": "json_value_cmp",
+          "path": "data/live_sync_state.json",
+          "pointer": "/prediction_rows_used",
+          "op": ">=",
+          "target": 250
+        },
+        {
+          "id": "w8_board_cards_min",
+          "type": "json_value_cmp",
+          "path": "models/perf_pass_optimized.json",
+          "pointer": "/hotspot_profile/cards",
+          "op": ">=",
+          "target": 100
+        },
+        {
+          "id": "w8_latest_unique_players",
+          "type": "csv_latest_date_unique_count_cmp",
+          "path": "models/predictions.csv",
+          "date_column": "game_date",
+          "group_column": "player_name",
+          "op": ">=",
+          "target": 140
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "name": "Production Readiness",
+      "goals": [
+        "No unresolved drift/alert warnings",
+        "Critical modules report healthy status"
+      ],
+      "gates": [
+        {
+          "id": "w9_module_alerts_zero",
+          "type": "json_value_cmp",
+          "path": "data/live_sync_state.json",
+          "pointer": "/module_alerts_count",
+          "op": "==",
+          "target": 0
+        },
+        {
+          "id": "w9_contract_drift_zero",
+          "type": "json_value_cmp",
+          "path": "data/live_sync_state.json",
+          "pointer": "/contract_drift_warning_count",
+          "op": "==",
+          "target": 0
+        },
+        {
+          "id": "w9_alerts_health",
+          "type": "json_value_cmp",
+          "path": "data/live_sync_state.json",
+          "pointer": "/support_modules/alerts/health",
+          "op": "==",
+          "target": "healthy"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "name": "Go-Live Gate",
+      "goals": [
+        "All prior weeks are green under strict ordering",
+        "Competitive benchmark quality gates are met"
+      ],
+      "gates": [
+        {
+          "id": "w10_dep_week9",
+          "type": "week_passed",
+          "week": 9
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+player_name,team,opponent,starter,injury_status,confidence_tier,confidence_pct,adjusted_err_pct,error_margin_points,predicted_points,predicted_rebounds,predicted_assists,predicted_pra,predicted_draftkings_points,predicted_fanduel_points
+Nikola Jokić,DEN,LAL,1.0,,high,90.29,9.71,2.72,28.05,10.63,9.4,48.08,59.32,56.05
+Luka Dončić,LAL,DEN,1.0,,high,88.55,11.45,3.27,28.59,7.76,8.47,44.81,54.31,52.39
+Victor Wembanyama,SAS,DET,1.0,,high,84.94,15.06,3.29,21.82,13.27,2.54,37.64,54.04,55.5
+Cade Cunningham,DET,SAS,1.0,,high,84.59,15.41,3.8,24.69,6.24,10.44,41.37,54.02,51.86
+Alperen Sengun,HOU,GSW,1.0,Questionable,medium,65.89,34.11,6.94,20.35,10.19,6.46,36.99,48.05,46.9
+Paolo Banchero,ORL,DAL,1.0,,high,77.37,22.63,5.25,23.18,9.11,5.45,37.74,44.72,43.36
+Kevin Durant,HOU,GSW,1.0,,high,71.65,28.35,7.72,27.24,5.17,4.65,37.07,43.7,42.47
+Michael Porter Jr.,BKN,MIA,1.0,,high,75.38,24.62,6.5,26.39,7.05,2.96,36.39,42.75,40.61
+Trey Murphy III,NOP,SAC,1.0,,high,78.11,21.89,5.09,23.27,6.06,4.67,34.01,42.66,41.41
+Jamal Murray,DEN,LAL,1.0,,high,77.35,22.65,5.23,23.08,3.98,7.25,34.3,42.44,40.9
+LeBron James,LAL,DEN,1.0,,high,80.74,19.26,4.04,20.95,5.99,7.2,34.14,41.74,40.8
+Anthony Edwards,MIN,TOR,1.0,Questionable,high,76.96,23.04,5.99,26.0,4.96,3.14,34.1,41.41,40.15
+Julius Randle,MIN,TOR,1.0,,high,81.59,18.41,4.21,22.86,6.97,5.16,35.0,40.44,39.1
+Keyonte George,UTA,WAS,0.0,,medium,65.23,34.77,8.52,24.52,3.56,5.78,33.86,40.44,38.85
+Bam Adebayo,MIA,BKN,1.0,,high,71.25,28.75,5.43,18.89,9.96,2.86,31.71,40.39,40.64
+Scottie Barnes,TOR,MIN,1.0,,high,81.51,18.49,3.61,19.51,7.7,4.63,31.83,40.31,40.71
+Devin Booker,PHX,CHI,1.0,,high,76.55,23.45,5.43,23.16,3.61,6.35,33.12,39.17,37.85
+Amen Thompson,HOU,GSW,1.0,Questionable,high,75.16,24.84,4.58,18.45,8.37,5.09,31.9,38.88,38.74
+Lauri Markkanen,UTA,WAS,0.0,,high,76.91,23.09,5.82,25.22,6.02,1.87,33.11,38.82,37.56
+Jalen Duren,DET,SAS,1.0,,high,76.5,23.5,4.32,18.37,10.73,1.94,31.04,38.77,37.34
+Walker Kessler,UTA,WAS,0.0,,low,52.9,47.1,6.21,13.19,10.56,2.47,26.21,38.19,37.95
+Austin Reaves,LAL,DEN,1.0,,high,72.88,27.12,5.49,20.23,5.41,5.45,31.09,37.53,36.18
+Josh Giddey,CHI,PHX,0.0,Questionable,high,79.57,20.43,3.33,16.29,6.4,7.12,29.8,37.35,35.72
+Brandon Ingram,TOR,MIN,1.0,Questionable,high,70.3,29.7,6.5,21.89,5.42,4.01,31.32,37.23,36.25
+Zion Williamson,NOP,SAC,1.0,Questionable,medium,67.19,32.81,7.37,22.47,5.88,3.45,31.8,37.1,37.35
+Anthony Davis,DAL,ORL,0.0,,medium,65.54,34.46,6.05,17.54,8.23,2.47,28.25,36.14,37.29
+Isaiah Collier,UTA,WAS,1.0,,medium,62.16,37.84,5.57,14.72,3.78,8.68,27.18,35.86,36.55
+Tyler Herro,MIA,BKN,1.0,,high,74.43,25.57,5.54,21.68,4.16,3.9,29.74,35.21,34.03
+Desmond Bane,ORL,DAL,1.0,,high,70.69,29.31,6.02,20.55,3.87,3.78,28.2,34.58,34.21
+De'Aaron Fox,SAS,DET,1.0,,high,73.92,26.08,5.1,19.54,3.42,5.57,28.53,34.49,33.61
+Stephon Castle,SAS,DET,1.0,,high,77.78,22.22,3.65,16.45,4.57,6.35,27.36,34.49,33.99
+Saddiq Bey,NOP,SAC,1.0,,high,71.62,28.38,5.71,20.11,6.17,3.03,29.31,34.41,33.24
+Cooper Flagg,DAL,ORL,1.0,Questionable,medium,59.81,40.19,7.47,18.58,5.09,3.3,26.97,34.09,34.67
+Collin Gillespie,PHX,CHI,1.0,,high,72.2,27.8,4.17,14.99,4.02,6.23,25.24,33.66,32.29
+Rudy Gobert,MIN,TOR,1.0,,high,76.81,23.19,2.38,10.26,10.94,1.49,22.69,33.41,33.88
+Immanuel Quickley,TOR,MIN,1.0,,high,75.07,24.93,3.85,15.42,3.9,6.89,26.21,33.37,32.08
+Kel'el Ware,MIA,BKN,0.0,,medium,58.48,41.52,5.65,13.6,9.41,1.0,24.01,33.06,34.56
+RJ Barrett,TOR,MIN,1.0,,high,78.74,21.26,3.96,18.61,5.4,3.54,27.56,32.88,31.98
+Jalen Suggs,ORL,DAL,1.0,,high,70.43,29.57,4.21,14.23,4.11,5.27,23.62,32.82,33.39
+Russell Westbrook,SAC,NOP,1.0,,high,71.88,28.12,4.53,16.12,4.27,5.97,26.37,32.76,31.21
+Grayson Allen,PHX,CHI,0.0,,medium,65.0,35.0,5.97,17.06,2.84,4.36,24.26,31.71,30.76
+Maxime Raynaud,SAC,NOP,1.0,,low,48.51,51.49,7.15,13.89,10.07,1.69,25.66,31.55,29.48
+Nic Claxton,BKN,MIA,1.0,,high,73.63,26.37,3.78,14.33,7.14,3.6,25.08,31.34,31.97
+Jimmy Butler III,GSW,HOU,0.0,,high,72.94,27.06,4.96,18.33,4.29,3.24,25.86,31.29,31.67
+Jaren Jackson Jr.,UTA,WAS,0.0,,high,72.99,27.01,4.73,17.52,4.99,1.84,24.35,31.01,31.48
+DeMar DeRozan,SAC,NOP,1.0,,high,70.58,29.42,5.24,17.83,3.44,4.75,26.02,30.67,30.23
+Bilal Coulibaly,WAS,UTA,1.0,,medium,56.15,43.85,6.01,13.7,5.3,3.05,22.05,30.65,32.07
+Andrew Wiggins,MIA,BKN,1.0,Available,high,72.24,27.76,4.23,15.23,5.13,2.93,23.3,30.63,30.78
+P.J. Washington,DAL,ORL,1.0,,medium,56.0,44.0,6.46,14.68,7.06,2.02,23.76,30.45,30.73
+Jabari Smith Jr.,HOU,GSW,1.0,Questionable,medium,67.99,32.01,4.34,13.55,8.47,1.73,23.76,30.41,29.95

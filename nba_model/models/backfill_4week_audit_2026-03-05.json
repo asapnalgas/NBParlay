@@ -1,0 +1,382 @@
+{
+  "run_timestamp_local": "2026-03-05T16:48:45.656033-08:00",
+  "today_local_date": "2026-03-05",
+  "cutoff_date_4_weeks": "2026-02-05",
+  "backfill": {
+    "games_found": 172,
+    "games_fetch_failed": 0,
+    "rows_before_training_data": 20035,
+    "rows_appended": 175,
+    "rows_after_training_data": 20210,
+    "season_priors": {
+      "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/season_priors.csv",
+      "rows": 548,
+      "players": 548
+    }
+  },
+  "train_result": {
+    "metrics_path": null,
+    "rows": null,
+    "targets_trained": null
+  },
+  "predict_result": {
+    "rows": 791,
+    "output_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/predictions.csv"
+  },
+  "projection_change_vs_baseline": {
+    "compare_date": "2026-03-05",
+    "rows_before_on_date": 321,
+    "rows_after_on_date": 321,
+    "rows_compared": 321,
+    "changed_points_rows_abs_gt_0_1": 246,
+    "changed_pra_rows_abs_gt_0_1": 262,
+    "points_delta_mean_abs": 0.5862136803836103,
+    "pra_delta_mean_abs": 0.6903410185507307,
+    "points_delta_max_abs": 5.124526820780261,
+    "pra_delta_max_abs": 6.786789208467162
+  },
+  "fallacy_checks": {
+    "negative_projection_counts": {
+      "predicted_points": 0,
+      "predicted_rebounds": 0,
+      "predicted_assists": 0,
+      "predicted_pra": 0,
+      "predicted_draftkings_points": 0,
+      "predicted_fanduel_points": 0
+    },
+    "projection_outlier_counts": {
+      "points_gt_60": 0,
+      "rebounds_gt_25": 0,
+      "assists_gt_20": 0,
+      "pra_gt_80": 0
+    },
+    "training_duplicate_rows_on_key": 0,
+    "injury_out_with_high_projection_count": 14,
+    "recent_4week_backtest_error": {
+      "points": {
+        "mae": 3.509638084413598,
+        "mape_pct_nonzero": 49.980055820692414,
+        "n": 3683
+      },
+      "rebounds": {
+        "mae": 1.4557439872117492,
+        "mape_pct_nonzero": 48.81099483252763,
+        "n": 3683
+      },
+      "assists": {
+        "mae": 1.0390579370139323,
+        "mape_pct_nonzero": 42.8848192721842,
+        "n": 3683
+      }
+    }
+  },
+  "artifacts": {
+    "baseline_predictions": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/predictions_before_4week_backfill_2026-03-05.csv",
+    "current_predictions": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/predictions.csv",
+    "projection_change_csv": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/projection_change_after_4week_backfill_2026-03-05.csv",
+    "history_eval_predictions": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/history_pred_eval_2026-03-05.csv"
+  },
+  "top_projection_changes_preview": [
+    {
+      "player_name": "Anthony Edwards",
+      "team": "MIN",
+      "opponent": "TOR",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 32.59610234497275,
+      "predicted_points_after": 27.471575524192488,
+      "delta_predicted_points": -5.124526820780261,
+      "predicted_pra_before": 41.09631126235748,
+      "predicted_pra_after": 36.41877707252876,
+      "delta_predicted_pra": -4.6775341898287195
+    },
+    {
+      "player_name": "Cade Cunningham",
+      "team": "DET",
+      "opponent": "SAS",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 22.423185179268792,
+      "predicted_points_after": 27.067782326216072,
+      "delta_predicted_points": 4.64459714694728,
+      "predicted_pra_before": 39.70920763086402,
+      "predicted_pra_after": 43.2645728699259,
+      "delta_predicted_pra": 3.555365239061878
+    },
+    {
+      "player_name": "Paolo Banchero",
+      "team": "ORL",
+      "opponent": "DAL",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 28.22562924726837,
+      "predicted_points_after": 23.68651590804661,
+      "delta_predicted_points": -4.53911333922176,
+      "predicted_pra_before": 41.438934904097714,
+      "predicted_pra_after": 38.03804612843497,
+      "delta_predicted_pra": -3.400888775662743
+    },
+    {
+      "player_name": "Reed Sheppard",
+      "team": "HOU",
+      "opponent": "GSW",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 14.341122202736203,
+      "predicted_points_after": 18.161817936240652,
+      "delta_predicted_points": 3.820695733504449,
+      "predicted_pra_before": 22.656396878684703,
+      "predicted_pra_after": 25.73384604369873,
+      "delta_predicted_pra": 3.077449165014027
+    },
+    {
+      "player_name": "Jamal Murray",
+      "team": "DEN",
+      "opponent": "LAL",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 23.7924030647127,
+      "predicted_points_after": 27.218785938639783,
+      "delta_predicted_points": 3.426382873927082,
+      "predicted_pra_before": 37.25527481109508,
+      "predicted_pra_after": 39.59368877419349,
+      "delta_predicted_pra": 2.338413963098411
+    },
+    {
+      "player_name": "Mo Bamba",
+      "team": "TOR",
+      "opponent": "MIN",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 0.9402171503851884,
+      "predicted_points_after": 4.218153635355678,
+      "delta_predicted_points": 3.27793648497049,
+      "predicted_pra_before": 2.2475567088075783,
+      "predicted_pra_after": 8.096587434712315,
+      "delta_predicted_pra": 5.849030725904737
+    },
+    {
+      "player_name": "Desmond Bane",
+      "team": "ORL",
+      "opponent": "DAL",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 20.12930943935956,
+      "predicted_points_after": 23.34008182516371,
+      "delta_predicted_points": 3.2107723858041517,
+      "predicted_pra_before": 28.163253527461343,
+      "predicted_pra_after": 31.656726646599083,
+      "delta_predicted_pra": 3.4934731191377395
+    },
+    {
+      "player_name": "Victor Wembanyama",
+      "team": "SAS",
+      "opponent": "DET",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 18.789273127667695,
+      "predicted_points_after": 21.799000831788835,
+      "delta_predicted_points": 3.00972770412114,
+      "predicted_pra_before": 31.305571779149723,
+      "predicted_pra_after": 38.092360987616885,
+      "delta_predicted_pra": 6.786789208467162
+    },
+    {
+      "player_name": "Michael Porter Jr.",
+      "team": "BKN",
+      "opponent": "MIA",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 21.838658557144733,
+      "predicted_points_after": 24.58302254345076,
+      "delta_predicted_points": 2.744363986306027,
+      "predicted_pra_before": 29.651108139370468,
+      "predicted_pra_after": 33.08135836511301,
+      "delta_predicted_pra": 3.430250225742544
+    },
+    {
+      "player_name": "Royce O'Neale",
+      "team": "PHX",
+      "opponent": "CHI",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 10.280309355895357,
+      "predicted_points_after": 12.9111967654567,
+      "delta_predicted_points": 2.6308874095613426,
+      "predicted_pra_before": 18.182350548286557,
+      "predicted_pra_after": 20.809207006582177,
+      "delta_predicted_pra": 2.62685645829562
+    },
+    {
+      "player_name": "Keyonte George",
+      "team": "UTA",
+      "opponent": "WAS",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 21.46186725819733,
+      "predicted_points_after": 24.0878386766688,
+      "delta_predicted_points": 2.625971418471469,
+      "predicted_pra_before": 30.68041080747104,
+      "predicted_pra_after": 34.17386610747428,
+      "delta_predicted_pra": 3.493455300003241
+    },
+    {
+      "player_name": "Isaiah Collier",
+      "team": "UTA",
+      "opponent": "WAS",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 13.57839702776066,
+      "predicted_points_after": 16.192413768267745,
+      "delta_predicted_points": 2.6140167405070844,
+      "predicted_pra_before": 24.41682368933232,
+      "predicted_pra_after": 24.291510597817496,
+      "delta_predicted_pra": -0.12531309151482262
+    },
+    {
+      "player_name": "Brandin Podziemski",
+      "team": "GSW",
+      "opponent": "HOU",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 15.03021470253757,
+      "predicted_points_after": 17.63090665979287,
+      "delta_predicted_points": 2.6006919572553002,
+      "predicted_pra_before": 24.986412371327916,
+      "predicted_pra_after": 27.619757546497663,
+      "delta_predicted_pra": 2.6333451751697474
+    },
+    {
+      "player_name": "Austin Reaves",
+      "team": "LAL",
+      "opponent": "DEN",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 22.726675842237952,
+      "predicted_points_after": 20.206822768350747,
+      "delta_predicted_points": -2.519853073887205,
+      "predicted_pra_before": 33.211163616605006,
+      "predicted_pra_after": 31.35452227874945,
+      "delta_predicted_pra": -1.8566413378555566
+    },
+    {
+      "player_name": "Nique Clifford",
+      "team": "SAC",
+      "opponent": "NOP",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 13.905315109269544,
+      "predicted_points_after": 11.489790134113637,
+      "delta_predicted_points": -2.4155249751559076,
+      "predicted_pra_before": 22.473393487457606,
+      "predicted_pra_after": 20.35767374582256,
+      "delta_predicted_pra": -2.115719741635047
+    },
+    {
+      "player_name": "Walker Kessler",
+      "team": "UTA",
+      "opponent": "WAS",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 13.785526154702987,
+      "predicted_points_after": 15.97559875001868,
+      "delta_predicted_points": 2.1900725953156925,
+      "predicted_pra_before": 26.785103301900747,
+      "predicted_pra_after": 31.29990039411691,
+      "delta_predicted_pra": 4.514797092216163
+    },
+    {
+      "player_name": "Kyshawn George",
+      "team": "WAS",
+      "opponent": "UTA",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 20.657114836513315,
+      "predicted_points_after": 18.50497079513326,
+      "delta_predicted_points": -2.1521440413800548,
+      "predicted_pra_before": 29.81522529521491,
+      "predicted_pra_after": 27.274214033152695,
+      "delta_predicted_pra": -2.541011262062213
+    },
+    {
+      "player_name": "Ausar Thompson",
+      "team": "DET",
+      "opponent": "SAS",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 11.274913284376648,
+      "predicted_points_after": 9.15305586622874,
+      "delta_predicted_points": -2.1218574181479077,
+      "predicted_pra_before": 21.0695804325896,
+      "predicted_pra_after": 18.551222159495463,
+      "delta_predicted_pra": -2.5183582730941367
+    },
+    {
+      "player_name": "Collin Gillespie",
+      "team": "PHX",
+      "opponent": "CHI",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 13.503924239395094,
+      "predicted_points_after": 15.579240123144256,
+      "delta_predicted_points": 2.0753158837491625,
+      "predicted_pra_before": 22.813365057296625,
+      "predicted_pra_after": 25.53937266131024,
+      "delta_predicted_pra": 2.7260076040136134
+    },
+    {
+      "player_name": "Will Richard",
+      "team": "GSW",
+      "opponent": "HOU",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 8.871703309906735,
+      "predicted_points_after": 6.823744258340568,
+      "delta_predicted_points": -2.047959051566167,
+      "predicted_pra_before": 12.05556298980503,
+      "predicted_pra_after": 10.326315584966206,
+      "delta_predicted_pra": -1.7292474048388229
+    },
+    {
+      "player_name": "Julian Champagnie",
+      "team": "SAS",
+      "opponent": "DET",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 10.497969504584011,
+      "predicted_points_after": 12.478378521303044,
+      "delta_predicted_points": 1.9804090167190331,
+      "predicted_pra_before": 17.68412869129878,
+      "predicted_pra_after": 19.60343031947215,
+      "delta_predicted_pra": 1.9193016281733684
+    },
+    {
+      "player_name": "Donte DiVincenzo",
+      "team": "MIN",
+      "opponent": "TOR",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 11.851981091135713,
+      "predicted_points_after": 13.73541700431057,
+      "delta_predicted_points": 1.883435913174857,
+      "predicted_pra_before": 21.324986642091194,
+      "predicted_pra_after": 22.606971523623766,
+      "delta_predicted_pra": 1.2819848815325727
+    },
+    {
+      "player_name": "Alex Sarr",
+      "team": "WAS",
+      "opponent": "UTA",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 21.241529596419333,
+      "predicted_points_after": 19.401910422104866,
+      "delta_predicted_points": -1.8396191743144676,
+      "predicted_pra_before": 31.539810298622218,
+      "predicted_pra_after": 29.71139611924745,
+      "delta_predicted_pra": -1.828414179374768
+    },
+    {
+      "player_name": "Collin Sexton",
+      "team": "CHI",
+      "opponent": "PHX",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 17.164036377654732,
+      "predicted_points_after": 15.325517635185262,
+      "delta_predicted_points": -1.8385187424694696,
+      "predicted_pra_before": 23.74142967586723,
+      "predicted_pra_after": 21.471243286970545,
+      "delta_predicted_pra": -2.2701863888966862
+    },
+    {
+      "player_name": "Oso Ighodaro",
+      "team": "PHX",
+      "opponent": "CHI",
+      "game_date": "2026-03-05",
+      "predicted_points_before": 7.660614129329555,
+      "predicted_points_after": 9.498574648248752,
+      "delta_predicted_points": 1.8379605189191972,
+      "predicted_pra_before": 15.96873036390896,
+      "predicted_pra_after": 18.619313399310712,
+      "delta_predicted_pra": 2.650583035401752
+    }
+  ],
+  "failed_games": []
+}

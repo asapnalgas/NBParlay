@@ -1,0 +1,155 @@
+{
+  "training_data_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/training_data.csv",
+  "training_lookback_days": 180,
+  "training_rows": 19699,
+  "training_quality": {
+    "input_rows": 21392,
+    "output_rows": 19699,
+    "removed_non_nba_rows": 89,
+    "removed_low_minute_zero_rows": 339,
+    "removed_low_signal_rows": 1265,
+    "removed_missing_player_rows": 0,
+    "removed_invalid_game_date_rows": 0,
+    "removed_invalid_numeric_rows": 0,
+    "removed_out_of_range_rows": 0,
+    "removed_missing_team_rows": 0,
+    "removed_duplicate_rows": 0
+  },
+  "training_date_min": "2025-10-21",
+  "training_date_max": "2026-03-11",
+  "trained_targets": [
+    "minutes",
+    "points",
+    "rebounds",
+    "assists",
+    "steals",
+    "blocks",
+    "turnovers",
+    "three_points_made"
+  ],
+  "per_target_metrics": {
+    "minutes": {
+      "strategy": "direct",
+      "train_rows": 15759,
+      "deployment_rows": 19699,
+      "test_rows": 3940,
+      "mae": 4.709665068883667,
+      "rmse": 5.950387873813548,
+      "mape": 0.33517804692703973
+    },
+    "points": {
+      "strategy": "rate_per_minute",
+      "train_rows": 15759,
+      "deployment_rows": 19699,
+      "test_rows": 3940,
+      "mae": 4.724922773045317,
+      "rmse": 6.241205460555091,
+      "mape": 0.6004425990236274,
+      "rate_minutes_floor": 8.0,
+      "specialized_feature_count": 32,
+      "role_models": {
+        "starter_core": 10634,
+        "rotation": 5089,
+        "bench_low_minutes": 3976
+      }
+    },
+    "rebounds": {
+      "strategy": "rate_per_minute",
+      "train_rows": 15759,
+      "deployment_rows": 19699,
+      "test_rows": 3940,
+      "mae": 1.9439271891751486,
+      "rmse": 2.506941163414849,
+      "mape": 0.645132312339246,
+      "rate_minutes_floor": 8.0,
+      "specialized_feature_count": 106,
+      "role_models": {
+        "starter_core": 10634,
+        "rotation": 5089,
+        "bench_low_minutes": 3976
+      }
+    },
+    "assists": {
+      "strategy": "rate_per_minute",
+      "train_rows": 15759,
+      "deployment_rows": 19699,
+      "test_rows": 3940,
+      "mae": 1.416823018807257,
+      "rmse": 1.8793553916999373,
+      "mape": 0.5521942073509633,
+      "rate_minutes_floor": 8.0,
+      "specialized_feature_count": 74,
+      "role_models": {
+        "starter_core": 10634,
+        "rotation": 5089,
+        "bench_low_minutes": 3976
+      }
+    },
+    "steals": {
+      "strategy": "rate_per_minute",
+      "train_rows": 15759,
+      "deployment_rows": 19699,
+      "test_rows": 3940,
+      "mae": 0.7577536033039447,
+      "rmse": 0.9689460311109817,
+      "mape": 0.4144546458936266,
+      "rate_minutes_floor": 8.0,
+      "specialized_feature_count": 109,
+      "role_models": {
+        "starter_core": 10634,
+        "rotation": 5089,
+        "bench_low_minutes": 3976
+      }
+    },
+    "blocks": {
+      "strategy": "rate_per_minute",
+      "train_rows": 15759,
+      "deployment_rows": 19699,
+      "test_rows": 3940,
+      "mae": 0.5662019214969777,
+      "rmse": 0.7770838964635255,
+      "mape": 0.5238999670800873,
+      "rate_minutes_floor": 8.0,
+      "specialized_feature_count": 109,
+      "role_models": {
+        "starter_core": 10634,
+        "rotation": 5089,
+        "bench_low_minutes": 3976
+      }
+    },
+    "turnovers": {
+      "strategy": "rate_per_minute",
+      "train_rows": 15759,
+      "deployment_rows": 19699,
+      "test_rows": 3940,
+      "mae": 0.9829148296075917,
+      "rmse": 1.2714223428640714,
+      "mape": 0.5036369710995036,
+      "rate_minutes_floor": 8.0,
+      "specialized_feature_count": 109,
+      "role_models": {
+        "starter_core": 10634,
+        "rotation": 5089,
+        "bench_low_minutes": 3976
+      }
+    },
+    "three_points_made": {
+      "strategy": "rate_per_minute",
+      "train_rows": 15759,
+      "deployment_rows": 19699,
+      "test_rows": 3940,
+      "mae": 0.9499305273657037,
+      "rmse": 1.269999913784257,
+      "mape": 0.49285941184180726,
+      "rate_minutes_floor": 8.0,
+      "specialized_feature_count": 109,
+      "role_models": {
+        "starter_core": 10634,
+        "rotation": 5089,
+        "bench_low_minutes": 3976
+      }
+    }
+  },
+  "fantasy_projection_ready": true,
+  "notes": []
+}

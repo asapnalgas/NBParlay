@@ -1,0 +1,51 @@
+player_name,team,opponent,injury_status,confidence_flag,historical_games_used,estimated_error_pct,points_error_band,predicted_points,predicted_rebounds,predicted_assists,predicted_three_points_made,predicted_pra,predicted_draftkings_points,predicted_fanduel_points
+Nikola Jokić,DEN,LAL,,high_confidence,47,16.38,4.48,27.33,10.74,9.46,1.85,47.54,58.91,55.92
+Luka Dončić,LAL,DEN,,high_confidence,50,20.35,6.34,31.17,7.93,8.29,3.34,47.39,56.8,54.66
+Cade Cunningham,DET,SAS,,high_confidence,56,26.55,7.19,27.07,6.09,10.11,1.69,43.26,54.67,52.35
+Victor Wembanyama,SAS,DET,,high_confidence,50,24.63,5.37,21.8,13.3,2.99,1.18,38.09,53.79,54.65
+Jamal Murray,DEN,LAL,,high_confidence,59,37.45,10.19,27.22,4.92,7.45,3.4,39.59,47.51,45.73
+Alperen Sengun,HOU,GSW,Questionable,high_confidence,55,45.24,9.33,20.63,9.94,6.45,0.46,37.02,45.93,45.78
+Paolo Banchero,ORL,DAL,,high_confidence,50,32.79,7.77,23.69,8.84,5.51,1.24,38.04,45.04,43.86
+Anthony Edwards,MIN,TOR,Questionable,high_confidence,54,33.21,9.12,27.47,5.41,3.54,3.51,36.42,44.75,43.79
+Kevin Durant,HOU,GSW,,high_confidence,59,43.06,11.95,27.75,5.54,4.42,2.18,37.71,44.09,42.86
+Scottie Barnes,TOR,MIN,,high_confidence,61,28.9,6.04,20.89,7.59,5.56,0.73,34.05,43.42,44.17
+Bam Adebayo,MIA,BKN,,high_confidence,54,41.29,8.35,20.24,10.12,3.03,1.62,33.39,42.43,40.49
+LeBron James,LAL,DEN,,high_confidence,45,30.9,6.76,21.88,5.81,6.88,1.52,34.58,41.77,40.75
+Michael Porter Jr.,BKN,MIA,,high_confidence,49,34.21,8.42,24.61,6.34,3.18,3.99,34.13,41.19,39.33
+Trey Murphy III,NOP,SAC,,high_confidence,54,36.35,8.36,22.99,5.61,4.25,3.91,32.84,40.92,39.43
+Julius Randle,MIN,TOR,,high_confidence,62,30.07,6.71,22.3,7.01,5.34,1.23,34.65,40.66,39.56
+Keyonte George,UTA,WAS,,high_confidence,51,46.99,10.75,22.87,3.72,5.9,2.93,32.49,39.91,38.53
+Walker Kessler,UTA,WAS,,high_confidence,5,54.43,7.71,14.17,12.05,2.07,1.04,28.29,39.59,38.83
+Lauri Markkanen,UTA,WAS,,high_confidence,42,29.36,7.46,25.4,6.16,2.1,2.26,33.66,39.31,38.42
+Brandon Ingram,TOR,MIN,Questionable,high_confidence,61,41.67,10.01,24.03,5.4,3.69,1.69,33.12,39.0,38.18
+Jalen Duren,DET,SAS,,high_confidence,52,36.31,7.08,19.51,11.13,1.64,0.15,32.28,38.97,37.17
+Anthony Davis,DAL,ORL,,high_confidence,20,45.5,8.07,17.74,9.23,2.26,0.39,29.23,38.81,40.66
+Amen Thompson,HOU,GSW,Questionable,high_confidence,58,32.24,5.97,18.51,7.99,5.0,0.28,31.5,38.64,38.69
+Devin Booker,PHX,CHI,,high_confidence,47,36.03,8.35,23.17,3.84,5.8,1.89,32.8,38.29,36.88
+Desmond Bane,ORL,DAL,,high_confidence,60,41.54,9.7,23.34,3.9,4.42,1.94,31.66,38.14,37.69
+Austin Reaves,LAL,DEN,,high_confidence,35,42.05,8.5,20.21,5.33,5.82,2.47,31.35,38.06,36.44
+Zion Williamson,NOP,SAC,Questionable,high_confidence,46,44.95,10.0,22.24,6.21,3.19,0.0,31.63,36.89,37.14
+Stephon Castle,SAS,DET,,high_confidence,54,36.64,6.17,16.83,4.39,6.71,0.99,27.93,36.1,36.05
+Josh Giddey,CHI,PHX,Questionable,high_confidence,41,26.11,3.83,14.66,6.75,7.44,1.76,28.86,35.98,34.4
+Isaiah Collier,UTA,WAS,,high_confidence,54,55.75,9.06,16.25,3.97,7.48,0.45,27.71,35.68,36.08
+Immanuel Quickley,TOR,MIN,,high_confidence,58,40.03,6.68,16.7,4.12,6.74,2.65,27.56,34.8,33.53
+RJ Barrett,TOR,MIN,,high_confidence,37,33.1,6.22,18.78,5.46,3.71,1.67,27.95,34.28,33.89
+Cooper Flagg,DAL,ORL,Questionable,high_confidence,49,50.1,8.69,17.34,5.51,3.79,1.03,26.63,34.28,34.88
+Kyle Filipowski,UTA,WAS,,high_confidence,61,57.37,6.8,11.85,10.23,3.56,0.91,25.65,33.98,31.92
+Collin Gillespie,PHX,CHI,,high_confidence,60,46.0,7.17,15.58,3.98,5.98,3.7,25.54,33.67,32.29
+Brandin Podziemski,GSW,HOU,,high_confidence,61,55.69,9.82,17.63,5.46,4.53,1.67,27.62,33.61,32.78
+Tyler Herro,MIA,BKN,,high_confidence,17,33.31,7.02,21.08,4.19,3.18,2.13,28.44,33.51,32.38
+De'Aaron Fox,SAS,DET,,high_confidence,55,41.3,7.54,18.26,3.28,5.75,1.92,27.29,33.47,32.5
+Reed Sheppard,HOU,GSW,,high_confidence,62,53.4,9.7,18.16,3.15,4.42,2.61,25.73,33.28,32.89
+Maxime Raynaud,SAC,NOP,,high_confidence,55,83.49,12.34,14.79,11.4,0.99,0.07,27.18,33.21,31.26
+Jalen Suggs,ORL,DAL,,high_confidence,37,39.99,5.51,13.78,4.95,5.15,2.02,23.88,33.17,33.61
+Saddiq Bey,NOP,SAC,,high_confidence,56,47.38,8.94,18.86,5.78,2.91,1.96,27.55,32.53,31.38
+Russell Westbrook,SAC,NOP,,high_confidence,58,46.48,7.82,16.82,4.57,4.74,2.16,26.13,31.88,30.32
+Grayson Allen,PHX,CHI,,high_confidence,39,47.65,8.5,17.84,2.85,4.04,3.63,24.72,31.8,30.63
+Rudy Gobert,MIN,TOR,,high_confidence,59,36.58,3.65,9.97,11.11,1.73,0.03,22.81,31.54,33.18
+Andrew Wiggins,MIA,BKN,Available,high_confidence,56,38.85,6.18,15.9,5.2,2.86,1.96,23.96,31.14,31.22
+P.J. Washington,DAL,ORL,,high_confidence,43,59.27,8.72,14.71,7.05,2.29,1.16,24.04,30.9,31.18
+Anthony Black,ORL,DAL,Questionable,high_confidence,58,44.4,7.01,15.8,3.62,4.12,1.65,23.53,30.25,30.24
+Jaren Jackson Jr.,UTA,WAS,,high_confidence,48,32.51,5.3,16.3,5.83,1.74,1.18,23.88,30.0,30.2
+Bilal Coulibaly,WAS,UTA,,high_confidence,41,59.73,9.38,15.71,4.68,2.67,1.22,23.06,29.87,30.49
+Jusuf Nurkić,UTA,WAS,,high_confidence,41,37.49,3.32,8.85,9.16,5.04,0.52,23.05,29.82,29.38

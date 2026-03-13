@@ -1,0 +1,13 @@
+{
+  "today": "2026-03-05",
+  "active_rows": 270,
+  "mean_adjusted_err_pct": 57.6057,
+  "median_adjusted_err_pct": 53.585,
+  "mean_confidence_pct": 43.7586,
+  "median_confidence_pct": 46.415,
+  "mean_conf_delta_pct_pts_vs_prior": 12.4648,
+  "median_conf_delta_pct_pts_vs_prior": 12.0,
+  "players_with_10_plus_conf_gain": 37,
+  "players_with_15_plus_conf_gain": 11,
+  "top50_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/top50_today_2026-03-05_recalibrated.csv"
+}

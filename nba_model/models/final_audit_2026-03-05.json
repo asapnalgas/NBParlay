@@ -1,0 +1,24 @@
+{
+  "today": "2026-03-05",
+  "predictions_rows": 792,
+  "today_rows": 321,
+  "today_active_rows": 270,
+  "out_players_with_positive_points": 0,
+  "negative_projection_counts": {
+    "predicted_points": 0,
+    "predicted_rebounds": 0,
+    "predicted_assists": 0,
+    "predicted_pra": 0,
+    "predicted_draftkings_points": 0,
+    "predicted_fanduel_points": 0
+  },
+  "global_mean_error_pct": 72.8936,
+  "confidence_mean_error_pct": {
+    "high_confidence": 70.0481,
+    "low_confidence": 104.8994,
+    "medium_confidence": 86.2995
+  },
+  "top50_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/top50_today_2026-03-05.csv",
+  "top20_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/top20_today_2026-03-05.csv",
+  "player_error_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/player_error_profile_2026-03-05.csv"
+}

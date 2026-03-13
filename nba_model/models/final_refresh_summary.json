@@ -1,0 +1,21 @@
+{
+  "training_lookback_days": 28,
+  "training_rows": 3611,
+  "training_quality": {
+    "input_rows": 3754,
+    "output_rows": 3611,
+    "removed_non_nba_rows": 89,
+    "removed_low_minute_zero_rows": 54
+  },
+  "predicted_rows": 761,
+  "overall_pct_error": 35.44025973412115,
+  "overall_mae": 2.0883298596596442,
+  "operational_rows": 394,
+  "operational_pct_error_floor": 21.393420586710786,
+  "quality_filter": {
+    "input_rows": 3000,
+    "output_rows": 2862,
+    "removed_non_nba_rows": 89,
+    "removed_low_minute_zero_rows": 49
+  }
+}

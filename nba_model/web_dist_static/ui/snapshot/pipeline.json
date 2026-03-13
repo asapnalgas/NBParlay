@@ -1,0 +1,2527 @@
+{
+  "contracts": {
+    "zones": {
+      "bronze": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/bronze",
+      "silver": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/silver",
+      "gold": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/gold",
+      "rejections": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/rejections",
+      "quarantine": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/quarantine",
+      "events": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/ingestion_events.jsonl",
+      "manifest": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/ingestion_manifest.json",
+      "policy": "/Users/josephdelallera/Documents/Playground 2/nba_model/config/data_pipeline.json"
+    },
+    "contracts": {
+      "training_data": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/training_data.csv",
+        "granularity": "one row per player per completed game",
+        "required_columns": [
+          "player_name",
+          "game_date",
+          "home",
+          "opponent",
+          "points",
+          "rebounds",
+          "assists"
+        ],
+        "optional_columns": [
+          "team",
+          "minutes",
+          "steals",
+          "blocks",
+          "turnovers",
+          "three_points_made"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "upcoming_slate": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv",
+        "granularity": "one row per player per upcoming game",
+        "required_columns": [
+          "player_name",
+          "game_date",
+          "team",
+          "opponent",
+          "home"
+        ],
+        "optional_columns": [
+          "starter",
+          "starter_probability",
+          "expected_minutes",
+          "injury_status"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "season_priors": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/season_priors.csv",
+        "granularity": "one row per player-team aggregate season prior",
+        "required_columns": [
+          "player_name",
+          "team",
+          "gp",
+          "min_season",
+          "pts_season",
+          "reb_season",
+          "ast_season"
+        ],
+        "optional_columns": [
+          "tov_season",
+          "stl_season",
+          "blk_season",
+          "fp_season",
+          "dd2_season",
+          "td3_season"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "prizepicks_lines": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/prizepicks_lines.csv",
+        "granularity": "one row per player-market line capture",
+        "required_columns": [
+          "player_name",
+          "game_date",
+          "market",
+          "line"
+        ],
+        "optional_columns": [
+          "team",
+          "selection_type",
+          "source",
+          "captured_at"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "context_updates": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/context_updates.csv",
+        "granularity": "one row per player-game context override",
+        "required_columns": [
+          "player_name",
+          "game_date"
+        ],
+        "optional_columns": [
+          "injury_status",
+          "starter_probability",
+          "expected_minutes"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "provider_context_updates": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv",
+        "granularity": "one row per player-game provider context",
+        "required_columns": [
+          "player_name",
+          "game_date"
+        ],
+        "optional_columns": [
+          "line_points",
+          "line_rebounds",
+          "line_assists",
+          "line_pra",
+          "news_risk_score"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "predictions": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/predictions.csv",
+        "granularity": "one row per player-game projection",
+        "required_columns": [
+          "player_name",
+          "game_date",
+          "team",
+          "opponent",
+          "predicted_points",
+          "predicted_rebounds",
+          "predicted_assists"
+        ],
+        "optional_columns": [
+          "predicted_pra",
+          "predicted_draftkings_points",
+          "predicted_fanduel_points",
+          "confidence_flag"
+        ],
+        "zone_targets": [
+          "gold"
+        ]
+      },
+      "prizepicks_edges": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/prizepicks_edges.csv",
+        "granularity": "one row per player-market edge computation",
+        "required_columns": [
+          "player_name",
+          "game_date",
+          "market",
+          "line",
+          "projection",
+          "edge",
+          "recommendation"
+        ],
+        "optional_columns": [
+          "team",
+          "confidence_flag",
+          "historical_games_used",
+          "season_priors_available"
+        ],
+        "zone_targets": [
+          "gold"
+        ]
+      }
+    },
+    "uniqueness_policies": {
+      "training_data": [
+        "player_key",
+        "game_date",
+        "opponent",
+        "home"
+      ],
+      "season_priors": [
+        "player_key",
+        "team"
+      ],
+      "prizepicks_lines": [
+        "player_key",
+        "team",
+        "game_date",
+        "market"
+      ],
+      "upcoming_slate": [
+        "player_key",
+        "team",
+        "game_date",
+        "opponent",
+        "home"
+      ],
+      "provider_context_updates": [
+        "player_key",
+        "team",
+        "game_date",
+        "opponent",
+        "home"
+      ]
+    }
+  },
+  "recent_events": [
+    {
+      "timestamp": "2026-03-11T18:02:28.562698+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "94cf295aad5137a3f74fe388647c659eada69bcbc83833af12c63637e8b8c10e",
+          "previous_fingerprint": "40754aa81865e4ec673ae1c44e20052c3edd1f9471b358f640a80a05caeebd88",
+          "updated_at": "2026-03-11T18:02:28.551323+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:02:28.963811+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "98f7a5a88a2fc60b89a971119c2bc3e00da5e4f5e504f40c6f3d1f5abbec87aa",
+          "previous_fingerprint": "e640833b90abbca808dce81872637bbe2261f6e476a9f8ea063d75bb73e6e3c9",
+          "updated_at": "2026-03-11T18:02:28.948307+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:02:51.409962+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "fde532fd0e80ee028c82f9e84ee23f2baaa51ecf39f93f817e9485441f39701e",
+          "previous_fingerprint": "94cf295aad5137a3f74fe388647c659eada69bcbc83833af12c63637e8b8c10e",
+          "updated_at": "2026-03-11T18:02:51.398608+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:02:51.728284+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "213f6ed3086962d31975866ef915143ae3c0d49b449a06af3482917eacf0c364",
+          "previous_fingerprint": "98f7a5a88a2fc60b89a971119c2bc3e00da5e4f5e504f40c6f3d1f5abbec87aa",
+          "updated_at": "2026-03-11T18:02:51.712712+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:03:02.303551+00:00",
+      "dataset": "prizepicks_lines",
+      "stage": "import",
+      "rows_in": 1,
+      "rows_out": 1,
+      "rows_rejected": 0,
+      "source": "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpro7asjxm/prizepicks_lines.csv",
+      "outcome": "success",
+      "details": {
+        "duplicate_rows_removed": 0,
+        "dedupe_keys": [
+          "player_key",
+          "team",
+          "game_date",
+          "market"
+        ],
+        "rejection_log_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/rejections/prizepicks_lines_rejections.csv",
+        "quarantine_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/quarantine/prizepicks_lines_quarantine.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:03:02.342579+00:00",
+      "dataset": "prizepicks_lines",
+      "stage": "import",
+      "rows_in": 1,
+      "rows_out": 1,
+      "rows_rejected": 0,
+      "source": "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpd6fbrqrb/prizepicks_lines.csv",
+      "outcome": "success",
+      "details": {
+        "duplicate_rows_removed": 0,
+        "dedupe_keys": [
+          "player_key",
+          "team",
+          "game_date",
+          "market"
+        ],
+        "rejection_log_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/rejections/prizepicks_lines_rejections.csv",
+        "quarantine_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/quarantine/prizepicks_lines_quarantine.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:03:02.372598+00:00",
+      "dataset": "season_priors",
+      "stage": "import",
+      "rows_in": 1,
+      "rows_out": 1,
+      "rows_rejected": 0,
+      "source": "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpt2t5vn7s/season_priors.csv",
+      "outcome": "success",
+      "details": {
+        "duplicate_rows_removed": 0,
+        "dedupe_keys": [
+          "player_key",
+          "team"
+        ],
+        "rejection_log_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/rejections/season_priors_rejections.csv",
+        "quarantine_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/quarantine/season_priors_quarantine.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:03:13.819373+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "b3b96bd4ed3179947babf395f003b13fe929e15d2992a9dc21a9b580b0286527",
+          "previous_fingerprint": "fde532fd0e80ee028c82f9e84ee23f2baaa51ecf39f93f817e9485441f39701e",
+          "updated_at": "2026-03-11T18:03:13.805317+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:03:14.282267+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "a3c9be2984b995784b75731ffc01745da9c089f2a6707d946b091bfdbda2606e",
+          "previous_fingerprint": "213f6ed3086962d31975866ef915143ae3c0d49b449a06af3482917eacf0c364",
+          "updated_at": "2026-03-11T18:03:14.262114+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:03:39.815175+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "ee46476e79d70ebfbb671675eb9eecbf9757649efa202797a182f409ed1c0f03",
+          "previous_fingerprint": "b3b96bd4ed3179947babf395f003b13fe929e15d2992a9dc21a9b580b0286527",
+          "updated_at": "2026-03-11T18:03:39.799938+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:03:41.580454+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "b6fea97be0d57ee8857ba49e99a92abee55a31102a5c78416bca660e3e1cab49",
+          "previous_fingerprint": "a3c9be2984b995784b75731ffc01745da9c089f2a6707d946b091bfdbda2606e",
+          "updated_at": "2026-03-11T18:03:41.563979+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:04:11.130866+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "4e25b1531c2cbfde059e846189163a5161ba9b3508d8db1d0a26c293065f5865",
+          "previous_fingerprint": "ee46476e79d70ebfbb671675eb9eecbf9757649efa202797a182f409ed1c0f03",
+          "updated_at": "2026-03-11T18:04:11.119077+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:04:17.269084+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "2fafdf858eeb42e51efbcbe8913ac0cf02685d073dc44aa1de19e7b643c9dabe",
+          "previous_fingerprint": "b6fea97be0d57ee8857ba49e99a92abee55a31102a5c78416bca660e3e1cab49",
+          "updated_at": "2026-03-11T18:04:17.249304+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:04:40.582385+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "4a9a48041f879a8b9839b06d5d5bbb7a872d5421e49c9fb2ec0149460b4ffc56",
+          "previous_fingerprint": "4e25b1531c2cbfde059e846189163a5161ba9b3508d8db1d0a26c293065f5865",
+          "updated_at": "2026-03-11T18:04:40.569090+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:04:40.996431+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "a17da598b6eba98908ee0b96da8045343a36572f926a7aa304fe019cf87cd6c0",
+          "previous_fingerprint": "2fafdf858eeb42e51efbcbe8913ac0cf02685d073dc44aa1de19e7b643c9dabe",
+          "updated_at": "2026-03-11T18:04:40.979955+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:05:04.585502+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "75e0d1a78c43a374b46af433ba4b7f316580463208acce16ac79c70497fd72a3",
+          "previous_fingerprint": "4a9a48041f879a8b9839b06d5d5bbb7a872d5421e49c9fb2ec0149460b4ffc56",
+          "updated_at": "2026-03-11T18:05:04.572750+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:05:04.921607+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "a51a86d03316faf37361a2a46b8108538880d72e107c8159726cb202b07db274",
+          "previous_fingerprint": "a17da598b6eba98908ee0b96da8045343a36572f926a7aa304fe019cf87cd6c0",
+          "updated_at": "2026-03-11T18:05:04.905783+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:05:28.135122+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "4306d35fe8ff13dff7b0462f4fff22ab9141e7dc9fba706fcc26cab6b3dd40aa",
+          "previous_fingerprint": "75e0d1a78c43a374b46af433ba4b7f316580463208acce16ac79c70497fd72a3",
+          "updated_at": "2026-03-11T18:05:28.122752+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:05:28.539358+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "09140bcc377d259ae8da1b6ce79a696913806809dee0bd650879fe5cbc0ce7a6",
+          "previous_fingerprint": "a51a86d03316faf37361a2a46b8108538880d72e107c8159726cb202b07db274",
+          "updated_at": "2026-03-11T18:05:28.523007+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:06:06.998130+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "e49bf1a6a466dea72a526a558d19ec0a7e335e1a236ab84f91b18fd75dd1461a",
+          "previous_fingerprint": "4306d35fe8ff13dff7b0462f4fff22ab9141e7dc9fba706fcc26cab6b3dd40aa",
+          "updated_at": "2026-03-11T18:06:06.983657+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:06:07.393225+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "902a8a57aa11da25b35c498d5a39a2d8a407d892958cf6a37ee6d8246040eb80",
+          "previous_fingerprint": "09140bcc377d259ae8da1b6ce79a696913806809dee0bd650879fe5cbc0ce7a6",
+          "updated_at": "2026-03-11T18:06:07.378099+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:06:34.636778+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "dfc4307fbaa4ad35faf61a8eec9ad382a674c4627ada26ddc2f87ef1bd649d2a",
+          "previous_fingerprint": "e49bf1a6a466dea72a526a558d19ec0a7e335e1a236ab84f91b18fd75dd1461a",
+          "updated_at": "2026-03-11T18:06:34.624797+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:06:34.979357+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "c8231d7b9e64e481dc69edd3db7f9a729856acec1df444123684dad133a4c66b",
+          "previous_fingerprint": "902a8a57aa11da25b35c498d5a39a2d8a407d892958cf6a37ee6d8246040eb80",
+          "updated_at": "2026-03-11T18:06:34.960563+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:06:58.199541+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "d24122592c2ed0e9918b86bf7c9334a930c2e2e3fc4d1651902144a9068b11c3",
+          "previous_fingerprint": "dfc4307fbaa4ad35faf61a8eec9ad382a674c4627ada26ddc2f87ef1bd649d2a",
+          "updated_at": "2026-03-11T18:06:58.186480+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:06:58.553404+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "208ec6f86d0816b03ab6495bee41ec140b8dd8a6d20a3accd7bae9b8d47fa0b9",
+          "previous_fingerprint": "c8231d7b9e64e481dc69edd3db7f9a729856acec1df444123684dad133a4c66b",
+          "updated_at": "2026-03-11T18:06:58.534083+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:07:20.859575+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "1477f19dc08478c5678ad64c968abe74b803cf5f1f92be149f19b006780056be",
+          "previous_fingerprint": "d24122592c2ed0e9918b86bf7c9334a930c2e2e3fc4d1651902144a9068b11c3",
+          "updated_at": "2026-03-11T18:07:20.848544+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:07:21.206331+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "ea81101ac7c177854f1752f2681d5ee538a9ced9a5399b10c14e8c99b0dc7426",
+          "previous_fingerprint": "208ec6f86d0816b03ab6495bee41ec140b8dd8a6d20a3accd7bae9b8d47fa0b9",
+          "updated_at": "2026-03-11T18:07:21.191672+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:07:44.093544+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "b459520754f233a25908f0e46332a1d5c9c17db79b301a21549c8a379c8d63c7",
+          "previous_fingerprint": "1477f19dc08478c5678ad64c968abe74b803cf5f1f92be149f19b006780056be",
+          "updated_at": "2026-03-11T18:07:44.082228+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:07:44.449243+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "40e491af38a7d523e67710785d6bed60f90a47e835a15bf82ecc02184e6adceb",
+          "previous_fingerprint": "ea81101ac7c177854f1752f2681d5ee538a9ced9a5399b10c14e8c99b0dc7426",
+          "updated_at": "2026-03-11T18:07:44.433487+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:08:08.500906+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "8aaccc93fe1105381877bebec84d483b6de0db9c1d626c64e00655451b424dfe",
+          "previous_fingerprint": "b459520754f233a25908f0e46332a1d5c9c17db79b301a21549c8a379c8d63c7",
+          "updated_at": "2026-03-11T18:08:08.489409+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:08:08.822733+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "044a44f6bbd23212ebbfc146b80bcee268c95f54951ee5d938f45d9c117495fe",
+          "previous_fingerprint": "40e491af38a7d523e67710785d6bed60f90a47e835a15bf82ecc02184e6adceb",
+          "updated_at": "2026-03-11T18:08:08.807400+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:08:36.641215+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "77504b0817af6cb508a60d7d1a9991a5ead9f3c000cfdbdc33512ddf6878e55e",
+          "previous_fingerprint": "8aaccc93fe1105381877bebec84d483b6de0db9c1d626c64e00655451b424dfe",
+          "updated_at": "2026-03-11T18:08:36.630122+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:08:36.989920+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "8c5de9a7609ab7c3e9050c67aaa916c23586c2d99936a7e687725e067b0c6624",
+          "previous_fingerprint": "044a44f6bbd23212ebbfc146b80bcee268c95f54951ee5d938f45d9c117495fe",
+          "updated_at": "2026-03-11T18:08:36.974538+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:09:09.981451+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "cb8cfd3f3e07d84b184800c574467cbc322598a4fbd339833b5673d10835b7ed",
+          "previous_fingerprint": "77504b0817af6cb508a60d7d1a9991a5ead9f3c000cfdbdc33512ddf6878e55e",
+          "updated_at": "2026-03-11T18:09:09.961767+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:09:10.978199+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "b1e0a0b1d5070ee4533145f4515699c1b77fd96183e0aa11336c64ece8779722",
+          "previous_fingerprint": "8c5de9a7609ab7c3e9050c67aaa916c23586c2d99936a7e687725e067b0c6624",
+          "updated_at": "2026-03-11T18:09:10.910394+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:09:43.367033+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "cbd216f1bd641f4408f31b016134c82c49a6fc3bd7279789e04f98fc100e25b9",
+          "previous_fingerprint": "cb8cfd3f3e07d84b184800c574467cbc322598a4fbd339833b5673d10835b7ed",
+          "updated_at": "2026-03-11T18:09:43.355287+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:09:43.701755+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "14185fef955eb0b6edee4e4661f14d308ddcb1fbc4bad513e9a52c9e58509a1f",
+          "previous_fingerprint": "b1e0a0b1d5070ee4533145f4515699c1b77fd96183e0aa11336c64ece8779722",
+          "updated_at": "2026-03-11T18:09:43.683793+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:10:08.217281+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "7b38d333afbfd0eb0d44196da29430ef8d075274aea10f2ebce5211e76c82299",
+          "previous_fingerprint": "cbd216f1bd641f4408f31b016134c82c49a6fc3bd7279789e04f98fc100e25b9",
+          "updated_at": "2026-03-11T18:10:08.205953+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:10:08.568148+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "35c07a8da5c0b58c9db39e78de6ca73505370e104b708b5520164f62057abb6c",
+          "previous_fingerprint": "14185fef955eb0b6edee4e4661f14d308ddcb1fbc4bad513e9a52c9e58509a1f",
+          "updated_at": "2026-03-11T18:10:08.552619+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:10:30.872812+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "ecf9292b47b538401184d157077f86cd80de5cd0ae0ad721390d9e73764e3c11",
+          "previous_fingerprint": "7b38d333afbfd0eb0d44196da29430ef8d075274aea10f2ebce5211e76c82299",
+          "updated_at": "2026-03-11T18:10:30.860922+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:10:31.206585+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "3097abf37aae30d3466148771d32914046af2207834ea57d03a88edfae53f2b6",
+          "previous_fingerprint": "35c07a8da5c0b58c9db39e78de6ca73505370e104b708b5520164f62057abb6c",
+          "updated_at": "2026-03-11T18:10:31.188390+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:10:57.547090+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "b1dc42b41f52f5e841681fd59f0c6a5c0c2d4e18acbf8c41e7f54aa5e13f530f",
+          "previous_fingerprint": "ecf9292b47b538401184d157077f86cd80de5cd0ae0ad721390d9e73764e3c11",
+          "updated_at": "2026-03-11T18:10:57.535702+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:10:57.866930+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "3fc0865a07f77e5e37fa1b4d066af593df9cc87ed24fa0e0af45c2203d55c7c6",
+          "previous_fingerprint": "3097abf37aae30d3466148771d32914046af2207834ea57d03a88edfae53f2b6",
+          "updated_at": "2026-03-11T18:10:57.851934+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:11:36.431009+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "e48d275f5b2d66050837ef20f2e41f541992bfd1618e28e739eb573699123bad",
+          "previous_fingerprint": "b1dc42b41f52f5e841681fd59f0c6a5c0c2d4e18acbf8c41e7f54aa5e13f530f",
+          "updated_at": "2026-03-11T18:11:36.417816+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:11:45.297180+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "8667b3c46735c77afe4e335160109a9d2ee87b44efebfaa94343cee81b3601e1",
+          "previous_fingerprint": "3fc0865a07f77e5e37fa1b4d066af593df9cc87ed24fa0e0af45c2203d55c7c6",
+          "updated_at": "2026-03-11T18:11:45.280920+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:12:07.687411+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "b72a8679d374296e3442fa8bf6207f39cc856d3cedc0bb5af234c3d3a387535f",
+          "previous_fingerprint": "e48d275f5b2d66050837ef20f2e41f541992bfd1618e28e739eb573699123bad",
+          "updated_at": "2026-03-11T18:12:07.675574+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:12:08.005879+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "14021bcd8eb4e1ea710317dea6185b01c6a601f1f6aa109c96029e9b06ea2442",
+          "previous_fingerprint": "8667b3c46735c77afe4e335160109a9d2ee87b44efebfaa94343cee81b3601e1",
+          "updated_at": "2026-03-11T18:12:07.990212+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:12:30.498646+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "e183fe0a6a7464ec1b8234bd00a5d071ea993e95544d94735d9fb451c6501932",
+          "previous_fingerprint": "b72a8679d374296e3442fa8bf6207f39cc856d3cedc0bb5af234c3d3a387535f",
+          "updated_at": "2026-03-11T18:12:30.487534+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:12:30.818228+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "d79f4b3fd002e450cf666df2bf71d9dae5c171993e6f1f975955f38444db25cd",
+          "previous_fingerprint": "14021bcd8eb4e1ea710317dea6185b01c6a601f1f6aa109c96029e9b06ea2442",
+          "updated_at": "2026-03-11T18:12:30.803394+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:12:53.487703+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "d016e8b6069ab305cbf61eee3941978445f0afb89932905cf946c82331ab0d69",
+          "previous_fingerprint": "e183fe0a6a7464ec1b8234bd00a5d071ea993e95544d94735d9fb451c6501932",
+          "updated_at": "2026-03-11T18:12:53.473361+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:12:53.911437+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "6c88e3bd6b4ac3d3e65baa5c17b260d94e3ad34a969db7054604c24ab4ec32bc",
+          "previous_fingerprint": "d79f4b3fd002e450cf666df2bf71d9dae5c171993e6f1f975955f38444db25cd",
+          "updated_at": "2026-03-11T18:12:53.895505+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:13:19.982137+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "87f55b79c2ef0a3c51391318b54f49c1df0fd80b5046528855b6bd8213a3ce57",
+          "previous_fingerprint": "d016e8b6069ab305cbf61eee3941978445f0afb89932905cf946c82331ab0d69",
+          "updated_at": "2026-03-11T18:13:19.970744+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:13:20.331363+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "1e41eb931f75bba4ed45326f3002fc54fc38d8662e14c81a49929c7b59cc8f9f",
+          "previous_fingerprint": "6c88e3bd6b4ac3d3e65baa5c17b260d94e3ad34a969db7054604c24ab4ec32bc",
+          "updated_at": "2026-03-11T18:13:20.316144+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:13:42.840588+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "3f514923f941283eb7bcd907ed895ee01378b7de575bddce507cff55ad82de19",
+          "previous_fingerprint": "87f55b79c2ef0a3c51391318b54f49c1df0fd80b5046528855b6bd8213a3ce57",
+          "updated_at": "2026-03-11T18:13:42.828336+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:13:43.334979+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "7e847d675d52c45f2cdd65c0a9b1dea90f5eebdec029c606ed7861129c0456cc",
+          "previous_fingerprint": "1e41eb931f75bba4ed45326f3002fc54fc38d8662e14c81a49929c7b59cc8f9f",
+          "updated_at": "2026-03-11T18:13:43.319972+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:14:05.635974+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "5876c0bb1f5ce1ec8f2d07ad815e30cc411e610a6ab44da00ac69e59ac88cc44",
+          "previous_fingerprint": "3f514923f941283eb7bcd907ed895ee01378b7de575bddce507cff55ad82de19",
+          "updated_at": "2026-03-11T18:14:05.624596+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:14:05.956570+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "116eecbc2e151d72881109cea817d9e6e94a70627614452af15d6a7fc4e1de67",
+          "previous_fingerprint": "7e847d675d52c45f2cdd65c0a9b1dea90f5eebdec029c606ed7861129c0456cc",
+          "updated_at": "2026-03-11T18:14:05.941047+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:14:28.869539+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "b91554ca75bc5c64c40d883f2921d5e04aa42c5191f5549d85ecdff0a46dde1b",
+          "previous_fingerprint": "5876c0bb1f5ce1ec8f2d07ad815e30cc411e610a6ab44da00ac69e59ac88cc44",
+          "updated_at": "2026-03-11T18:14:28.854914+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:14:29.232594+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "d48de26b28e7559a4fb5687566dca3fd564dd1c2bedf5480d923591420553395",
+          "previous_fingerprint": "116eecbc2e151d72881109cea817d9e6e94a70627614452af15d6a7fc4e1de67",
+          "updated_at": "2026-03-11T18:14:29.214678+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:14:52.074519+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "2df065dbd8b3a3c9be9191ccd8464a34c51f0a093929c2a9b94a9b6f4b35410b",
+          "previous_fingerprint": "b91554ca75bc5c64c40d883f2921d5e04aa42c5191f5549d85ecdff0a46dde1b",
+          "updated_at": "2026-03-11T18:14:52.062638+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:14:52.396168+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "22394798e5d74918a47c0424d8e65a6483e031bbc72a1f7fb765d73c10e8ecd0",
+          "previous_fingerprint": "d48de26b28e7559a4fb5687566dca3fd564dd1c2bedf5480d923591420553395",
+          "updated_at": "2026-03-11T18:14:52.380516+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:15:14.770329+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "06ee890593b1055dd379fccfe1253e653959af6ee6aa30fa6c6f27677317b663",
+          "previous_fingerprint": "2df065dbd8b3a3c9be9191ccd8464a34c51f0a093929c2a9b94a9b6f4b35410b",
+          "updated_at": "2026-03-11T18:15:14.759365+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:15:15.092676+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "33f42cc7ab6817c5853acb9b5427ebd0a83c7cb10b219d47a7fedae19b8162b8",
+          "previous_fingerprint": "22394798e5d74918a47c0424d8e65a6483e031bbc72a1f7fb765d73c10e8ecd0",
+          "updated_at": "2026-03-11T18:15:15.077153+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:15:42.427949+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "5458db43086dba9db0fccf50de688ee9380717ade3f0b5a971a1fa8885c1bfb1",
+          "previous_fingerprint": "06ee890593b1055dd379fccfe1253e653959af6ee6aa30fa6c6f27677317b663",
+          "updated_at": "2026-03-11T18:15:42.416084+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:15:42.752301+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "2e245d1ae8a7d946d1ac6bb60f0e11a0137964622ca9a15502ef248b77825716",
+          "previous_fingerprint": "33f42cc7ab6817c5853acb9b5427ebd0a83c7cb10b219d47a7fedae19b8162b8",
+          "updated_at": "2026-03-11T18:15:42.736410+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:16:05.550102+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "8d89fcf83d9bb615bd94ea16cb4416e4df25995d892a2a054b013c00efbc8d5b",
+          "previous_fingerprint": "5458db43086dba9db0fccf50de688ee9380717ade3f0b5a971a1fa8885c1bfb1",
+          "updated_at": "2026-03-11T18:16:05.536005+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:16:05.913620+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "f9fd8f90ee8cdab6742361071a41c3ae21b6893900a6e1fbfef91e917d8272cd",
+          "previous_fingerprint": "2e245d1ae8a7d946d1ac6bb60f0e11a0137964622ca9a15502ef248b77825716",
+          "updated_at": "2026-03-11T18:16:05.895761+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:16:07.842506+00:00",
+      "dataset": "prizepicks_lines",
+      "stage": "import",
+      "rows_in": 1,
+      "rows_out": 1,
+      "rows_rejected": 0,
+      "source": "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpfyz_osy6/prizepicks_lines.csv",
+      "outcome": "success",
+      "details": {
+        "duplicate_rows_removed": 0,
+        "dedupe_keys": [
+          "player_key",
+          "team",
+          "game_date",
+          "market"
+        ],
+        "rejection_log_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/rejections/prizepicks_lines_rejections.csv",
+        "quarantine_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/quarantine/prizepicks_lines_quarantine.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:16:07.881337+00:00",
+      "dataset": "prizepicks_lines",
+      "stage": "import",
+      "rows_in": 1,
+      "rows_out": 1,
+      "rows_rejected": 0,
+      "source": "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpu7b5kwu7/prizepicks_lines.csv",
+      "outcome": "success",
+      "details": {
+        "duplicate_rows_removed": 0,
+        "dedupe_keys": [
+          "player_key",
+          "team",
+          "game_date",
+          "market"
+        ],
+        "rejection_log_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/rejections/prizepicks_lines_rejections.csv",
+        "quarantine_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/quarantine/prizepicks_lines_quarantine.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:16:07.914180+00:00",
+      "dataset": "season_priors",
+      "stage": "import",
+      "rows_in": 1,
+      "rows_out": 1,
+      "rows_rejected": 0,
+      "source": "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphliwzu43/season_priors.csv",
+      "outcome": "success",
+      "details": {
+        "duplicate_rows_removed": 0,
+        "dedupe_keys": [
+          "player_key",
+          "team"
+        ],
+        "rejection_log_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/rejections/season_priors_rejections.csv",
+        "quarantine_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/quarantine/season_priors_quarantine.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:16:29.480202+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "cbf1f876cb2581b6cd77db434f3402921bdb62086fd4da505c9a6d8f4fe10c3f",
+          "previous_fingerprint": "8d89fcf83d9bb615bd94ea16cb4416e4df25995d892a2a054b013c00efbc8d5b",
+          "updated_at": "2026-03-11T18:16:29.462661+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:16:29.904760+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "96e069d935a7bfd9ee1b0ad02d54aba87b9888e0bf2d212455b062852ebdf5ee",
+          "previous_fingerprint": "f9fd8f90ee8cdab6742361071a41c3ae21b6893900a6e1fbfef91e917d8272cd",
+          "updated_at": "2026-03-11T18:16:29.885148+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:17:09.782584+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "44211f8b5a3b925d8c8438b7609d42ccbb94baf7fc03003283b46bc34eb21ca4",
+          "previous_fingerprint": "cbf1f876cb2581b6cd77db434f3402921bdb62086fd4da505c9a6d8f4fe10c3f",
+          "updated_at": "2026-03-11T18:17:09.766418+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:17:10.181900+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "c6f19e45dea4101fd9e8c1ab8efa3270763263f916c7517e8afea501817a3d14",
+          "previous_fingerprint": "96e069d935a7bfd9ee1b0ad02d54aba87b9888e0bf2d212455b062852ebdf5ee",
+          "updated_at": "2026-03-11T18:17:10.162269+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:17:33.083870+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "4a33bd287bcbb0441ce7b453ae3eaee428aa6da78643a2ab209da354c7fce69f",
+          "previous_fingerprint": "44211f8b5a3b925d8c8438b7609d42ccbb94baf7fc03003283b46bc34eb21ca4",
+          "updated_at": "2026-03-11T18:17:33.071466+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:17:33.425679+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "949b8c3e21d00cbbafd6eff0550baec0a789794209512052cc08ef40da486bfc",
+          "previous_fingerprint": "c6f19e45dea4101fd9e8c1ab8efa3270763263f916c7517e8afea501817a3d14",
+          "updated_at": "2026-03-11T18:17:33.408941+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:17:59.336891+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "cd0bdfb3a63341b1b6f607c943d526a70794d4ec4d6e1b717e4ee4556a494628",
+          "previous_fingerprint": "4a33bd287bcbb0441ce7b453ae3eaee428aa6da78643a2ab209da354c7fce69f",
+          "updated_at": "2026-03-11T18:17:59.325758+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:17:59.786616+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "787fa680a88452e34a247e0865d2d128e8c69051f702ff20b74c660f99769290",
+          "previous_fingerprint": "949b8c3e21d00cbbafd6eff0550baec0a789794209512052cc08ef40da486bfc",
+          "updated_at": "2026-03-11T18:17:59.764444+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:18:22.440573+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "cfba007761d23bba4aac23639ac30b8be0e8218553c5164b5ebec0f538240b4b",
+          "previous_fingerprint": "cd0bdfb3a63341b1b6f607c943d526a70794d4ec4d6e1b717e4ee4556a494628",
+          "updated_at": "2026-03-11T18:18:22.429007+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:18:22.763794+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "87a2c6ed6dfa78de184036eedfc9bf2b9a0705950eaadc9a0a37d58ef5f118a7",
+          "previous_fingerprint": "787fa680a88452e34a247e0865d2d128e8c69051f702ff20b74c660f99769290",
+          "updated_at": "2026-03-11T18:18:22.747628+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:18:45.248275+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "b05cd8025ae0975281dc86dad1ff1dbc11ca26ac1f54a6f9afc1786a26795119",
+          "previous_fingerprint": "cfba007761d23bba4aac23639ac30b8be0e8218553c5164b5ebec0f538240b4b",
+          "updated_at": "2026-03-11T18:18:45.236160+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:18:45.590790+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "558e7f73d8c54d00b333f2f3de9d78bb62fa93d0d7e0528316c89f9c8cf41464",
+          "previous_fingerprint": "87a2c6ed6dfa78de184036eedfc9bf2b9a0705950eaadc9a0a37d58ef5f118a7",
+          "updated_at": "2026-03-11T18:18:45.575067+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:19:08.443853+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "e70a23f89f9194ef9531f553b1d34e6a832aa5737b46adfb3c7a50778e8bd2a8",
+          "previous_fingerprint": "b05cd8025ae0975281dc86dad1ff1dbc11ca26ac1f54a6f9afc1786a26795119",
+          "updated_at": "2026-03-11T18:19:08.431935+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:19:08.798412+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "bdb0b4606303f17d7d8d10100cf03b935c9f114f7ff71d5bc4fa3452a69afd32",
+          "previous_fingerprint": "558e7f73d8c54d00b333f2f3de9d78bb62fa93d0d7e0528316c89f9c8cf41464",
+          "updated_at": "2026-03-11T18:19:08.782738+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:19:35.136419+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "a1fe31cbc806f7c6ad7fd059ab207977152bc8c55cded6401504ceeeb053d424",
+          "previous_fingerprint": "e70a23f89f9194ef9531f553b1d34e6a832aa5737b46adfb3c7a50778e8bd2a8",
+          "updated_at": "2026-03-11T18:19:35.124810+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:19:39.510060+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "283ae69ea175836894ff905c0de840efe56d9e3524079ce1f0f37e8c0a6604a2",
+          "previous_fingerprint": "bdb0b4606303f17d7d8d10100cf03b935c9f114f7ff71d5bc4fa3452a69afd32",
+          "updated_at": "2026-03-11T18:19:39.493648+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:20:06.694038+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "ddcdf915a10ae2678f65a949c5b9138c399c3966c6e9a60e44d2ec3fd839dd61",
+          "previous_fingerprint": "a1fe31cbc806f7c6ad7fd059ab207977152bc8c55cded6401504ceeeb053d424",
+          "updated_at": "2026-03-11T18:20:06.681754+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:20:07.122378+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "a72df8ec719d029a84b419f554a59a0b3ccaf57e9a724ee2e3f250105edd3511",
+          "previous_fingerprint": "283ae69ea175836894ff905c0de840efe56d9e3524079ce1f0f37e8c0a6604a2",
+          "updated_at": "2026-03-11T18:20:07.107069+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:20:31.454986+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "d813bbdcce8675e77ac533b1cd015b1c40e5a4a0994e55923d54d8b976f0119d",
+          "previous_fingerprint": "ddcdf915a10ae2678f65a949c5b9138c399c3966c6e9a60e44d2ec3fd839dd61",
+          "updated_at": "2026-03-11T18:20:31.443676+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:20:31.782434+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "b4c7c99ce1c8fbb06caf4bccd87565e74fddfe3ad6078e9cc61e5c3030c5528b",
+          "previous_fingerprint": "a72df8ec719d029a84b419f554a59a0b3ccaf57e9a724ee2e3f250105edd3511",
+          "updated_at": "2026-03-11T18:20:31.766899+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:20:54.831774+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "a2dc7c1161b14caa7a4235e9f52b18ff2b9d7fbd8119b039ff11c1f6c9734bf3",
+          "previous_fingerprint": "d813bbdcce8675e77ac533b1cd015b1c40e5a4a0994e55923d54d8b976f0119d",
+          "updated_at": "2026-03-11T18:20:54.820018+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:20:55.168482+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "c4c710b1710d332dd1e5e6def1564fe40ae1d0179862abe01247eb2b500a6486",
+          "previous_fingerprint": "b4c7c99ce1c8fbb06caf4bccd87565e74fddfe3ad6078e9cc61e5c3030c5528b",
+          "updated_at": "2026-03-11T18:20:55.151143+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:21:17.973466+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "1d28720ffa2baa84911003afde71a70a4b4e89eb34c9092a80165c5ce1caceb8",
+          "previous_fingerprint": "a2dc7c1161b14caa7a4235e9f52b18ff2b9d7fbd8119b039ff11c1f6c9734bf3",
+          "updated_at": "2026-03-11T18:21:17.961961+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:21:18.322725+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "5ee96c039be30bbe16e7e117cb82013d09e4ee6da2d4382446eaa8b3747ee6a4",
+          "previous_fingerprint": "c4c710b1710d332dd1e5e6def1564fe40ae1d0179862abe01247eb2b500a6486",
+          "updated_at": "2026-03-11T18:21:18.307710+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:21:41.022022+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "941eb2edd8dc0c31b0cde8184a45ba94647a57f0d77d6ade9ef65bdc8472b2a4",
+          "previous_fingerprint": "1d28720ffa2baa84911003afde71a70a4b4e89eb34c9092a80165c5ce1caceb8",
+          "updated_at": "2026-03-11T18:21:41.010452+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:21:41.363952+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "7b40a142aeb7621f719b8fdc29a2f7106b30d50948040b3b2cae5c21900ed3ee",
+          "previous_fingerprint": "5ee96c039be30bbe16e7e117cb82013d09e4ee6da2d4382446eaa8b3747ee6a4",
+          "updated_at": "2026-03-11T18:21:41.342434+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:22:07.589275+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "5bf9eba809a868bf51eb50ee36cd0eec97901623e05bae7e7b49e04dc484b37e",
+          "previous_fingerprint": "941eb2edd8dc0c31b0cde8184a45ba94647a57f0d77d6ade9ef65bdc8472b2a4",
+          "updated_at": "2026-03-11T18:22:07.577874+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:22:07.909538+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "08ed6181639ae0fb2919611e53a169be028941427a771f9b3975d62ac30facfe",
+          "previous_fingerprint": "7b40a142aeb7621f719b8fdc29a2f7106b30d50948040b3b2cae5c21900ed3ee",
+          "updated_at": "2026-03-11T18:22:07.894679+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:22:46.223982+00:00",
+      "dataset": "provider_context_updates",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:provider_context_updates",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:provider_context_updates",
+          "fingerprint": "41e2ae0481eeb6526b27eeb8ab10b8ef57dd03ec6d242fea88dc6819b8dc5f72",
+          "previous_fingerprint": "5bf9eba809a868bf51eb50ee36cd0eec97901623e05bae7e7b49e04dc484b37e",
+          "updated_at": "2026-03-11T18:22:46.207654+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T18:22:46.640720+00:00",
+      "dataset": "upcoming_slate",
+      "stage": "live_sync",
+      "rows_in": 250,
+      "rows_out": 250,
+      "rows_rejected": 0,
+      "source": "live_sync:upcoming_slate",
+      "outcome": "success",
+      "details": {
+        "idempotency": {
+          "duplicate": false,
+          "source": "live_sync:upcoming_slate",
+          "fingerprint": "be3de68e9692d115a46f04e2a5cad174944faf8692a4cbd1c9240b0214de36e8",
+          "previous_fingerprint": "08ed6181639ae0fb2919611e53a169be028941427a771f9b3975d62ac30facfe",
+          "updated_at": "2026-03-11T18:22:46.622181+00:00"
+        },
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      }
+    }
+  ],
+  "manifest": {
+    "training_data": {
+      "import_historical": {
+        "fingerprint": "6e40edf1baecdfc7f98822ba4f33cfc4dc067874e1a58cf5f07cd5769c7565db",
+        "updated_at": "2026-03-11T00:29:18.541928+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpg_8e16y0/hist.csv"
+        },
+        "duplicate_of_previous": true
+      }
+    },
+    "season_priors": {
+      "import_season_priors": {
+        "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+        "updated_at": "2026-03-11T01:26:44.412646+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmprh8iq701/season_priors.csv"
+        },
+        "duplicate_of_previous": true
+      },
+      "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmptlkvnspy/season_priors.csv": {
+        "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+        "updated_at": "2026-03-11T01:27:37.625848+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmptlkvnspy/season_priors.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpg5kkei41/season_priors.csv": {
+        "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+        "updated_at": "2026-03-11T04:32:16.044453+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpg5kkei41/season_priors.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_q4bwoj2/season_priors.csv": {
+        "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+        "updated_at": "2026-03-11T05:42:25.824387+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_q4bwoj2/season_priors.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpeqdvezck/season_priors.csv": {
+        "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+        "updated_at": "2026-03-11T05:50:44.178614+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpeqdvezck/season_priors.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphnez1_f0/season_priors.csv": {
+        "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+        "updated_at": "2026-03-11T17:23:24.935763+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphnez1_f0/season_priors.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2b74pj4a/season_priors.csv": {
+        "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+        "updated_at": "2026-03-11T17:24:14.252141+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2b74pj4a/season_priors.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpznv3i395/season_priors.csv": {
+        "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+        "updated_at": "2026-03-11T17:31:03.951451+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpznv3i395/season_priors.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpt2t5vn7s/season_priors.csv": {
+        "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+        "updated_at": "2026-03-11T18:03:02.367524+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpt2t5vn7s/season_priors.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphliwzu43/season_priors.csv": {
+        "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+        "updated_at": "2026-03-11T18:16:07.908295+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphliwzu43/season_priors.csv"
+        },
+        "duplicate_of_previous": false
+      }
+    },
+    "prizepicks_lines": {
+      "import_prizepicks_lines": {
+        "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+        "updated_at": "2026-03-11T01:26:44.269455+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmplwilex_s/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp8khay9zo/prizepicks_lines.csv": {
+        "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+        "updated_at": "2026-03-11T01:27:37.335107+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp8khay9zo/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpzbst9dxs/prizepicks_lines.csv": {
+        "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+        "updated_at": "2026-03-11T01:27:37.500787+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpzbst9dxs/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcj3kizp7/prizepicks_lines.csv": {
+        "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+        "updated_at": "2026-03-11T04:32:15.960435+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcj3kizp7/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmplefl23xy/prizepicks_lines.csv": {
+        "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+        "updated_at": "2026-03-11T04:32:16.004824+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmplefl23xy/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpk8grou0o/prizepicks_lines.csv": {
+        "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+        "updated_at": "2026-03-11T05:42:25.282696+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpk8grou0o/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpjndi36tk/prizepicks_lines.csv": {
+        "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+        "updated_at": "2026-03-11T05:42:25.489438+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpjndi36tk/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmprin4sgx7/prizepicks_lines.csv": {
+        "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+        "updated_at": "2026-03-11T05:50:43.769198+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmprin4sgx7/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcn75s0ho/prizepicks_lines.csv": {
+        "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+        "updated_at": "2026-03-11T05:50:43.896105+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcn75s0ho/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpuhfqkop2/prizepicks_lines.csv": {
+        "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+        "updated_at": "2026-03-11T17:23:24.880583+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpuhfqkop2/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp1xbe9yc8/prizepicks_lines.csv": {
+        "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+        "updated_at": "2026-03-11T17:23:24.910420+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp1xbe9yc8/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmptz5h9l_v/prizepicks_lines.csv": {
+        "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+        "updated_at": "2026-03-11T17:24:14.201207+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmptz5h9l_v/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2xpl15pn/prizepicks_lines.csv": {
+        "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+        "updated_at": "2026-03-11T17:24:14.227879+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2xpl15pn/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpqyq2_obc/prizepicks_lines.csv": {
+        "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+        "updated_at": "2026-03-11T17:31:03.898693+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpqyq2_obc/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpmy9gcr9o/prizepicks_lines.csv": {
+        "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+        "updated_at": "2026-03-11T17:31:03.927498+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpmy9gcr9o/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpro7asjxm/prizepicks_lines.csv": {
+        "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+        "updated_at": "2026-03-11T18:03:02.297521+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpro7asjxm/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpd6fbrqrb/prizepicks_lines.csv": {
+        "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+        "updated_at": "2026-03-11T18:03:02.335628+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpd6fbrqrb/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpfyz_osy6/prizepicks_lines.csv": {
+        "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+        "updated_at": "2026-03-11T18:16:07.835779+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpfyz_osy6/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      },
+      "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpu7b5kwu7/prizepicks_lines.csv": {
+        "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+        "updated_at": "2026-03-11T18:16:07.874974+00:00",
+        "metadata": {
+          "rows_in": 1,
+          "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpu7b5kwu7/prizepicks_lines.csv"
+        },
+        "duplicate_of_previous": false
+      }
+    },
+    "provider_context_updates": {
+      "live_sync:provider_context_updates": {
+        "fingerprint": "41e2ae0481eeb6526b27eeb8ab10b8ef57dd03ec6d242fea88dc6819b8dc5f72",
+        "updated_at": "2026-03-11T18:22:46.207654+00:00",
+        "metadata": {
+          "rows": 250,
+          "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+        },
+        "duplicate_of_previous": false
+      }
+    },
+    "upcoming_slate": {
+      "live_sync:upcoming_slate": {
+        "fingerprint": "be3de68e9692d115a46f04e2a5cad174944faf8692a4cbd1c9240b0214de36e8",
+        "updated_at": "2026-03-11T18:22:46.622181+00:00",
+        "metadata": {
+          "rows": 250,
+          "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+        },
+        "duplicate_of_previous": false
+      }
+    }
+  },
+  "rejection_counts": {
+    "training_data": 2
+  },
+  "quarantine_counts": {}
+}

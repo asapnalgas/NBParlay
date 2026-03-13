@@ -1,0 +1,489 @@
+{
+  "training_data": {
+    "import_historical": {
+      "fingerprint": "6e40edf1baecdfc7f98822ba4f33cfc4dc067874e1a58cf5f07cd5769c7565db",
+      "updated_at": "2026-03-11T00:29:18.541928+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpg_8e16y0/hist.csv"
+      },
+      "duplicate_of_previous": true
+    }
+  },
+  "season_priors": {
+    "import_season_priors": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T01:26:44.412646+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmprh8iq701/season_priors.csv"
+      },
+      "duplicate_of_previous": true
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmptlkvnspy/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T01:27:37.625848+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmptlkvnspy/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpg5kkei41/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T04:32:16.044453+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpg5kkei41/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_q4bwoj2/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T05:42:25.824387+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_q4bwoj2/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpeqdvezck/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T05:50:44.178614+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpeqdvezck/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphnez1_f0/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T17:23:24.935763+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphnez1_f0/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2b74pj4a/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T17:24:14.252141+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2b74pj4a/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpznv3i395/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T17:31:03.951451+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpznv3i395/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpt2t5vn7s/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T18:03:02.367524+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpt2t5vn7s/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphliwzu43/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T18:16:07.908295+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphliwzu43/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpjgxsnyfy/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T18:24:09.728790+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpjgxsnyfy/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp6pg8a59v/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T19:51:42.427955+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp6pg8a59v/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpfaw5fm5_/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T20:16:17.515839+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpfaw5fm5_/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_du87i92/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T20:18:19.693659+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_du87i92/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphyqnuac0/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T20:50:08.070449+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmphyqnuac0/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp3vpg9o5i/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-11T21:48:14.579144+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp3vpg9o5i/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpa3u12a6p/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-12T03:39:24.105143+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpa3u12a6p/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    }
+  },
+  "prizepicks_lines": {
+    "import_prizepicks_lines": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T01:26:44.269455+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmplwilex_s/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp8khay9zo/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T01:27:37.335107+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp8khay9zo/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpzbst9dxs/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T01:27:37.500787+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpzbst9dxs/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcj3kizp7/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T04:32:15.960435+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcj3kizp7/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmplefl23xy/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T04:32:16.004824+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmplefl23xy/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpk8grou0o/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T05:42:25.282696+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpk8grou0o/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpjndi36tk/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T05:42:25.489438+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpjndi36tk/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmprin4sgx7/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T05:50:43.769198+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmprin4sgx7/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcn75s0ho/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T05:50:43.896105+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcn75s0ho/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpuhfqkop2/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T17:23:24.880583+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpuhfqkop2/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp1xbe9yc8/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T17:23:24.910420+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp1xbe9yc8/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmptz5h9l_v/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T17:24:14.201207+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmptz5h9l_v/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2xpl15pn/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T17:24:14.227879+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2xpl15pn/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpqyq2_obc/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T17:31:03.898693+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpqyq2_obc/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpmy9gcr9o/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T17:31:03.927498+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpmy9gcr9o/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpro7asjxm/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T18:03:02.297521+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpro7asjxm/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpd6fbrqrb/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T18:03:02.335628+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpd6fbrqrb/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpfyz_osy6/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T18:16:07.835779+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpfyz_osy6/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpu7b5kwu7/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T18:16:07.874974+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpu7b5kwu7/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp7q77hvdk/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T18:24:09.673665+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp7q77hvdk/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpymcrz93_/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T18:24:09.702745+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpymcrz93_/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2eo4a02w/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T19:51:42.369953+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2eo4a02w/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2hh5er1s/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T19:51:42.401036+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp2hh5er1s/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp8ka32i22/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T20:16:17.459212+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp8ka32i22/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpvs00z494/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T20:16:17.490313+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpvs00z494/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp3zm_cycu/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T20:18:19.637836+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp3zm_cycu/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpwjp6wh14/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T20:18:19.667889+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpwjp6wh14/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_6kimk77/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T20:50:08.013889+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_6kimk77/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmplin5th4h/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T20:50:08.045050+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmplin5th4h/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp0dyx71x0/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-11T21:48:14.526971+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp0dyx71x0/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpvhbt6iru/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-11T21:48:14.554826+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpvhbt6iru/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmptvx8dz8m/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-12T03:39:24.043110+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmptvx8dz8m/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp7olodyvj/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-12T03:39:24.078458+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp7olodyvj/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    }
+  },
+  "provider_context_updates": {
+    "live_sync:provider_context_updates": {
+      "fingerprint": "604ee81aaff7229f6d2aa5895c24aa459b7f575fc98140857f35fedfbff4506a",
+      "updated_at": "2026-03-12T23:01:00.871362+00:00",
+      "metadata": {
+        "rows": 250,
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
+      },
+      "duplicate_of_previous": false
+    }
+  },
+  "upcoming_slate": {
+    "live_sync:upcoming_slate": {
+      "fingerprint": "a9d93acafc30232c81a74e96a00741a032097859f1b07be9b1cd9f74485b9f49",
+      "updated_at": "2026-03-12T23:01:02.418399+00:00",
+      "metadata": {
+        "rows": 250,
+        "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"
+      },
+      "duplicate_of_previous": false
+    }
+  }
+}

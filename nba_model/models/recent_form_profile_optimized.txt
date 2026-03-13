@@ -1,0 +1,58 @@
+         159 function calls in 0.000 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 app.py:2565(_load_recent_form_metrics)
+        2    0.000    0.000    0.000    0.000 generic.py:6684(copy)
+        2    0.000    0.000    0.000    0.000 managers.py:576(copy)
+        2    0.000    0.000    0.000    0.000 managers.py:317(apply)
+        3    0.000    0.000    0.000    0.000 pathlib.py:1217(stat)
+        3    0.000    0.000    0.000    0.000 {built-in method posix.stat}
+        2    0.000    0.000    0.000    0.000 pathlib.py:1409(exists)
+        4    0.000    0.000    0.000    0.000 blocks.py:816(copy)
+        2    0.000    0.000    0.000    0.000 managers.py:605(<listcomp>)
+        4    0.000    0.000    0.000    0.000 managers.py:602(copy_func)
+        4    0.000    0.000    0.000    0.000 base.py:1017(view)
+        8    0.000    0.000    0.000    0.000 {method 'copy' of 'numpy.ndarray' objects}
+        2    0.000    0.000    0.000    0.000 managers.py:1801(_consolidate_inplace)
+        2    0.000    0.000    0.000    0.000 managers.py:1783(is_consolidated)
+        2    0.000    0.000    0.000    0.000 managers.py:1791(_consolidate_check)
+        2    0.000    0.000    0.000    0.000 base.py:774(_view)
+        2    0.000    0.000    0.000    0.000 frame.py:663(_constructor_from_mgr)
+        2    0.000    0.000    0.000    0.000 generic.py:342(_from_mgr)
+        2    0.000    0.000    0.000    0.000 base.py:650(_simple_new)
+        2    0.000    0.000    0.000    0.000 generic.py:6258(__finalize__)
+        2    0.000    0.000    0.000    0.000 managers.py:1797(<listcomp>)
+        2    0.000    0.000    0.000    0.000 generic.py:281(__init__)
+        2    0.000    0.000    0.000    0.000 range.py:483(_view)
+        4    0.000    0.000    0.000    0.000 blocks.py:2868(extend_blocks)
+        2    0.000    0.000    0.000    0.000 range.py:201(_simple_new)
+        4    0.000    0.000    0.000    0.000 blocks.py:221(_can_consolidate)
+        2    0.000    0.000    0.000    0.000 managers.py:967(from_blocks)
+        2    0.000    0.000    0.000    0.000 frame.py:4634(_clear_item_cache)
+        6    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x103332860}
+        2    0.000    0.000    0.000    0.000 flags.py:51(__init__)
+        3    0.000    0.000    0.000    0.000 pathlib.py:742(__fspath__)
+        4    0.000    0.000    0.000    0.000 base.py:832(_reset_identity)
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+        4    0.000    0.000    0.000    0.000 blocks.py:216(is_extension)
+        2    0.000    0.000    0.000    0.000 flags.py:87(allows_duplicate_labels)
+       19    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+        2    0.000    0.000    0.000    0.000 {method 'get' of 'dict' objects}
+        6    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        4    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        4    0.000    0.000    0.000    0.000 blocks.py:744(dtype)
+        2    0.000    0.000    0.000    0.000 base.py:5154(_values)
+        4    0.000    0.000    0.000    0.000 generic.py:408(flags)
+        4    0.000    0.000    0.000    0.000 pathlib.py:732(__str__)
+        2    0.000    0.000    0.000    0.000 flags.py:55(allows_duplicate_labels)
+        2    0.000    0.000    0.000    0.000 generic.py:366(attrs)
+        2    0.000    0.000    0.000    0.000 managers.py:344(<dictcomp>)
+        2    0.000    0.000    0.000    0.000 managers.py:932(__init__)
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.callable}
+        2    0.000    0.000    0.000    0.000 {method 'clear' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+

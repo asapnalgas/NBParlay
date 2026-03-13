@@ -1,0 +1,116 @@
+{
+  "startup_ms": {
+    "before": 1666.38,
+    "after": 2101.55,
+    "delta_ms": 435.17,
+    "delta_pct": 26.11
+  },
+  "endpoint_latency": {
+    "GET /api/live/sources": {
+      "before_p50_ms": 4.71,
+      "after_p50_ms": 5.8,
+      "delta_p50_ms": 1.09,
+      "delta_p50_pct": 23.14,
+      "before_p95_ms": 5.0,
+      "after_p95_ms": 6.93,
+      "delta_p95_ms": 1.93,
+      "delta_p95_pct": 38.6
+    },
+    "GET /api/live/status": {
+      "before_p50_ms": 4.63,
+      "after_p50_ms": 5.91,
+      "delta_p50_ms": 1.28,
+      "delta_p50_pct": 27.65,
+      "before_p95_ms": 5.03,
+      "after_p95_ms": 9.91,
+      "delta_p95_ms": 4.88,
+      "delta_p95_pct": 97.02
+    },
+    "GET /api/player-board": {
+      "before_p50_ms": 2343.82,
+      "after_p50_ms": 188.08,
+      "delta_p50_ms": -2155.74,
+      "delta_p50_pct": -91.98,
+      "before_p95_ms": 2632.57,
+      "after_p95_ms": 427.59,
+      "delta_p95_ms": -2204.98,
+      "delta_p95_pct": -83.76
+    },
+    "GET /api/status": {
+      "before_p50_ms": 4.21,
+      "after_p50_ms": 4.5,
+      "delta_p50_ms": 0.29,
+      "delta_p50_pct": 6.89,
+      "before_p95_ms": 6.4,
+      "after_p95_ms": 5.05,
+      "delta_p95_ms": -1.35,
+      "delta_p95_pct": -21.09
+    },
+    "POST /api/live/in-game-sync": {
+      "before_p50_ms": 0.61,
+      "after_p50_ms": 0.4,
+      "delta_p50_ms": -0.21,
+      "delta_p50_pct": -34.43,
+      "before_p95_ms": 1.37,
+      "after_p95_ms": 0.8,
+      "delta_p95_ms": -0.57,
+      "delta_p95_pct": -41.61
+    },
+    "POST /api/live/sync-async": {
+      "before_p50_ms": 0.54,
+      "after_p50_ms": 0.41,
+      "delta_p50_ms": -0.13,
+      "delta_p50_pct": -24.07,
+      "before_p95_ms": 1.17,
+      "after_p95_ms": 0.84,
+      "delta_p95_ms": -0.33,
+      "delta_p95_pct": -28.21
+    }
+  },
+  "hotspot_profile": {
+    "before_elapsed_ms": 8287.74,
+    "after_elapsed_ms": 937.36,
+    "delta_ms": -7350.38,
+    "delta_pct": -88.69
+  },
+  "secondary_profile": {
+    "before_elapsed_ms": 3053.69,
+    "after_elapsed_ms": 0.26,
+    "delta_ms": -3053.43,
+    "delta_pct": -99.99
+  },
+  "bundle_size_diff_bytes": {
+    "ui": {
+      "before": 7543916,
+      "after": 7543916,
+      "delta_bytes": 0
+    },
+    "web_dist": {
+      "before": 363,
+      "after": 363,
+      "delta_bytes": 0
+    },
+    "web_dist_static": {
+      "before": 7503878,
+      "after": 7503878,
+      "delta_bytes": 0
+    }
+  },
+  "key_assets_diff_bytes": {
+    "ui_app_js": {
+      "before": 115785,
+      "after": 115785,
+      "delta_bytes": 0
+    },
+    "ui_styles_css": {
+      "before": 25430,
+      "after": 25430,
+      "delta_bytes": 0
+    },
+    "web_dist_static_app_js": {
+      "before": 85606,
+      "after": 85606,
+      "delta_bytes": 0
+    }
+  }
+}

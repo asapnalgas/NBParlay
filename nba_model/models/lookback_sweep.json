@@ -1,0 +1,65 @@
+[
+  {
+    "lookback": 14,
+    "overall_pct": 33.23834505432021,
+    "operational_pct": 17.992649808746386,
+    "rows": 7572,
+    "seconds": 40.1
+  },
+  {
+    "lookback": 21,
+    "overall_pct": 30.773785612843756,
+    "operational_pct": 18.7784055846501,
+    "rows": 8049,
+    "seconds": 41.3
+  },
+  {
+    "lookback": 28,
+    "overall_pct": 37.30658534578734,
+    "operational_pct": 23.743042026003454,
+    "rows": 11628,
+    "seconds": 45.5
+  },
+  {
+    "lookback": 35,
+    "overall_pct": 31.78557115018302,
+    "operational_pct": 25.004363325886402,
+    "rows": 15135,
+    "seconds": 49.2
+  },
+  {
+    "lookback": 42,
+    "overall_pct": 33.24808216579072,
+    "operational_pct": 27.533698310925317,
+    "rows": 18402,
+    "seconds": 52.4
+  },
+  {
+    "lookback": 49,
+    "overall_pct": 35.317019067157574,
+    "operational_pct": 25.985690375122932,
+    "rows": 21858,
+    "seconds": 55.9
+  },
+  {
+    "lookback": 56,
+    "overall_pct": 33.95333400647914,
+    "operational_pct": 28.827399734250136,
+    "rows": 25011,
+    "seconds": 60.8
+  },
+  {
+    "lookback": 70,
+    "overall_pct": 43.424285632833154,
+    "operational_pct": 33.796520007242144,
+    "rows": 32157,
+    "seconds": 66.1
+  },
+  {
+    "lookback": 84,
+    "overall_pct": 35.53461861557928,
+    "operational_pct": 30.423268767506904,
+    "rows": 37416,
+    "seconds": 82.8
+  }
+]

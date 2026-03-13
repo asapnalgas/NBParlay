@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NBA Prediction Engine</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Local Prediction Engine</p>
+          <h1>NBA projections built for fast decision-making, not spreadsheet hunting.</h1>
+          <p class="lede">
+            Starter-first board with live sync, injury context, lineup context, and clear guardrails for
+            what is actionable vs what should be a pass.
+          </p>
+        </div>
+        <div class="hero-panel">
+          <div class="stat-tile">
+            <span class="stat-label">Board style</span>
+            <strong>Starter-first player cards</strong>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-label">Core markets</span>
+            <strong>PTS, REB, AST, PRA, 3PM, STL, BLK, TOV</strong>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-label">Live behavior</span>
+            <strong>Auto-refresh + in-game updates</strong>
+          </div>
+          <div class="hero-mode-controls">
+            <button id="developer-mode-toggle" type="button" class="button ghost">Developer Mode: Off</button>
+            <p id="developer-mode-status" class="muted">
+              Public mode is active. Advanced data/model controls are hidden.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card board-card">
+        <div class="card-head board-head">
+          <div>
+            <h2>Player Projection Board</h2>
+            <p>PrizePicks-style player cards with starter-first ranking, playable-default filtering, pregame anchors, confidence/error bands, and line cross-reference when imported.</p>
+          </div>
+          <div class="board-controls">
+            <label class="board-control">
+              <span>Slate Date</span>
+              <select id="board-date-select"></select>
+            </label>
+            <label class="board-control board-control-search">
+              <span>Search Player</span>
+              <input id="board-search" type="search" placeholder="Search by name, team, or opponent" />
+            </label>
+            <label class="board-control">
+              <span>View</span>
+              <select id="board-view-filter">
+                <option value="all" selected>All Players (Default)</option>
+                <option value="playable">Playable Only</option>
+                <option value="starters">Starters Only</option>
+                <option value="high_conf">High Confidence (≤10% error)</option>
+                <option value="actionable">Actionable (Guardrail Passed)</option>
+                <option value="no_bet">No Bet (Guardrail Triggered)</option>
+                <option value="non_starters">Likely Non-Starters</option>
+                <option value="high_error">High Error (&gt;10%)</option>
+              </select>
+            </label>
+            <label class="board-control">
+              <span>Sort</span>
+              <select id="board-sort">
+                <option value="smart" selected>Smart Rank (Default)</option>
+                <option value="confidence_desc">Highest Confidence</option>
+                <option value="error_asc">Lowest Error %</option>
+                <option value="edge_desc">Strongest Edge</option>
+                <option value="points_desc">Highest PTS Projection</option>
+                <option value="pra_desc">Highest PRA Projection</option>
+                <option value="starter_prob_desc">Highest Starter Probability</option>
+                <option value="name_asc">Alphabetical</option>
+              </select>
+            </label>
+            <label class="board-control">
+              <span>Board Mode</span>
+              <select id="board-layout-mode">
+                <option value="best_of_both" selected>Best of Both</option>
+                <option value="rotowire">Roto-Style Dense</option>
+                <option value="betr">Betr-Style Cards</option>
+              </select>
+            </label>
+          </div>
+          <div id="board-quick-chips" class="board-quick-chips">
+            <button type="button" class="quick-chip active" data-chip="all">All</button>
+            <button type="button" class="quick-chip" data-chip="live">Live Now</button>
+            <button type="button" class="quick-chip" data-chip="starters">Confirmed Starters</button>
+            <button type="button" class="quick-chip" data-chip="popular">Popular High-Confidence</button>
+            <button type="button" class="quick-chip" data-chip="actionable">Actionable Only</button>
+            <button type="button" class="quick-chip" data-chip="watchlist">My Watchlist</button>
+          </div>
+          <div id="board-freshness" class="board-freshness"></div>
+          <div id="board-legend" class="board-legend"></div>
+        </div>
+        <div class="board-action-row">
+          <button id="board-refresh" class="button strong">Refresh Board</button>
+          <button id="board-daily-refresh" class="button strong alt">Run Daily Refresh (Sync + Train + Predict + Recheck)</button>
+          <button id="board-reset-filters" class="button strong ghost">Reset Filters</button>
+        </div>
+        <div id="ui-auto-refresh-status" class="auto-refresh-status"></div>
+        <div id="board-cross-reference" class="board-cross-reference"></div>
+        <div id="board-summary" class="board-summary-grid"></div>
+        <div id="board-top-edges" class="board-top-edges"></div>
+        <div id="board-game-hub" class="board-game-hub"></div>
+        <div id="board-groups" class="board-groups"></div>
+        <pre id="board-output" class="output"></pre>
+      </section>
+
+      <section class="grid two-up dev-only">
+        <article class="card">
+          <div class="card-head">
+            <h2>1. Historical Training Data</h2>
+            <p>One row per player-game with required outcomes and any optional pre-game context columns.</p>
+          </div>
+          <label class="upload-box">
+            <input id="training-file" type="file" accept=".csv" />
+            <span>Choose training CSV</span>
+          </label>
+          <button id="upload-training" class="button">Upload Training Data</button>
+          <div id="training-status" class="muted"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>2. Upcoming Slate</h2>
+            <p>Upload future rows with the same pre-game context fields. Leave box-score outcomes blank or omit them.</p>
+          </div>
+          <label class="upload-box">
+            <input id="upcoming-file" type="file" accept=".csv" />
+            <span>Choose upcoming slate CSV</span>
+          </label>
+          <button id="upload-upcoming" class="button alt">Upload Upcoming Slate</button>
+          <div id="upcoming-status" class="muted"></div>
+        </article>
+      </section>
+
+      <section class="grid two-up">
+        <article class="card dev-only">
+          <div class="card-head">
+            <h2>3. Context Feed</h2>
+            <p>Optional continuously refreshed context rows for injuries, suspensions, minutes, salaries, lines, and other pre-game variables.</p>
+          </div>
+          <label class="upload-box">
+            <input id="context-file" type="file" accept=".csv" />
+            <span>Choose context CSV</span>
+          </label>
+          <button id="upload-context" class="button">Upload Context Feed</button>
+          <div id="context-status" class="muted"></div>
+        </article>
+
+        <article class="card live-card">
+          <div class="card-head">
+            <h2>4. Live Automation</h2>
+            <p>Poll live feeds continuously, refresh in-game projections every 10 seconds, and run scheduled retraining/optimization cycles.</p>
+          </div>
+          <div id="live-summary" class="live-summary"></div>
+          <div class="button-row">
+            <button id="live-start" class="button strong">Start Live Sync</button>
+            <button id="live-stop" class="button alt strong">Stop</button>
+          </div>
+          <div class="button-row">
+            <button id="live-sync-now" class="button strong">Sync Now</button>
+            <button id="live-in-game-sync-now" class="button strong alt">Refresh In-Game Projections</button>
+          </div>
+          <pre id="live-output" class="output"></pre>
+          <pre id="automation-output" class="output"></pre>
+        </article>
+      </section>
+
+      <section class="grid two-up dev-only">
+        <article class="card">
+          <div class="card-head">
+            <h2>5. Season Priors</h2>
+            <p>Upload or paste aggregate player-season baselines. These are used as priors, not as game history.</p>
+          </div>
+          <label class="upload-box">
+            <input id="season-priors-file" type="file" accept=".csv" />
+            <span>Choose season priors CSV</span>
+          </label>
+          <div class="button-row">
+            <button id="upload-season-priors" class="button">Upload CSV</button>
+            <button id="paste-season-priors" class="button alt">Import Pasted Text</button>
+          </div>
+          <textarea id="season-priors-text" class="paste-box" placeholder="Paste the season-summary table here..."></textarea>
+          <pre id="season-priors-status" class="output"></pre>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>6. PrizePicks Lines</h2>
+            <p>Upload or paste player lines, then generate projection-vs-line edges from the latest model output.</p>
+          </div>
+          <label class="upload-box">
+            <input id="prizepicks-file" type="file" accept=".csv" />
+            <span>Choose PrizePicks lines CSV</span>
+          </label>
+          <div class="button-row">
+            <button id="upload-prizepicks" class="button">Upload CSV</button>
+            <button id="paste-prizepicks" class="button alt">Import Pasted Text</button>
+          </div>
+          <textarea id="prizepicks-text" class="paste-box" placeholder="Paste lines with player_name, team, game_date, market, line..."></textarea>
+          <pre id="prizepicks-status" class="output"></pre>
+        </article>
+      </section>
+
+      <section class="grid action-grid dev-only">
+        <article class="card action-card">
+          <h2>7. Train Engine</h2>
+          <p>Build target-specific models from your historical logs using only pre-game features.</p>
+          <button id="train-engine" class="button strong">Train Models</button>
+          <pre id="train-output" class="output"></pre>
+        </article>
+
+        <article class="card action-card">
+          <h2>8. Generate Predictions</h2>
+          <p>Project the next slate. Use full-history scoring only when you want to inspect fitted values.</p>
+          <label class="checkbox-row">
+            <input id="predict-all" type="checkbox" />
+            <span>Predict every row instead of only blank future rows</span>
+          </label>
+          <button id="run-predictions" class="button strong alt">Run Predictions</button>
+          <pre id="predict-output" class="output"></pre>
+        </article>
+
+        <article class="card action-card">
+          <h2>9. Recheck Past Predictions</h2>
+          <p>Run historical validation against training rows and review MAE / error by target.</p>
+          <label class="checkbox-row">
+            <span>Lookback days (optional)</span>
+            <input id="recheck-lookback-days" type="number" min="0" placeholder="Leave blank for all data" />
+          </label>
+          <label class="checkbox-row">
+            <span>Sample rows (optional)</span>
+            <input id="recheck-sample-rows" type="number" min="0" placeholder="0 = latest all rows" />
+          </label>
+          <button id="run-recheck" class="button strong">Run Recheck</button>
+          <pre id="recheck-output" class="output"></pre>
+        </article>
+      </section>
+
+      <section class="grid two-up dev-only">
+        <article class="card action-card">
+          <h2>9. PrizePicks Edges</h2>
+          <p>Compare imported lines to the latest projections and surface Higher, Lower, or Pass recommendations.</p>
+          <label class="checkbox-row">
+            <span>Optional slate date</span>
+            <input id="prizepicks-slate-date" type="date" />
+          </label>
+          <button id="generate-prizepicks-edges" class="button strong alt">Generate Edges</button>
+          <pre id="prizepicks-edges-output" class="output"></pre>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>Coverage Diagnostics</h2>
+            <p>Quick read on current data coverage and confidence flags.</p>
+          </div>
+          <pre id="coverage-output" class="output"></pre>
+        </article>
+      </section>
+
+      <section class="grid two-up">
+        <article class="card">
+          <div class="card-head">
+            <h2>Live Sources</h2>
+            <p>External feeds powering schedule, scores, boxscores, injuries, and odds context.</p>
+          </div>
+          <div class="button-row">
+            <button id="refresh-live-sources" class="button">Refresh Source Status</button>
+            <button id="sync-and-refresh-live" class="button alt">Sync + Refresh</button>
+          </div>
+          <div id="live-source-status" class="muted"></div>
+          <div id="live-sources-list" class="source-grid"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>Live Projection Links</h2>
+            <p>Open the latest generated files and run on-demand update actions directly from the UI.</p>
+          </div>
+          <div id="live-local-links" class="source-grid"></div>
+          <div id="live-action-buttons" class="action-button-grid"></div>
+          <pre id="live-action-output" class="output"></pre>
+        </article>
+      </section>
+
+      <section class="grid two-up dev-only">
+        <article class="card">
+          <div class="card-head">
+            <h2>Dataset Schema</h2>
+            <p>Minimum fields, optional context, and fantasy support columns.</p>
+          </div>
+          <div id="schema-block" class="schema-grid"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>Downloads</h2>
+            <p>Grab the trained bundle, metrics, and latest projections.</p>
+          </div>
+          <div id="download-links" class="download-list"></div>
+        </article>
+      </section>
+
+      <section class="card dev-only">
+        <div class="card-head">
+          <h2>Data Pipeline Diagnostics</h2>
+          <p>Bronze/Silver/Gold contract metadata, recent ingestion events, and rejection counters.</p>
+        </div>
+        <div class="button-row">
+          <button id="refresh-pipeline-status" class="button">Refresh Pipeline Status</button>
+          <button id="refresh-drift-audit" class="button ghost">Run Drift Audit</button>
+        </div>
+        <pre id="pipeline-output" class="output"></pre>
+        <pre id="drift-output" class="output"></pre>
+      </section>
+
+      <section class="card dev-only">
+        <div class="card-head">
+          <h2>Latest Predictions</h2>
+          <p>Preview of the latest output file.</p>
+        </div>
+        <div id="predictions-table" class="table-shell"></div>
+      </section>
+
+      <section class="card dev-only">
+        <div class="card-head">
+          <h2>PrizePicks Edge Preview</h2>
+          <p>Preview of the latest generated edges file.</p>
+        </div>
+        <div id="prizepicks-edges-table" class="table-shell"></div>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,403 @@
+{
+  "required_training_columns": [
+    "player_name",
+    "game_date",
+    "home",
+    "opponent",
+    "points",
+    "rebounds",
+    "assists"
+  ],
+  "required_live_automation_columns": [
+    "player_name",
+    "game_date",
+    "team",
+    "opponent",
+    "home"
+  ],
+  "optional_context_columns": [
+    "team",
+    "position",
+    "starter",
+    "starter_probability",
+    "starter_certainty",
+    "lineup_status_label",
+    "lineup_status_confidence",
+    "age",
+    "height_inches",
+    "weight_lbs",
+    "injury_status",
+    "health_status",
+    "suspension_status",
+    "injury_risk_score",
+    "injury_minutes_multiplier",
+    "home_court_points_boost",
+    "home_court_minutes_boost",
+    "hometown_game_flag",
+    "hometown_advantage_score",
+    "teammate_active_core_count",
+    "teammate_out_core_count",
+    "teammate_usage_vacancy",
+    "teammate_continuity_score",
+    "teammate_star_out_flag",
+    "teammate_synergy_points",
+    "teammate_synergy_rebounds",
+    "teammate_synergy_assists",
+    "teammate_on_off_points_delta",
+    "teammate_on_off_rebounds_delta",
+    "teammate_on_off_assists_delta",
+    "shot_style_arc_label",
+    "shot_style_arc_score",
+    "shot_style_release_label",
+    "shot_style_release_score",
+    "shot_style_volume_index",
+    "shot_style_miss_pressure",
+    "team_shot_miss_pressure",
+    "opponent_shot_miss_pressure",
+    "opponent_avg_height_inches",
+    "opponent_height_advantage_inches",
+    "shot_style_tall_mismatch_penalty",
+    "shot_style_pace_bonus",
+    "shot_style_rebound_environment",
+    "playstyle_shot_profile_source",
+    "playstyle_primary_role",
+    "playstyle_scoring_mode",
+    "playstyle_rim_rate",
+    "playstyle_mid_range_rate",
+    "playstyle_three_rate",
+    "playstyle_catch_shoot_rate",
+    "playstyle_pull_up_rate",
+    "playstyle_drive_rate",
+    "playstyle_assist_potential",
+    "playstyle_paint_touch_rate",
+    "playstyle_post_touch_rate",
+    "playstyle_elbow_touch_rate",
+    "playstyle_rebound_chance_rate",
+    "playstyle_offball_activity_rate",
+    "playstyle_usage_proxy",
+    "playstyle_defensive_event_rate",
+    "playstyle_context_confidence",
+    "news_article_count_24h",
+    "news_injury_mentions_24h",
+    "news_starting_mentions_24h",
+    "news_minutes_limit_mentions_24h",
+    "news_positive_mentions_24h",
+    "news_negative_mentions_24h",
+    "news_risk_score",
+    "news_confidence_score",
+    "family_context",
+    "expected_minutes",
+    "expected_minutes_confidence",
+    "minutes_projection_error_estimate",
+    "pregame_lock_confidence",
+    "pregame_lock_tier",
+    "pregame_lock_window_stage",
+    "pregame_lock_minutes_to_tipoff",
+    "pregame_lock_window_weight",
+    "pregame_line_freshness_score",
+    "pregame_min_line_age_minutes",
+    "commence_time_utc",
+    "salary_dk",
+    "salary_fd",
+    "implied_team_total",
+    "game_total",
+    "spread",
+    "line_points",
+    "line_points_consensus",
+    "line_points_stddev",
+    "line_points_books_count",
+    "line_points_snapshot_age_minutes",
+    "line_points_open",
+    "line_points_close",
+    "line_points_movement",
+    "line_rebounds",
+    "line_rebounds_consensus",
+    "line_rebounds_stddev",
+    "line_rebounds_books_count",
+    "line_rebounds_snapshot_age_minutes",
+    "line_rebounds_open",
+    "line_rebounds_close",
+    "line_rebounds_movement",
+    "line_assists",
+    "line_assists_consensus",
+    "line_assists_stddev",
+    "line_assists_books_count",
+    "line_assists_snapshot_age_minutes",
+    "line_assists_open",
+    "line_assists_close",
+    "line_assists_movement",
+    "line_pra",
+    "line_pra_consensus",
+    "line_pra_stddev",
+    "line_pra_books_count",
+    "line_pra_snapshot_age_minutes",
+    "line_pra_open",
+    "line_pra_close",
+    "line_pra_movement",
+    "line_three_points_made",
+    "line_points_rebounds",
+    "line_points_assists",
+    "line_rebounds_assists",
+    "line_steals",
+    "line_blocks",
+    "line_turnovers",
+    "line_steals_blocks",
+    "rest_days",
+    "travel_miles"
+  ],
+  "optional_support_columns_for_fantasy": [
+    "steals",
+    "blocks",
+    "turnovers",
+    "three_points_made"
+  ],
+  "recommended_historical_stat_columns": [
+    "points",
+    "rebounds",
+    "assists",
+    "steals",
+    "blocks",
+    "turnovers",
+    "three_points_made",
+    "minutes",
+    "field_goals_made",
+    "field_goals_attempted",
+    "free_throws_made",
+    "free_throws_attempted",
+    "offensive_rebounds",
+    "defensive_rebounds",
+    "personal_fouls",
+    "plus_minus",
+    "usage_rate"
+  ],
+  "notes": [
+    "Use one row per player per game.",
+    "Only include information known before tip-off in current-row context columns.",
+    "Same-game box score stats should only appear in historical rows; upcoming rows should leave them blank or omit them.",
+    "Fantasy projections require historical steals, blocks, turnovers, and three_points_made for component-based scoring.",
+    "Live auto-generation of upcoming slates works best when historical rows include a team column.",
+    "Use context_updates.csv for continuously refreshed availability, suspension, odds, and minutes context.",
+    "The live engine also writes provider_context_updates.csv for automated odds and injury-source updates.",
+    "Teammate-composition and hourly news context are optional live features and should only use pre-tipoff information.",
+    "Optional player market-line context (line_points, line_rebounds, line_assists, line_pra, line_three_points_made) can improve projection calibration.",
+    "Text-heavy columns such as family context work better when encoded into short structured categories instead of free-form notes.",
+    "Season priors from aggregate player-season tables belong in season_priors.csv, not training_data.csv."
+  ],
+  "data_contracts": {
+    "zones": {
+      "bronze": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/bronze",
+      "silver": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/silver",
+      "gold": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/gold",
+      "rejections": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/rejections",
+      "quarantine": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/quarantine",
+      "events": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/ingestion_events.jsonl",
+      "manifest": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/pipeline/ingestion_manifest.json",
+      "policy": "/Users/josephdelallera/Documents/Playground 2/nba_model/config/data_pipeline.json"
+    },
+    "contracts": {
+      "training_data": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/training_data.csv",
+        "granularity": "one row per player per completed game",
+        "required_columns": [
+          "player_name",
+          "game_date",
+          "home",
+          "opponent",
+          "points",
+          "rebounds",
+          "assists"
+        ],
+        "optional_columns": [
+          "team",
+          "minutes",
+          "steals",
+          "blocks",
+          "turnovers",
+          "three_points_made"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "upcoming_slate": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv",
+        "granularity": "one row per player per upcoming game",
+        "required_columns": [
+          "player_name",
+          "game_date",
+          "team",
+          "opponent",
+          "home"
+        ],
+        "optional_columns": [
+          "starter",
+          "starter_probability",
+          "expected_minutes",
+          "injury_status"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "season_priors": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/season_priors.csv",
+        "granularity": "one row per player-team aggregate season prior",
+        "required_columns": [
+          "player_name",
+          "team",
+          "gp",
+          "min_season",
+          "pts_season",
+          "reb_season",
+          "ast_season"
+        ],
+        "optional_columns": [
+          "tov_season",
+          "stl_season",
+          "blk_season",
+          "fp_season",
+          "dd2_season",
+          "td3_season"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "prizepicks_lines": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/prizepicks_lines.csv",
+        "granularity": "one row per player-market line capture",
+        "required_columns": [
+          "player_name",
+          "game_date",
+          "market",
+          "line"
+        ],
+        "optional_columns": [
+          "team",
+          "selection_type",
+          "source",
+          "captured_at"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "context_updates": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/context_updates.csv",
+        "granularity": "one row per player-game context override",
+        "required_columns": [
+          "player_name",
+          "game_date"
+        ],
+        "optional_columns": [
+          "injury_status",
+          "starter_probability",
+          "expected_minutes"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "provider_context_updates": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv",
+        "granularity": "one row per player-game provider context",
+        "required_columns": [
+          "player_name",
+          "game_date"
+        ],
+        "optional_columns": [
+          "line_points",
+          "line_rebounds",
+          "line_assists",
+          "line_pra",
+          "news_risk_score"
+        ],
+        "zone_targets": [
+          "bronze",
+          "silver"
+        ]
+      },
+      "predictions": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/predictions.csv",
+        "granularity": "one row per player-game projection",
+        "required_columns": [
+          "player_name",
+          "game_date",
+          "team",
+          "opponent",
+          "predicted_points",
+          "predicted_rebounds",
+          "predicted_assists"
+        ],
+        "optional_columns": [
+          "predicted_pra",
+          "predicted_draftkings_points",
+          "predicted_fanduel_points",
+          "confidence_flag"
+        ],
+        "zone_targets": [
+          "gold"
+        ]
+      },
+      "prizepicks_edges": {
+        "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/prizepicks_edges.csv",
+        "granularity": "one row per player-market edge computation",
+        "required_columns": [
+          "player_name",
+          "game_date",
+          "market",
+          "line",
+          "projection",
+          "edge",
+          "recommendation"
+        ],
+        "optional_columns": [
+          "team",
+          "confidence_flag",
+          "historical_games_used",
+          "season_priors_available"
+        ],
+        "zone_targets": [
+          "gold"
+        ]
+      }
+    },
+    "uniqueness_policies": {
+      "training_data": [
+        "player_key",
+        "game_date",
+        "opponent",
+        "home"
+      ],
+      "season_priors": [
+        "player_key",
+        "team"
+      ],
+      "prizepicks_lines": [
+        "player_key",
+        "team",
+        "game_date",
+        "market"
+      ],
+      "upcoming_slate": [
+        "player_key",
+        "team",
+        "game_date",
+        "opponent",
+        "home"
+      ],
+      "provider_context_updates": [
+        "player_key",
+        "team",
+        "game_date",
+        "opponent",
+        "home"
+      ]
+    }
+  }
+}

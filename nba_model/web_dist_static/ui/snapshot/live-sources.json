@@ -1,0 +1,260 @@
+{
+  "running": true,
+  "updated_at": "2026-03-11T18:22:23.449937+00:00",
+  "sources": [
+    {
+      "name": "PrizePicks Board (Manual)",
+      "description": "Manual prop board source for line entry. Public API is not available.",
+      "url": "https://app.prizepicks.com/board",
+      "page_url": "https://www.prizepicks.com/sport/nba",
+      "enabled": false,
+      "rows": null,
+      "last_error": "Requires authenticated browser session; import lines manually in this app.",
+      "note": "Use the PrizePicks Lines upload/paste section to ingest board lines from these pages."
+    },
+    {
+      "name": "PrizePicks Live Squares (Manual)",
+      "description": "Manual Live Squares page reference. No public API endpoint for automated ingestion.",
+      "url": "https://www.prizepicks.com/livesquares",
+      "enabled": false,
+      "rows": null,
+      "last_error": "Requires authenticated browser session; import lines manually in this app.",
+      "note": "Reference this page for Live Squares lines and paste/import them into PrizePicks Lines."
+    },
+    {
+      "name": "NBA Schedule Feed",
+      "description": "Official upcoming game schedule JSON used for slate generation.",
+      "url": "https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_9.json",
+      "enabled": true,
+      "rows": 31,
+      "last_error": null
+    },
+    {
+      "name": "NBA Live Scoreboard Feed",
+      "description": "Official same-day live game status and scoreboard feed.",
+      "url": "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
+      "enabled": true,
+      "rows": 6,
+      "last_error": null
+    },
+    {
+      "name": "NBA Boxscore Feed Template",
+      "description": "Official completed-game player boxscore feed template.",
+      "url": "https://cdn.nba.com/static/json/liveData/boxscore/boxscore_{game_id}.json",
+      "enabled": true,
+      "rows": 0,
+      "last_error": null
+    },
+    {
+      "name": "NBA Stats Playstyle Profiles",
+      "description": "Player shot/playstyle context from NBA Stats endpoints (dash player stats, touch-point stats, shot locations).",
+      "url": "https://stats.nba.com/stats",
+      "docs_url": "https://stats.nba.com/",
+      "enabled": true,
+      "rows": 250,
+      "last_error": "Command '['curl', '-fsSL', '--retry', '0', '--connect-timeout', '8', '--max-time', '8', '--http1.1', '-A', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36', '-H', 'Accept: application/json, text/plain, */*', '-H', 'Referer: https://www.nba.com/', '-H', 'Origin: https://www.nba.com', '-H', 'x-nba-stats-origin: stats', '-H', 'x-nba-stats-token: true', 'https://stats.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&Division=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=0&LeagueID=00&Location=&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PlayerExperience=&PlayerPosition=&Season=2025-26&SeasonSegment=&SeasonType=Regular+Season&StarterBench=&TeamID=0&VsConference=&VsDivision=&Weight=&MeasureType=Base&PaceAdjust=N&PerMode=PerGame&Period=0&PlusMinus=N&Rank=N&ShotClockRange=']' timed out after 8 seconds",
+      "note": "Using cached playstyle profiles after live fetch failure."
+    },
+    {
+      "name": "Player Profile / Bio Context",
+      "description": "Structured player profile context used for age/role/background stability features.",
+      "url": "https://en.wikipedia.org/api/rest_v1/page/summary/{title}",
+      "enabled": true,
+      "rows": null,
+      "last_error": null,
+      "note": null
+    },
+    {
+      "name": "News Context (Google/ESPN/RotoWire RSS)",
+      "description": "Rolling news feed ingestion for lineup/injury/role volatility adjustments.",
+      "url": "https://news.google.com/rss/search?q={query}&hl=en-US&gl=US&ceid=US:en",
+      "docs_url": "https://news.google.com/",
+      "enabled": true,
+      "rows": 213,
+      "last_error": null,
+      "note": null
+    },
+    {
+      "name": "The Odds API (v4)",
+      "description": "Lines/markets context source for spreads, totals, and implied team totals.",
+      "url": "https://api.the-odds-api.com/v4",
+      "docs_url": "https://the-odds-api.com/liveapi/guides/v4/",
+      "enabled": true,
+      "rows": 179,
+      "last_error": "Command '['curl', '-fsSL', '--retry', '0', '--connect-timeout', '8', '--max-time', '8', '--http1.1', '-A', 'NBAPredictionEngine/1.0', 'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey=[redacted]&regions=us&markets=spreads%2Ctotals&bookmakers=draftkings%2Cfanduel&oddsFormat=american&dateFormat=iso']' returned non-zero exit status 22.",
+      "note": "Odds provider returned data, but none of the events matched the current slate."
+    },
+    {
+      "name": "The Odds API Player Props",
+      "description": "Per-player market context from pregame player prop markets when credits are available.",
+      "url": "https://api.the-odds-api.com/v4",
+      "docs_url": "https://the-odds-api.com/liveapi/guides/v4/",
+      "enabled": true,
+      "rows": 0,
+      "last_error": null,
+      "note": "No upcoming NBA odds events were available for player props."
+    },
+    {
+      "name": "RotoWire PrizePicks Lines",
+      "description": "Public RotoWire Picks feed used to pull live PrizePicks-style prop lines and compare/adjust against other providers.",
+      "url": "https://www.rotowire.com/picks/api/lines.php",
+      "page_url": "https://www.rotowire.com/picks/prizepicks/",
+      "enabled": true,
+      "rows": 73,
+      "last_error": null,
+      "note": null
+    },
+    {
+      "name": "BETR Board (Manual / Limited Public Access)",
+      "description": "BETR board reference. This app tracks BETR as a manual source because a stable public prop-line API is not currently available.",
+      "url": "https://www.betr.app/",
+      "page_url": "https://www.betr.app/",
+      "enabled": false,
+      "rows": 0,
+      "last_error": null,
+      "note": "No stable public BETR props API is available; use manual line import for BETR entries."
+    },
+    {
+      "name": "RotoWire Benchmark",
+      "description": "Formal benchmark of model vs market-line anchor over rolling completed games.",
+      "url": "/downloads/rotowire_benchmark_report.json",
+      "enabled": true,
+      "rows": 451,
+      "last_error": null,
+      "note": "Last report generated at 2026-03-11T18:17:45.130032+00:00"
+    },
+    {
+      "name": "NBA Daily Lineups Feed",
+      "description": "Confirmed/expected lineup statuses and positions for starter context.",
+      "url": "https://stats.nba.com/js/data/leaders/00_daily_lineups_YYYYMMDD.json",
+      "enabled": true,
+      "rows": 60,
+      "last_error": "Command '['curl', '-fsSL', '--retry', '0', '--connect-timeout', '8', '--max-time', '8', '--http1.1', '-A', 'NBAPredictionEngine/1.0', '-H', 'Accept: application/json, text/plain, */*', '-H', 'Referer: https://www.nba.com/', 'https://stats.nba.com/js/data/leaders/00_daily_lineups_20260312.json']' returned non-zero exit status 22.",
+      "note": null
+    },
+    {
+      "name": "BALDONTLIE Injuries API",
+      "description": "Structured injury provider endpoint used when available.",
+      "url": "https://api.balldontlie.io/v1/player_injuries",
+      "docs_url": "https://docs.balldontlie.io/",
+      "enabled": true,
+      "rows": 25,
+      "last_error": "Command '['curl', '-fsSL', '--retry', '0', '--connect-timeout', '10', '--max-time', '10', '--http1.1', '-A', 'NBAPredictionEngine/1.0', '-H', 'Authorization: [redacted]', 'https://api.balldontlie.io/v1/player_injuries?per_page=100&team_ids%5B%5D=2&team_ids%5B%5D=4&team_ids%5B%5D=6&team_ids%5B%5D=8&team_ids%5B%5D=11&team_ids%5B%5D=13&team_ids%5B%5D=18&team_ids%5B%5D=19&team_ids%5B%5D=20&team_ids%5B%5D=21&team_ids%5B%5D=22&team_ids%5B%5D=26&team_ids%5B%5D=28&team_ids%5B%5D=29']' returned non-zero exit status 22.",
+      "note": "BALDONTLIE request failed in this cycle; using official NBA injury report fallback."
+    },
+    {
+      "name": "NBA Official Injury Report",
+      "description": "Official NBA injury report page and latest report PDF when discovered.",
+      "url": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-03-11_12_45PM.pdf",
+      "page_url": "https://official.nba.com/nba-injury-report-2025-26-season/",
+      "enabled": true,
+      "rows": 33,
+      "last_error": null
+    }
+  ],
+  "local_links": [
+    {
+      "name": "Current Predictions (CSV)",
+      "description": "Latest projected player outputs for all available slates.",
+      "url": "/downloads/predictions.csv"
+    },
+    {
+      "name": "Upcoming Slate (CSV)",
+      "description": "Current future player-game rows being scored by the model.",
+      "url": "/downloads/upcoming_slate.csv"
+    },
+    {
+      "name": "Provider Context Updates (CSV)",
+      "description": "Latest merged odds/injury provider context aligned to players.",
+      "url": "/downloads/provider_context_updates.csv"
+    },
+    {
+      "name": "Historical Training Data (CSV)",
+      "description": "Canonical one-row-per-player-game training history file.",
+      "url": "/downloads/training_data.csv"
+    },
+    {
+      "name": "Live Sync State (JSON)",
+      "description": "Current live sync state, provider stats, and latest sync metadata.",
+      "url": "/downloads/live_sync_state.json"
+    },
+    {
+      "name": "Engine Metrics (JSON)",
+      "description": "Latest training metrics for each prediction target.",
+      "url": "/downloads/engine_metrics.json"
+    },
+    {
+      "name": "Engine Recheck (JSON)",
+      "description": "Historical validation metrics and target-by-target percent-error summaries.",
+      "url": "/downloads/engine_recheck.json"
+    },
+    {
+      "name": "RotoWire Benchmark Snapshots (CSV)",
+      "description": "Timestamped projection-vs-line snapshots used for formal benchmark evaluation.",
+      "url": "/downloads/rotowire_benchmark_snapshots.csv"
+    },
+    {
+      "name": "RotoWire Benchmark Report (JSON)",
+      "description": "2-4 week benchmark summary with hit rate, CLV, calibration, and per-market deltas.",
+      "url": "/downloads/rotowire_benchmark_report.json"
+    },
+    {
+      "name": "RotoWire Benchmark Joined Rows (CSV)",
+      "description": "Row-level join of snapshot lines, model projections, and realized outcomes.",
+      "url": "/downloads/rotowire_benchmark_joined.csv"
+    }
+  ],
+  "actions": [
+    {
+      "label": "Sync Live Feeds Now",
+      "endpoint": "/api/live/sync-async",
+      "method": "POST"
+    },
+    {
+      "label": "Refresh In-Game Projections Now",
+      "endpoint": "/api/live/in-game-sync",
+      "method": "POST"
+    },
+    {
+      "label": "Train Models Now",
+      "endpoint": "/api/train-async",
+      "method": "POST",
+      "developer_only": true
+    },
+    {
+      "label": "Run Predictions Now",
+      "endpoint": "/api/predict",
+      "method": "POST",
+      "developer_only": true
+    },
+    {
+      "label": "Capture Benchmark Snapshot",
+      "endpoint": "/api/benchmark/capture",
+      "method": "POST",
+      "developer_only": true
+    },
+    {
+      "label": "Run RotoWire Benchmark",
+      "endpoint": "/api/benchmark/rotowire",
+      "method": "POST",
+      "developer_only": true
+    },
+    {
+      "label": "Run Recheck Now",
+      "endpoint": "/api/recheck",
+      "method": "POST",
+      "developer_only": true
+    },
+    {
+      "label": "Run Daily Refresh Pipeline",
+      "endpoint": "/api/daily/refresh-async",
+      "method": "POST",
+      "developer_only": true
+    },
+    {
+      "label": "Refresh Dashboard",
+      "endpoint": "/api/status",
+      "method": "GET"
+    }
+  ]
+}

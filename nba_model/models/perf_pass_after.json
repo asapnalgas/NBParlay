@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-03-11T20:35:42",
+  "port_used": 58046,
+  "startup_ms": 1771.18,
+  "endpoint_latency": {
+    "GET /api/status": {
+      "samples_ms": [
+        4.8,
+        4.4,
+        4.1,
+        4.21,
+        8.96,
+        4.1,
+        4.15
+      ],
+      "p50_ms": 4.21,
+      "p95_ms": 8.96
+    },
+    "GET /api/live/status": {
+      "samples_ms": [
+        5.4,
+        4.69,
+        4.58,
+        5.14,
+        4.61,
+        4.58,
+        4.63
+      ],
+      "p50_ms": 4.63,
+      "p95_ms": 5.4
+    },
+    "GET /api/live/sources": {
+      "samples_ms": [
+        4.49,
+        4.22,
+        4.15,
+        4.26,
+        4.68,
+        4.9,
+        4.17
+      ],
+      "p50_ms": 4.26,
+      "p95_ms": 4.9
+    },
+    "GET /api/player-board": {
+      "samples_ms": [
+        1195.27,
+        1151.58,
+        1235.45,
+        1183.08,
+        1204.52,
+        1391.55,
+        1356.75
+      ],
+      "p50_ms": 1204.52,
+      "p95_ms": 1391.55
+    },
+    "POST /api/live/sync-async": {
+      "samples_ms": [
+        2.7,
+        1.68,
+        0.58,
+        1.94,
+        0.51,
+        2.14,
+        0.59
+      ],
+      "p50_ms": 1.68,
+      "p95_ms": 2.7
+    },
+    "POST /api/live/in-game-sync": {
+      "samples_ms": [
+        1.68,
+        0.53,
+        1.54,
+        1.51,
+        1.52,
+        0.56,
+        1.95
+      ],
+      "p50_ms": 1.52,
+      "p95_ms": 1.95
+    }
+  },
+  "sync_sample_ms": 53631.36,
+  "hotspot_profile": {
+    "target": "build_player_board",
+    "elapsed_ms": 3514.5,
+    "cards": 109,
+    "tracemalloc_current_bytes": 3436325,
+    "tracemalloc_peak_bytes": 21953443,
+    "profile_text_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/player_board_profile_after.txt"
+  },
+  "secondary_profile": {
+    "target": "_load_recent_form_metrics",
+    "elapsed_ms": 2751.68,
+    "team_rows": 677,
+    "name_rows": 553,
+    "tracemalloc_current_bytes": 403550,
+    "tracemalloc_peak_bytes": 20723384,
+    "profile_text_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/recent_form_profile_after.txt"
+  },
+  "bundle_sizes_bytes": {
+    "ui": 7543916,
+    "web_dist": 363,
+    "web_dist_static": 7503878
+  },
+  "key_assets_bytes": {
+    "ui_app_js": 115785,
+    "ui_styles_css": 25430,
+    "web_dist_static_app_js": 85606
+  }
+}

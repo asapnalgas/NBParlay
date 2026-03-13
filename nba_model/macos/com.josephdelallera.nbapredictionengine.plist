@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.josephdelallera.nbapredictionengine</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/josephdelallera/nba_prediction_engine_runtime/venv/bin/python</string>
+    <string>/Users/josephdelallera/nba_prediction_engine_runtime/nba_model/app.py</string>
+    <string>--host</string>
+    <string>127.0.0.1</string>
+    <string>--port</string>
+    <string>8010</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/josephdelallera/nba_prediction_engine_runtime</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PYTHONUNBUFFERED</key>
+    <string>1</string>
+    <key>MPLCONFIGDIR</key>
+    <string>/Users/josephdelallera/nba_prediction_engine_runtime/nba_model/.matplotlib</string>
+  </dict>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>ThrottleInterval</key>
+  <integer>30</integer>
+  <key>StandardOutPath</key>
+  <string>/Users/josephdelallera/nba_prediction_engine_runtime/nba_model/logs/launchd.stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/josephdelallera/nba_prediction_engine_runtime/nba_model/logs/launchd.stderr.log</string>
+</dict>
+</plist>

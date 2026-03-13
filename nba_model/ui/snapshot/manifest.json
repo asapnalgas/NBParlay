@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-03-11T18:22:58.802683+00:00",
+  "snapshot_dir": "/Users/josephdelallera/Documents/Playground 2/nba_model/ui/snapshot",
+  "available_dates": [
+    "all",
+    "2026-03-11",
+    "2026-03-12"
+  ],
+  "files": [
+    "drift-audit.json",
+    "live-sources.json",
+    "manifest.json",
+    "pipeline.json",
+    "player-board-2026-03-11.json",
+    "player-board-2026-03-12.json",
+    "player-board-all.json",
+    "player-board.json",
+    "schema.json",
+    "status.json"
+  ]
+}

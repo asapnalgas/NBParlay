@@ -1,0 +1,34 @@
+{
+  "uniqueness_policies": {
+    "training_data": [
+      "player_key",
+      "game_date",
+      "opponent",
+      "home"
+    ],
+    "season_priors": [
+      "player_key",
+      "team"
+    ],
+    "prizepicks_lines": [
+      "player_key",
+      "team",
+      "game_date",
+      "market"
+    ],
+    "upcoming_slate": [
+      "player_key",
+      "team",
+      "game_date",
+      "opponent",
+      "home"
+    ],
+    "provider_context_updates": [
+      "player_key",
+      "team",
+      "game_date",
+      "opponent",
+      "home"
+    ]
+  }
+}
