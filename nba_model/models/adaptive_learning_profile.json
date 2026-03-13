@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-03-12T08:41:51.042136+00:00",
+  "generated_at": "2026-03-13T01:36:30.424468+00:00",
   "benchmark_join_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/rotowire_benchmark_joined.csv",
   "miss_log_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/prediction_miss_log.csv",
   "lookback_days": 45,
   "half_life_days": 10.0,
-  "rows_total": 704,
-  "rows_in_window": 704,
+  "rows_total": 706,
+  "rows_in_window": 706,
   "overall": {
-    "evaluated_rows": 704,
-    "miss_rate": 37.642,
-    "mean_abs_error": 5.0092,
-    "mean_abs_pct_error": 66.0901
+    "evaluated_rows": 706,
+    "miss_rate": 37.677,
+    "mean_abs_error": 4.9988,
+    "mean_abs_pct_error": 65.9808
   },
   "per_market": {
     "points": {
@@ -24,28 +24,28 @@
       "player_samples": {},
       "team_bias": {
         "CHA": 0.4901,
-        "TOR": -3.2292,
+        "HOU": -3.9,
         "MIN": -1.4928,
-        "SAC": -1.7392,
-        "HOU": -3.9
+        "TOR": -3.2292,
+        "SAC": -1.7392
       },
       "team_samples": {
         "CHA": 14,
-        "TOR": 15,
+        "HOU": 12,
         "MIN": 15,
-        "SAC": 13,
-        "HOU": 12
+        "TOR": 15,
+        "SAC": 13
       },
       "opponent_bias": {},
       "opponent_samples": {}
     },
     "rebounds": {
       "prediction_column": "predicted_rebounds",
-      "rows": 163,
-      "miss_rate": 45.399,
-      "mean_abs_error": 2.2728,
-      "mean_abs_pct_error": 54.1769,
-      "global_bias": 0.2417,
+      "rows": 164,
+      "miss_rate": 45.732,
+      "mean_abs_error": 2.269,
+      "mean_abs_pct_error": 54.0961,
+      "global_bias": 0.2498,
       "player_bias": {},
       "player_samples": {},
       "team_bias": {
@@ -63,11 +63,11 @@
     },
     "assists": {
       "prediction_column": "predicted_assists",
-      "rows": 104,
-      "miss_rate": 39.423,
-      "mean_abs_error": 1.712,
-      "mean_abs_pct_error": 59.7554,
-      "global_bias": 0.0672,
+      "rows": 105,
+      "miss_rate": 39.048,
+      "mean_abs_error": 1.7038,
+      "mean_abs_pct_error": 59.3144,
+      "global_bias": 0.0741,
       "player_bias": {},
       "player_samples": {},
       "team_bias": {
@@ -90,17 +90,17 @@
       "player_samples": {},
       "team_bias": {
         "MIN": -1.7971,
-        "TOR": -3.4313,
-        "SAC": -1.6199,
         "CHA": 0.9491,
-        "HOU": -5.2
+        "HOU": -5.2,
+        "SAC": -1.6199,
+        "TOR": -3.4313
       },
       "team_samples": {
         "MIN": 16,
-        "TOR": 15,
-        "SAC": 13,
         "CHA": 12,
-        "HOU": 13
+        "HOU": 13,
+        "SAC": 13,
+        "TOR": 15
       },
       "opponent_bias": {},
       "opponent_samples": {}

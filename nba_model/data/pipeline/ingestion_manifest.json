@@ -163,6 +163,78 @@
         "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpa3u12a6p/season_priors.csv"
       },
       "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpz4811ai0/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T00:24:27.789172+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpz4811ai0/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpahvce78z/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T00:33:03.374383+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpahvce78z/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpll8nkq3l/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T00:50:12.127375+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpll8nkq3l/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmph96f_861/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T00:59:30.202740+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmph96f_861/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpmd3zegr1/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T01:10:45.525611+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpmd3zegr1/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp0e_hzw5o/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T01:21:59.795474+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp0e_hzw5o/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpwzffr6lm/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T01:30:43.436937+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpwzffr6lm/season_priors.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_season_priors:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcyzg3tc_/season_priors.csv": {
+      "fingerprint": "05025806dfc16d13db913f4afe3335af96645dde9d3d61cc675dd2d2d612d878",
+      "updated_at": "2026-03-13T02:07:50.686893+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpcyzg3tc_/season_priors.csv"
+      },
+      "duplicate_of_previous": false
     }
   },
   "prizepicks_lines": {
@@ -462,12 +534,156 @@
         "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp7olodyvj/prizepicks_lines.csv"
       },
       "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpj6bbhi0v/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T00:24:27.743896+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpj6bbhi0v/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpp8t4mn3c/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T00:24:27.769295+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpp8t4mn3c/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp8cj_05jv/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T00:33:03.329508+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp8cj_05jv/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_se295e_/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T00:33:03.353216+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp_se295e_/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp292perqk/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T00:50:12.082701+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp292perqk/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpx36mfpe4/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T00:50:12.106137+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpx36mfpe4/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpq3k4ne0v/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T00:59:30.159593+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpq3k4ne0v/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpf9ljtd6k/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T00:59:30.183168+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpf9ljtd6k/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp96ywzcbr/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T01:10:45.483112+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp96ywzcbr/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp3ux9dch8/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T01:10:45.506093+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp3ux9dch8/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpkcq0z687/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T01:21:59.737386+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpkcq0z687/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp590ru28o/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T01:21:59.769364+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmp590ru28o/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpgj4tq_hg/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T01:30:43.379821+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpgj4tq_hg/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpxmn4nmyp/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T01:30:43.411995+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpxmn4nmyp/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpsdsjhme0/prizepicks_lines.csv": {
+      "fingerprint": "13a73f0060cecb1e2d628fe0d5df6a8620e21e93a01c2674ad8186ef29b2a256",
+      "updated_at": "2026-03-13T02:07:50.629085+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpsdsjhme0/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
+    },
+    "import_prizepicks_lines:/private/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpczvpyu3a/prizepicks_lines.csv": {
+      "fingerprint": "b6516d0edbd4b6da4f006f5199fabb644b451b4cb5814aeab6cc38611a98207c",
+      "updated_at": "2026-03-13T02:07:50.660351+00:00",
+      "metadata": {
+        "rows_in": 1,
+        "output_path": "/var/folders/5w/1rq5fs6d5f78t8flhgy41sl00000gn/T/tmpczvpyu3a/prizepicks_lines.csv"
+      },
+      "duplicate_of_previous": false
     }
   },
   "provider_context_updates": {
     "live_sync:provider_context_updates": {
-      "fingerprint": "604ee81aaff7229f6d2aa5895c24aa459b7f575fc98140857f35fedfbff4506a",
-      "updated_at": "2026-03-12T23:01:00.871362+00:00",
+      "fingerprint": "859bb88c45159414a9297791a7185c5028958ccd92524f58ce50626e68d7fe91",
+      "updated_at": "2026-03-13T01:06:40.687500+00:00",
       "metadata": {
         "rows": 250,
         "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv"
@@ -477,8 +693,8 @@
   },
   "upcoming_slate": {
     "live_sync:upcoming_slate": {
-      "fingerprint": "a9d93acafc30232c81a74e96a00741a032097859f1b07be9b1cd9f74485b9f49",
-      "updated_at": "2026-03-12T23:01:02.418399+00:00",
+      "fingerprint": "f917e9eceff9b400ff2285319eecf1912af9bb4f941b16e188b481150b1cc086",
+      "updated_at": "2026-03-13T01:06:43.236951+00:00",
       "metadata": {
         "rows": 250,
         "path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv"

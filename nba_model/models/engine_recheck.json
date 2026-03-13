@@ -1,110 +1,110 @@
 {
   "input_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/training_data.csv",
-  "lookback_days": 35,
-  "sample_rows": 4271,
-  "evaluated_rows": 4271,
+  "lookback_days": 56,
+  "sample_rows": 3000,
+  "evaluated_rows": 3000,
   "evaluation_minutes_floor": 8.0,
-  "rows_evaluated_normal_outcomes": 4049,
-  "rows_filtered_low_minutes": 222,
+  "rows_evaluated_normal_outcomes": 2840,
+  "rows_filtered_low_minutes": 160,
   "rows_filtered_dnp_like": 0,
   "evaluation_splits": {
     "normal_outcomes": {
-      "rows": 4049,
+      "rows": 2840,
       "per_target": {
         "points": {
-          "rows": 4049,
-          "mae": 5.232582788675498,
-          "mean_abs_pct_error_floor": 57.48992178780501,
-          "mean_abs_pct_error_prop_floor": 36.1735391128661
+          "rows": 2840,
+          "mae": 5.355923566167717,
+          "mean_abs_pct_error_floor": 61.803552092066155,
+          "mean_abs_pct_error_prop_floor": 38.01862032479141
         },
         "rebounds": {
-          "rows": 4049,
-          "mae": 2.043306578135697,
-          "mean_abs_pct_error_floor": 44.707428730650136,
-          "mean_abs_pct_error_prop_floor": 33.341728209764256
+          "rows": 2840,
+          "mae": 2.053691771527518,
+          "mean_abs_pct_error_floor": 45.01339921671974,
+          "mean_abs_pct_error_prop_floor": 33.75666744080502
         },
         "assists": {
-          "rows": 4049,
-          "mae": 1.5677641300501837,
-          "mean_abs_pct_error_floor": 41.73809311208329,
-          "mean_abs_pct_error_prop_floor": 34.20643840305606
+          "rows": 2840,
+          "mae": 1.449112400167072,
+          "mean_abs_pct_error_floor": 37.37873090039695,
+          "mean_abs_pct_error_prop_floor": 30.982411780886647
         },
         "steals": {
-          "rows": 4049,
-          "mae": 0.9628847149597781,
-          "mean_abs_pct_error_floor": 80.17237346004936,
-          "mean_abs_pct_error_prop_floor": 80.17237346004936
+          "rows": 2840,
+          "mae": 0.7625395013152304,
+          "mean_abs_pct_error_floor": 56.46659398722616,
+          "mean_abs_pct_error_prop_floor": 56.46659398722616
         },
         "blocks": {
-          "rows": 4049,
-          "mae": 0.7007116586226056,
-          "mean_abs_pct_error_floor": 60.705653223296004,
-          "mean_abs_pct_error_prop_floor": 60.705653223296004
+          "rows": 2840,
+          "mae": 0.5124522851567267,
+          "mean_abs_pct_error_floor": 38.874839987997525,
+          "mean_abs_pct_error_prop_floor": 38.874839987997525
         },
         "turnovers": {
-          "rows": 4049,
-          "mae": 1.1041512870048935,
-          "mean_abs_pct_error_floor": 80.35941956574905,
-          "mean_abs_pct_error_prop_floor": 80.35941956574905
+          "rows": 2840,
+          "mae": 0.9550714368970894,
+          "mean_abs_pct_error_floor": 56.154842328650496,
+          "mean_abs_pct_error_prop_floor": 56.154842328650496
         },
         "three_points_made": {
-          "rows": 4049,
-          "mae": 1.0953225501620656,
-          "mean_abs_pct_error_floor": 78.09474270311985,
-          "mean_abs_pct_error_prop_floor": 78.09474270311985
+          "rows": 2840,
+          "mae": 0.9661215308024285,
+          "mean_abs_pct_error_floor": 52.15932041201373,
+          "mean_abs_pct_error_prop_floor": 52.15932041201373
         }
       },
-      "overall_mean_abs_pct_error_floor": 47.97848121017949,
-      "overall_mean_abs_pct_error_prop_floor": 34.57390190856214
+      "overall_mean_abs_pct_error_floor": 48.06522740306095,
+      "overall_mean_abs_pct_error_prop_floor": 34.25256651549436
     },
     "low_minutes_non_dnp": {
-      "rows": 222,
+      "rows": 160,
       "per_target": {
         "points": {
-          "rows": 222,
-          "mae": 2.6912044668640034,
-          "mean_abs_pct_error_floor": 50.5827724243877,
-          "mean_abs_pct_error_prop_floor": 22.426703890533357
+          "rows": 160,
+          "mae": 3.1341711955564393,
+          "mean_abs_pct_error_floor": 58.96513714672953,
+          "mean_abs_pct_error_prop_floor": 26.11809329630366
         },
         "rebounds": {
-          "rows": 222,
-          "mae": 1.3001528738804666,
-          "mean_abs_pct_error_floor": 42.25763233844957,
-          "mean_abs_pct_error_prop_floor": 25.94658956797623
+          "rows": 160,
+          "mae": 1.3065419636012432,
+          "mean_abs_pct_error_floor": 42.60242532893432,
+          "mean_abs_pct_error_prop_floor": 26.13083927202486
         },
         "assists": {
-          "rows": 222,
-          "mae": 0.9118893053497659,
-          "mean_abs_pct_error_floor": 30.330561198780693,
-          "mean_abs_pct_error_prop_floor": 22.797232633744144
+          "rows": 160,
+          "mae": 0.8339386562307987,
+          "mean_abs_pct_error_floor": 27.686253488207946,
+          "mean_abs_pct_error_prop_floor": 20.848466405769962
         },
         "steals": {
-          "rows": 222,
-          "mae": 0.5768558435063164,
-          "mean_abs_pct_error_floor": 56.077066680673205,
-          "mean_abs_pct_error_prop_floor": 56.077066680673205
+          "rows": 160,
+          "mae": 0.3147427569463364,
+          "mean_abs_pct_error_floor": 30.796376556206543,
+          "mean_abs_pct_error_prop_floor": 30.796376556206543
         },
         "blocks": {
-          "rows": 222,
-          "mae": 0.3935305821347304,
-          "mean_abs_pct_error_floor": 39.353058213473055,
-          "mean_abs_pct_error_prop_floor": 39.353058213473055
+          "rows": 160,
+          "mae": 0.1559227288163066,
+          "mean_abs_pct_error_floor": 15.592272881630658,
+          "mean_abs_pct_error_prop_floor": 15.592272881630658
         },
         "turnovers": {
-          "rows": 222,
-          "mae": 0.7017139656877925,
-          "mean_abs_pct_error_floor": 66.25814724912313,
-          "mean_abs_pct_error_prop_floor": 66.25814724912313
+          "rows": 160,
+          "mae": 0.4066248372811641,
+          "mean_abs_pct_error_floor": 36.87705128841653,
+          "mean_abs_pct_error_prop_floor": 36.87705128841653
         },
         "three_points_made": {
-          "rows": 222,
-          "mae": 0.5467034711944004,
-          "mean_abs_pct_error_floor": 50.04083062166652,
-          "mean_abs_pct_error_prop_floor": 50.04083062166652
+          "rows": 160,
+          "mae": 0.4648845125507699,
+          "mean_abs_pct_error_floor": 38.95531192427383,
+          "mean_abs_pct_error_prop_floor": 38.95531192427383
         }
       },
-      "overall_mean_abs_pct_error_floor": 41.05698865387266,
-      "overall_mean_abs_pct_error_prop_floor": 23.723508697417913
+      "overall_mean_abs_pct_error_floor": 43.0846053212906,
+      "overall_mean_abs_pct_error_prop_floor": 24.365799658032827
     },
     "dnp_like": {
       "rows": 0,
@@ -115,14 +115,6 @@
   },
   "backtest_method": "leakage_safe_rolling_by_date",
   "backtest_eval_dates": [
-    "2026-02-06",
-    "2026-02-07",
-    "2026-02-08",
-    "2026-02-09",
-    "2026-02-10",
-    "2026-02-11",
-    "2026-02-12",
-    "2026-02-19",
     "2026-02-20",
     "2026-02-21",
     "2026-02-22",
@@ -144,13 +136,13 @@
     "2026-03-10",
     "2026-03-11"
   ],
-  "backtest_initial_training_rows": 293,
+  "backtest_initial_training_rows": 3458,
   "quality_filter": {
-    "input_rows": 5012,
-    "output_rows": 4564,
+    "input_rows": 8427,
+    "output_rows": 7729,
     "removed_non_nba_rows": 89,
-    "removed_low_minute_zero_rows": 73,
-    "removed_low_signal_rows": 286,
+    "removed_low_minute_zero_rows": 118,
+    "removed_low_signal_rows": 491,
     "removed_missing_player_rows": 0,
     "removed_invalid_game_date_rows": 0,
     "removed_invalid_numeric_rows": 0,
@@ -158,221 +150,122 @@
     "removed_missing_team_rows": 0,
     "removed_duplicate_rows": 0
   },
-  "generated_at": "2026-03-12 00:07:37",
+  "generated_at": "2026-03-12 18:34:47",
   "overall": {
-    "rows": 12147,
-    "mae": 2.947884498953793,
-    "rmse": 4.381667116917269,
-    "mean_abs_pct_error": 47.97848121017949,
-    "mean_abs_pct_error_prop_floor": 34.57390190856214
+    "rows": 8520,
+    "mae": 2.952909245954102,
+    "rmse": 4.429828894303492,
+    "mean_abs_pct_error": 48.06522740306095,
+    "mean_abs_pct_error_prop_floor": 34.25256651549436
   },
   "operational_subset": {
-    "rows": 1100,
-    "mean_abs_pct_error_floor": 47.01892630608451,
-    "mean_abs_pct_error_prop_floor": 36.98524335922199
+    "rows": 1185,
+    "mean_abs_pct_error_floor": 45.4625803653976,
+    "mean_abs_pct_error_prop_floor": 35.545639885180236
   },
   "role_splits": {
     "starter_core": {
-      "rows": 2321,
-      "mean_abs_pct_error_floor": 49.50167134893787
+      "rows": 1629,
+      "mean_abs_pct_error_floor": 49.36954323326944
     },
     "rotation": {
-      "rows": 1140,
-      "mean_abs_pct_error_floor": 46.279269918782994
+      "rows": 789,
+      "mean_abs_pct_error_floor": 47.7330274270751
     },
     "bench_low_minutes": {
-      "rows": 810,
-      "mean_abs_pct_error_floor": 44.108364188739536
+      "rows": 582,
+      "mean_abs_pct_error_floor": 43.49559812567255
     }
   },
   "per_target": {
     "points": {
-      "rows": 4049,
-      "mae": 5.232582788675498,
-      "rmse": 6.78833864290307,
-      "mean_abs_pct_error": 97.15654488940339,
-      "median_abs_pct_error": 38.5650685511143,
-      "mean_abs_pct_error_floor": 57.48992178780501,
-      "median_abs_pct_error_floor": 37.59910420907957,
-      "mean_abs_pct_error_prop_floor": 36.1735391128661,
-      "median_abs_pct_error_prop_floor": 29.371138922381757
+      "rows": 2840,
+      "mae": 5.355923566167717,
+      "rmse": 6.909850897438374,
+      "mean_abs_pct_error": 104.10429385219189,
+      "median_abs_pct_error": 39.827038571377415,
+      "mean_abs_pct_error_floor": 61.803552092066155,
+      "median_abs_pct_error_floor": 37.70744536282518,
+      "mean_abs_pct_error_prop_floor": 38.01862032479141,
+      "median_abs_pct_error_prop_floor": 29.7501564918193
     },
     "rebounds": {
-      "rows": 4049,
-      "mae": 2.043306578135697,
-      "rmse": 2.6816278126265582,
-      "mean_abs_pct_error": 71.06804369203579,
-      "median_abs_pct_error": 40.9164197814454,
-      "mean_abs_pct_error_floor": 44.707428730650136,
-      "median_abs_pct_error_floor": 36.8944387490576,
-      "mean_abs_pct_error_prop_floor": 33.341728209764256,
-      "median_abs_pct_error_prop_floor": 28.682524205345462
+      "rows": 2840,
+      "mae": 2.053691771527518,
+      "rmse": 2.704466755625842,
+      "mean_abs_pct_error": 68.95522369294083,
+      "median_abs_pct_error": 41.64015468194564,
+      "mean_abs_pct_error_floor": 45.01339921671974,
+      "median_abs_pct_error_floor": 36.393660184116925,
+      "mean_abs_pct_error_prop_floor": 33.75666744080502,
+      "median_abs_pct_error_prop_floor": 28.595045691407968
     },
     "assists": {
-      "rows": 4049,
-      "mae": 1.5677641300501837,
-      "rmse": 2.0795073729705558,
-      "mean_abs_pct_error": 78.48265483079051,
-      "median_abs_pct_error": 50.525537078080575,
-      "mean_abs_pct_error_floor": 41.73809311208329,
-      "median_abs_pct_error_floor": 33.16089485169494,
-      "mean_abs_pct_error_prop_floor": 34.20643840305606,
-      "median_abs_pct_error_prop_floor": 27.32255641677035
+      "rows": 2840,
+      "mae": 1.449112400167072,
+      "rmse": 1.9519150189757344,
+      "mean_abs_pct_error": 65.42805719796102,
+      "median_abs_pct_error": 48.16116674239619,
+      "mean_abs_pct_error_floor": 37.37873090039695,
+      "median_abs_pct_error_floor": 31.119364283194244,
+      "mean_abs_pct_error_prop_floor": 30.982411780886647,
+      "median_abs_pct_error_prop_floor": 25.0816169965125
     },
     "steals": {
-      "rows": 4049,
-      "mae": 0.9628847149597781,
-      "rmse": 1.2046335385540934,
-      "mean_abs_pct_error": 80.17237346004936,
-      "median_abs_pct_error": 65.51408502896913,
-      "mean_abs_pct_error_floor": 80.17237346004936,
-      "median_abs_pct_error_floor": 65.51408502896913,
-      "mean_abs_pct_error_prop_floor": 80.17237346004936,
-      "median_abs_pct_error_prop_floor": 65.51408502896913
+      "rows": 2840,
+      "mae": 0.7625395013152304,
+      "rmse": 1.0214012071916012,
+      "mean_abs_pct_error": 56.46659398722616,
+      "median_abs_pct_error": 53.89487146725611,
+      "mean_abs_pct_error_floor": 56.46659398722616,
+      "median_abs_pct_error_floor": 53.89487146725611,
+      "mean_abs_pct_error_prop_floor": 56.46659398722616,
+      "median_abs_pct_error_prop_floor": 53.89487146725611
     },
     "blocks": {
-      "rows": 4049,
-      "mae": 0.7007116586226056,
-      "rmse": 0.9014226967015789,
-      "mean_abs_pct_error": 60.705653223296004,
-      "median_abs_pct_error": 50.22050406816464,
-      "mean_abs_pct_error_floor": 60.705653223296004,
-      "median_abs_pct_error_floor": 50.22050406816464,
-      "mean_abs_pct_error_prop_floor": 60.705653223296004,
-      "median_abs_pct_error_prop_floor": 50.22050406816464
+      "rows": 2840,
+      "mae": 0.5124522851567267,
+      "rmse": 0.8288217160052441,
+      "mean_abs_pct_error": 38.874839987997525,
+      "median_abs_pct_error": 32.0563643565113,
+      "mean_abs_pct_error_floor": 38.874839987997525,
+      "median_abs_pct_error_floor": 32.0563643565113,
+      "mean_abs_pct_error_prop_floor": 38.874839987997525,
+      "median_abs_pct_error_prop_floor": 32.0563643565113
     },
     "turnovers": {
-      "rows": 4049,
-      "mae": 1.1041512870048935,
-      "rmse": 1.4329781644321868,
-      "mean_abs_pct_error": 80.35941956574905,
-      "median_abs_pct_error": 56.74501606572121,
-      "mean_abs_pct_error_floor": 80.35941956574905,
-      "median_abs_pct_error_floor": 56.74501606572121,
-      "mean_abs_pct_error_prop_floor": 80.35941956574905,
-      "median_abs_pct_error_prop_floor": 56.74501606572121
+      "rows": 2840,
+      "mae": 0.9550714368970894,
+      "rmse": 1.3254372403341914,
+      "mean_abs_pct_error": 56.154842328650496,
+      "median_abs_pct_error": 51.86036160701127,
+      "mean_abs_pct_error_floor": 56.154842328650496,
+      "median_abs_pct_error_floor": 51.86036160701127,
+      "mean_abs_pct_error_prop_floor": 56.154842328650496,
+      "median_abs_pct_error_prop_floor": 51.86036160701127
     },
     "three_points_made": {
-      "rows": 4049,
-      "mae": 1.0953225501620656,
-      "rmse": 1.4647517867994202,
-      "mean_abs_pct_error": 78.09474270311985,
-      "median_abs_pct_error": 50.86508887966241,
-      "mean_abs_pct_error_floor": 78.09474270311985,
-      "median_abs_pct_error_floor": 50.86508887966241,
-      "mean_abs_pct_error_prop_floor": 78.09474270311985,
-      "median_abs_pct_error_prop_floor": 50.86508887966241
+      "rows": 2840,
+      "mae": 0.9661215308024285,
+      "rmse": 1.4150039755016974,
+      "mean_abs_pct_error": 52.15932041201373,
+      "median_abs_pct_error": 49.34562113002275,
+      "mean_abs_pct_error_floor": 52.15932041201373,
+      "median_abs_pct_error_floor": 49.34562113002275,
+      "mean_abs_pct_error_prop_floor": 52.15932041201373,
+      "median_abs_pct_error_prop_floor": 49.34562113002275
     }
   },
   "calibration_profile_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/calibration_profile.json",
   "sample_preview": [
-    {
-      "player_name": "Payton Pritchard",
-      "game_date": "2026-03-01",
-      "team": "BOS",
-      "opponent": "PHI",
-      "points": 0,
-      "predicted_points": 27.455373276091866,
-      "error_pct": 549.1074655218373
-    },
-    {
-      "player_name": "Payton Pritchard",
-      "game_date": "2026-03-04",
-      "team": "BOS",
-      "opponent": "CHA",
-      "points": 0,
-      "predicted_points": 24.571556738647782,
-      "error_pct": 491.43113477295566
-    },
-    {
-      "player_name": "Cameron Johnson",
-      "game_date": "2026-03-01",
-      "team": "DEN",
-      "opponent": "MIN",
-      "points": 0,
-      "predicted_points": 21.279298032296225,
-      "error_pct": 425.58596064592444
-    },
-    {
-      "player_name": "Payton Pritchard",
-      "game_date": "2026-02-25",
-      "team": "BOS",
-      "opponent": "DEN",
-      "points": 3,
-      "predicted_points": 24.221013168320308,
-      "error_pct": 424.4202633664061
-    },
-    {
-      "player_name": "Devin Booker",
-      "game_date": "2026-02-19",
-      "team": "PHX",
-      "opponent": "SAS",
-      "points": 5,
-      "predicted_points": 26.21117218584252,
-      "error_pct": 424.2234437168504
-    },
-    {
-      "player_name": "Shaedon Sharpe",
-      "game_date": "2026-02-06",
-      "team": "POR",
-      "opponent": "MEM",
-      "points": 2,
-      "predicted_points": 23.034302321755995,
-      "error_pct": 420.6860464351199
-    },
-    {
-      "player_name": "Duncan Robinson",
-      "game_date": "2026-03-01",
-      "team": "DET",
-      "opponent": "ORL",
-      "points": 0,
-      "predicted_points": 20.945041125456857,
-      "error_pct": 418.9008225091372
-    },
-    {
-      "player_name": "AJ Green",
-      "game_date": "2026-02-20",
-      "team": "MIL",
-      "opponent": "NOP",
-      "points": 0,
-      "predicted_points": 20.87170956007386,
-      "error_pct": 417.43419120147723
-    },
     {
       "player_name": "Jalen Johnson",
       "game_date": "2026-02-24",
       "team": "ATL",
       "opponent": "WAS",
       "points": 5,
-      "predicted_points": 25.839244982962096,
-      "error_pct": 416.78489965924194
-    },
-    {
-      "player_name": "Keyonte George",
-      "game_date": "2026-02-07",
-      "team": "UTA",
-      "opponent": "ORL",
-      "points": 5,
-      "predicted_points": 25.11852206218685,
-      "error_pct": 402.370441243737
-    },
-    {
-      "player_name": "Anfernee Simons",
-      "game_date": "2026-02-21",
-      "team": "CHI",
-      "opponent": "DET",
-      "points": 4,
-      "predicted_points": 23.933504462194417,
-      "error_pct": 398.67008924388836
-    },
-    {
-      "player_name": "Donte DiVincenzo",
-      "game_date": "2026-03-07",
-      "team": "MIN",
-      "opponent": "ORL",
-      "points": 0,
-      "predicted_points": 19.440893068922815,
-      "error_pct": 388.8178613784563
+      "predicted_points": 31.18756780973156,
+      "error_pct": 523.7513561946313
     },
     {
       "player_name": "Jamal Murray",
@@ -380,62 +273,53 @@
       "team": "DEN",
       "opponent": "BOS",
       "points": 2,
-      "predicted_points": 21.38886110783511,
-      "error_pct": 387.7772221567022
+      "predicted_points": 26.443304214397312,
+      "error_pct": 488.8660842879462
     },
     {
-      "player_name": "AJ Green",
-      "game_date": "2026-03-02",
-      "team": "MIL",
-      "opponent": "BOS",
+      "player_name": "Cameron Johnson",
+      "game_date": "2026-03-01",
+      "team": "DEN",
+      "opponent": "MIN",
       "points": 0,
-      "predicted_points": 18.871056380627454,
-      "error_pct": 377.42112761254907
+      "predicted_points": 22.83275658950357,
+      "error_pct": 456.65513179007144
     },
     {
-      "player_name": "Naji Marshall",
-      "game_date": "2026-02-27",
-      "team": "DAL",
-      "opponent": "MEM",
-      "points": 4,
-      "predicted_points": 22.23241202746226,
-      "error_pct": 364.6482405492452
-    },
-    {
-      "player_name": "Derrick White",
-      "game_date": "2026-03-08",
+      "player_name": "Payton Pritchard",
+      "game_date": "2026-03-01",
       "team": "BOS",
-      "opponent": "CLE",
-      "points": 6,
-      "predicted_points": 27.48637695178442,
-      "error_pct": 358.1062825297403
-    },
-    {
-      "player_name": "Luguentz Dort",
-      "game_date": "2026-02-25",
-      "team": "OKC",
-      "opponent": "DET",
-      "points": 3,
-      "predicted_points": 20.88701023038408,
-      "error_pct": 357.7402046076816
-    },
-    {
-      "player_name": "Norman Powell",
-      "game_date": "2026-02-26",
-      "team": "MIA",
       "opponent": "PHI",
-      "points": 3,
-      "predicted_points": 20.796753925624863,
-      "error_pct": 355.9350785124972
+      "points": 0,
+      "predicted_points": 21.913901947035537,
+      "error_pct": 438.27803894071076
     },
     {
-      "player_name": "Andrew Nembhard",
-      "game_date": "2026-02-19",
-      "team": "IND",
-      "opponent": "WAS",
-      "points": 5,
-      "predicted_points": 22.617824813014956,
-      "error_pct": 352.3564962602991
+      "player_name": "Julius Randle",
+      "game_date": "2026-02-26",
+      "team": "MIN",
+      "opponent": "LAC",
+      "points": 4,
+      "predicted_points": 25.201235581637423,
+      "error_pct": 424.02471163274845
+    },
+    {
+      "player_name": "Jerami Grant",
+      "game_date": "2026-03-01",
+      "team": "POR",
+      "opponent": "ATL",
+      "points": 4,
+      "predicted_points": 24.887221907485152,
+      "error_pct": 417.74443814970306
+    },
+    {
+      "player_name": "Payton Pritchard",
+      "game_date": "2026-03-04",
+      "team": "BOS",
+      "opponent": "CHA",
+      "points": 0,
+      "predicted_points": 20.32919025863081,
+      "error_pct": 406.5838051726162
     },
     {
       "player_name": "Anthony Black",
@@ -443,17 +327,17 @@
       "team": "ORL",
       "opponent": "MIN",
       "points": 0,
-      "predicted_points": 17.36893028343408,
-      "error_pct": 347.3786056686816
+      "predicted_points": 20.1906340272591,
+      "error_pct": 403.812680545182
     },
     {
-      "player_name": "Aaron Gordon",
-      "game_date": "2026-03-11",
-      "team": "DEN",
-      "opponent": "HOU",
-      "points": 0,
-      "predicted_points": 17.21546430825762,
-      "error_pct": 344.3092861651524
+      "player_name": "Norman Powell",
+      "game_date": "2026-02-26",
+      "team": "MIA",
+      "opponent": "PHI",
+      "points": 3,
+      "predicted_points": 22.823596925439,
+      "error_pct": 396.47193850877994
     },
     {
       "player_name": "Max Christie",
@@ -461,26 +345,8 @@
       "team": "DAL",
       "opponent": "TOR",
       "points": 2,
-      "predicted_points": 19.07472149953084,
-      "error_pct": 341.49442999061677
-    },
-    {
-      "player_name": "VJ Edgecombe",
-      "game_date": "2026-03-03",
-      "team": "PHI",
-      "opponent": "SAS",
-      "points": 6,
-      "predicted_points": 26.480540897138052,
-      "error_pct": 341.3423482856342
-    },
-    {
-      "player_name": "Egor D\u00ebmin",
-      "game_date": "2026-02-24",
-      "team": "BKN",
-      "opponent": "DAL",
-      "points": 3,
-      "predicted_points": 19.753391363180302,
-      "error_pct": 335.0678272636061
+      "predicted_points": 21.70769780540543,
+      "error_pct": 394.1539561081086
     },
     {
       "player_name": "Zion Williamson",
@@ -488,13 +354,139 @@
       "team": "NOP",
       "opponent": "UTA",
       "points": 4,
-      "predicted_points": 20.740008151008645,
-      "error_pct": 334.80016302017293
+      "predicted_points": 23.25551184345817,
+      "error_pct": 385.1102368691634
+    },
+    {
+      "player_name": "Dillon Brooks",
+      "game_date": "2026-02-21",
+      "team": "PHX",
+      "opponent": "ORL",
+      "points": 5,
+      "predicted_points": 24.254888120257466,
+      "error_pct": 385.0977624051493
+    },
+    {
+      "player_name": "Duncan Robinson",
+      "game_date": "2026-03-01",
+      "team": "DET",
+      "opponent": "ORL",
+      "points": 0,
+      "predicted_points": 19.02624329530112,
+      "error_pct": 380.52486590602246
+    },
+    {
+      "player_name": "Mikal Bridges",
+      "game_date": "2026-03-08",
+      "team": "NYK",
+      "opponent": "LAL",
+      "points": 0,
+      "predicted_points": 18.660989782531473,
+      "error_pct": 373.21979565062946
+    },
+    {
+      "player_name": "Ace Bailey",
+      "game_date": "2026-02-23",
+      "team": "UTA",
+      "opponent": "HOU",
+      "points": 4,
+      "predicted_points": 22.600287879736516,
+      "error_pct": 372.0057575947303
+    },
+    {
+      "player_name": "Ryan Rollins",
+      "game_date": "2026-03-02",
+      "team": "MIL",
+      "opponent": "BOS",
+      "points": 5,
+      "predicted_points": 23.281023004977147,
+      "error_pct": 365.6204600995429
+    },
+    {
+      "player_name": "Naji Marshall",
+      "game_date": "2026-02-27",
+      "team": "DAL",
+      "opponent": "MEM",
+      "points": 4,
+      "predicted_points": 22.063669431214485,
+      "error_pct": 361.27338862428974
+    },
+    {
+      "player_name": "Sam Merrill",
+      "game_date": "2026-03-09",
+      "team": "CLE",
+      "opponent": "PHI",
+      "points": 2,
+      "predicted_points": 19.9413467719601,
+      "error_pct": 358.826935439202
+    },
+    {
+      "player_name": "Christian Braun",
+      "game_date": "2026-03-09",
+      "team": "DEN",
+      "opponent": "OKC",
+      "points": 4,
+      "predicted_points": 21.86828541832804,
+      "error_pct": 357.36570836656074
+    },
+    {
+      "player_name": "Jaylon Tyson",
+      "game_date": "2026-03-11",
+      "team": "CLE",
+      "opponent": "ORL",
+      "points": 4,
+      "predicted_points": 21.68607957343519,
+      "error_pct": 353.72159146870376
+    },
+    {
+      "player_name": "Pelle Larsson",
+      "game_date": "2026-03-03",
+      "team": "MIA",
+      "opponent": "BKN",
+      "points": 3,
+      "predicted_points": 20.667202116501628,
+      "error_pct": 353.34404233003255
+    },
+    {
+      "player_name": "Payton Pritchard",
+      "game_date": "2026-02-25",
+      "team": "BOS",
+      "opponent": "DEN",
+      "points": 3,
+      "predicted_points": 20.565321441684787,
+      "error_pct": 351.30642883369575
+    },
+    {
+      "player_name": "Dennis Schr\u00f6der",
+      "game_date": "2026-03-08",
+      "team": "CLE",
+      "opponent": "BOS",
+      "points": 2,
+      "predicted_points": 19.468070157334378,
+      "error_pct": 349.3614031466875
+    },
+    {
+      "player_name": "Mikal Bridges",
+      "game_date": "2026-03-11",
+      "team": "NYK",
+      "opponent": "UTA",
+      "points": 5,
+      "predicted_points": 21.796403356331677,
+      "error_pct": 335.92806712663355
+    },
+    {
+      "player_name": "Aaron Gordon",
+      "game_date": "2026-03-11",
+      "team": "DEN",
+      "opponent": "HOU",
+      "points": 0,
+      "predicted_points": 16.685303590518906,
+      "error_pct": 333.7060718103781
     }
   ],
   "diagnostic_target": "points",
   "rows_by_date": {
-    "from": "2026-02-06 00:00:00",
+    "from": "2026-02-20 00:00:00",
     "to": "2026-03-11 00:00:00"
   }
 }

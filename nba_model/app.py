@@ -110,7 +110,8 @@ BACKGROUND_JOB_GROUPS = {
     "recheck": "model_jobs",
 }
 BACKGROUND_JOB_MAX_RUNTIME_SECONDS = {
-    "live_sync": 600,
+    # Live sync can take several minutes when provider retries/backfill paths are active.
+    "live_sync": 720,
     "in_game_refresh": 300,
     "daily_refresh": 1200,
     "train": 1200,
@@ -126,6 +127,7 @@ STATUS_CACHE: dict[str, object] = {
 }
 RECENT_FORM_CACHE_LOCK = threading.Lock()
 RECENT_FORM_CACHE: dict[tuple[str, int, int, str], tuple[pd.DataFrame, pd.DataFrame]] = {}
+_PREDICTION_FRAME_CACHE: dict[tuple[int, int, int], pd.DataFrame] = {}
 ASSISTANT_NAME = "Friday"
 OPENAI_CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions"
 DEFAULT_OPENAI_MODEL = "gpt-4o-mini"
@@ -1242,18 +1244,32 @@ def _load_accuracy_hardening_profile() -> dict[str, float | int]:
 
 
 def _prediction_frame_for_diagnostics(max_rows: int = 6000) -> pd.DataFrame:
+    global _PREDICTION_FRAME_CACHE
+    capped = max(200, int(max_rows))
     if not DEFAULT_PREDICTIONS_PATH.exists():
         return pd.DataFrame()
+    try:
+        stat = DEFAULT_PREDICTIONS_PATH.stat()
+        signature = (stat.st_mtime_ns, stat.st_size, capped)
+    except OSError:
+        signature = None
+    if signature is not None:
+        cached = _PREDICTION_FRAME_CACHE.get(signature)
+        if isinstance(cached, pd.DataFrame):
+            return cached.copy()
     try:
         frame = pd.read_csv(DEFAULT_PREDICTIONS_PATH)
     except Exception:
         return pd.DataFrame()
     if frame.empty:
         return frame
-    capped = max(200, int(max_rows))
     if len(frame) > capped:
-        return frame.tail(capped).reset_index(drop=True)
-    return frame.reset_index(drop=True)
+        frame = frame.tail(capped).reset_index(drop=True)
+    else:
+        frame = frame.reset_index(drop=True)
+    if signature is not None:
+        _PREDICTION_FRAME_CACHE = {signature: frame}
+    return frame
 
 
 def _coverage_ratio(frame: pd.DataFrame, columns: list[str]) -> float:

@@ -33,6 +33,7 @@ DATA_CONTRACTS: dict[str, dict[str, Any]] = {
     "training_data": {
         "canonical_path": str(DEFAULT_DATA_DIR / "training_data.csv"),
         "granularity": "one row per player per completed game",
+        "allow_additional_columns": True,
         "required_columns": [
             "player_name",
             "game_date",
@@ -48,6 +49,7 @@ DATA_CONTRACTS: dict[str, dict[str, Any]] = {
     "upcoming_slate": {
         "canonical_path": str(DEFAULT_DATA_DIR / "upcoming_slate.csv"),
         "granularity": "one row per player per upcoming game",
+        "allow_additional_columns": True,
         "required_columns": ["player_name", "game_date", "team", "opponent", "home"],
         "optional_columns": ["starter", "starter_probability", "expected_minutes", "injury_status"],
         "zone_targets": ["bronze", "silver"],
@@ -55,6 +57,7 @@ DATA_CONTRACTS: dict[str, dict[str, Any]] = {
     "season_priors": {
         "canonical_path": str(DEFAULT_DATA_DIR / "season_priors.csv"),
         "granularity": "one row per player-team aggregate season prior",
+        "allow_additional_columns": True,
         "required_columns": ["player_name", "team", "gp", "min_season", "pts_season", "reb_season", "ast_season"],
         "optional_columns": ["tov_season", "stl_season", "blk_season", "fp_season", "dd2_season", "td3_season"],
         "zone_targets": ["bronze", "silver"],
@@ -62,6 +65,7 @@ DATA_CONTRACTS: dict[str, dict[str, Any]] = {
     "prizepicks_lines": {
         "canonical_path": str(DEFAULT_DATA_DIR / "prizepicks_lines.csv"),
         "granularity": "one row per player-market line capture",
+        "allow_additional_columns": True,
         "required_columns": ["player_name", "game_date", "market", "line"],
         "optional_columns": ["team", "selection_type", "source", "captured_at"],
         "zone_targets": ["bronze", "silver"],
@@ -69,6 +73,7 @@ DATA_CONTRACTS: dict[str, dict[str, Any]] = {
     "context_updates": {
         "canonical_path": str(DEFAULT_DATA_DIR / "context_updates.csv"),
         "granularity": "one row per player-game context override",
+        "allow_additional_columns": True,
         "required_columns": ["player_name", "game_date"],
         "optional_columns": ["injury_status", "starter_probability", "expected_minutes"],
         "zone_targets": ["bronze", "silver"],
@@ -76,6 +81,7 @@ DATA_CONTRACTS: dict[str, dict[str, Any]] = {
     "provider_context_updates": {
         "canonical_path": str(DEFAULT_DATA_DIR / "provider_context_updates.csv"),
         "granularity": "one row per player-game provider context",
+        "allow_additional_columns": True,
         "required_columns": ["player_name", "game_date"],
         "optional_columns": ["line_points", "line_rebounds", "line_assists", "line_pra", "news_risk_score"],
         "zone_targets": ["bronze", "silver"],
@@ -83,6 +89,7 @@ DATA_CONTRACTS: dict[str, dict[str, Any]] = {
     "predictions": {
         "canonical_path": str(DEFAULT_PROJECT_DIR / "models" / "predictions.csv"),
         "granularity": "one row per player-game projection",
+        "allow_additional_columns": True,
         "required_columns": ["player_name", "game_date", "team", "opponent", "predicted_points", "predicted_rebounds", "predicted_assists"],
         "optional_columns": ["predicted_pra", "predicted_draftkings_points", "predicted_fanduel_points", "confidence_flag"],
         "zone_targets": ["gold"],
@@ -90,6 +97,7 @@ DATA_CONTRACTS: dict[str, dict[str, Any]] = {
     "prizepicks_edges": {
         "canonical_path": str(DEFAULT_PROJECT_DIR / "models" / "prizepicks_edges.csv"),
         "granularity": "one row per player-market edge computation",
+        "allow_additional_columns": True,
         "required_columns": ["player_name", "game_date", "market", "line", "projection", "edge", "recommendation"],
         "optional_columns": ["team", "confidence_flag", "historical_games_used", "season_priors_available"],
         "zone_targets": ["gold"],
@@ -349,17 +357,46 @@ def load_recent_ingestion_events(limit: int = 50) -> list[dict[str, Any]]:
     ensure_pipeline_layout()
     if not DEFAULT_INGESTION_EVENTS_PATH.exists():
         return []
-    events: list[dict[str, Any]] = []
-    with DEFAULT_INGESTION_EVENTS_PATH.open("r", encoding="utf-8") as input_file:
-        for line in input_file:
-            stripped = line.strip()
-            if not stripped:
-                continue
-            try:
-                events.append(json.loads(stripped))
-            except json.JSONDecodeError:
-                continue
-    return events[-max(1, int(limit)) :]
+
+    def _tail_lines(path: Path, target_lines: int, *, max_overscan_lines: int = 400) -> list[str]:
+        if target_lines <= 0:
+            return []
+
+        block_size = 8192
+        lines_needed = min(max_overscan_lines, max(target_lines * 8, target_lines))
+        chunks: list[bytes] = []
+        with path.open("rb") as input_file:
+            input_file.seek(0, 2)
+            file_size = input_file.tell()
+            read_size = 0
+            newline_count = 0
+            while read_size < file_size and newline_count <= lines_needed:
+                step = min(block_size, file_size - read_size)
+                read_size += step
+                input_file.seek(file_size - read_size)
+                chunk = input_file.read(step)
+                chunks.insert(0, chunk)
+                newline_count += chunk.count(b"\n")
+
+        if not chunks:
+            return []
+
+        text = b"".join(chunks).decode("utf-8", errors="replace")
+        return text.splitlines()
+
+    events_reversed: list[dict[str, Any]] = []
+    target = max(1, int(limit))
+    for line in reversed(_tail_lines(DEFAULT_INGESTION_EVENTS_PATH, target)):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        try:
+            events_reversed.append(json.loads(stripped))
+            if len(events_reversed) >= target:
+                break
+        except json.JSONDecodeError:
+            continue
+    return list(reversed(events_reversed))
 
 
 def _csv_row_count(path: Path) -> int:
@@ -386,6 +423,7 @@ def run_contract_drift_audit() -> dict[str, Any]:
     for dataset, contract in DATA_CONTRACTS.items():
         summary["datasets_total"] += 1
         canonical_path = Path(str(contract.get("canonical_path", "")))
+        allow_additional_columns = bool(contract.get("allow_additional_columns", False))
         required_columns = [str(value) for value in contract.get("required_columns", [])]
         optional_columns = [str(value) for value in contract.get("optional_columns", [])]
         allowed_columns = set(required_columns + optional_columns)
@@ -395,8 +433,10 @@ def run_contract_drift_audit() -> dict[str, Any]:
             "path": str(canonical_path),
             "exists": canonical_path.exists(),
             "rows": 0,
+            "allow_additional_columns": allow_additional_columns,
             "missing_required_columns": [],
             "unexpected_columns": [],
+            "additional_columns_detected": [],
             "status": "ok",
         }
 
@@ -419,7 +459,12 @@ def run_contract_drift_audit() -> dict[str, Any]:
         dataset_report["rows"] = _csv_row_count(canonical_path)
         dataset_report["missing_required_columns"] = [column for column in required_columns if column not in columns]
         if allowed_columns:
-            dataset_report["unexpected_columns"] = [column for column in columns if column not in allowed_columns]
+            extra_columns = [column for column in columns if column not in allowed_columns]
+            if allow_additional_columns:
+                dataset_report["additional_columns_detected"] = extra_columns
+                dataset_report["unexpected_columns"] = []
+            else:
+                dataset_report["unexpected_columns"] = extra_columns
         if dataset_report["missing_required_columns"]:
             dataset_report["status"] = "missing_required_columns"
             summary["datasets_with_missing_required_columns"] += 1
@@ -445,17 +490,11 @@ def pipeline_status(limit_events: int = 20, include_drift: bool = False) -> dict
     manifest = _load_ingestion_manifest()
     rejection_counts: dict[str, int] = {}
     for path in sorted(DEFAULT_REJECTIONS_DIR.glob("*_rejections.csv")):
-        try:
-            rows = len(pd.read_csv(path))
-        except Exception:
-            rows = 0
+        rows = _csv_row_count(path)
         rejection_counts[path.stem.replace("_rejections", "")] = int(rows)
     quarantine_counts: dict[str, int] = {}
     for path in sorted(DEFAULT_QUARANTINE_DIR.glob("*_quarantine.csv")):
-        try:
-            rows = len(pd.read_csv(path))
-        except Exception:
-            rows = 0
+        rows = _csv_row_count(path)
         quarantine_counts[path.stem.replace("_quarantine", "")] = int(rows)
     payload: dict[str, Any] = {
         "contracts": contracts,

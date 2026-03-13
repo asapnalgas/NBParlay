@@ -85,6 +85,24 @@
     "news_negative_mentions_24h",
     "news_risk_score",
     "news_confidence_score",
+    "notes_recent_points_mean_5",
+    "notes_recent_rebounds_mean_5",
+    "notes_recent_assists_mean_5",
+    "notes_recent_minutes_mean_5",
+    "notes_recent_points_std_5",
+    "notes_recent_minutes_std_5",
+    "notes_live_points_per_minute",
+    "notes_live_rebounds_per_minute",
+    "notes_live_assists_per_minute",
+    "notes_live_usage_proxy",
+    "notes_live_foul_pressure",
+    "notes_live_minutes_current",
+    "notes_postgame_positive_mentions_14d",
+    "notes_postgame_negative_mentions_14d",
+    "notes_postgame_minutes_limit_mentions_14d",
+    "notes_postgame_rotation_change_mentions_14d",
+    "notes_postgame_risk_score",
+    "game_notes_confidence",
     "family_context",
     "expected_minutes",
     "expected_minutes_confidence",
@@ -198,6 +216,7 @@
       "training_data": {
         "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/training_data.csv",
         "granularity": "one row per player per completed game",
+        "allow_additional_columns": true,
         "required_columns": [
           "player_name",
           "game_date",
@@ -223,6 +242,7 @@
       "upcoming_slate": {
         "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/upcoming_slate.csv",
         "granularity": "one row per player per upcoming game",
+        "allow_additional_columns": true,
         "required_columns": [
           "player_name",
           "game_date",
@@ -244,6 +264,7 @@
       "season_priors": {
         "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/season_priors.csv",
         "granularity": "one row per player-team aggregate season prior",
+        "allow_additional_columns": true,
         "required_columns": [
           "player_name",
           "team",
@@ -269,6 +290,7 @@
       "prizepicks_lines": {
         "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/prizepicks_lines.csv",
         "granularity": "one row per player-market line capture",
+        "allow_additional_columns": true,
         "required_columns": [
           "player_name",
           "game_date",
@@ -289,6 +311,7 @@
       "context_updates": {
         "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/context_updates.csv",
         "granularity": "one row per player-game context override",
+        "allow_additional_columns": true,
         "required_columns": [
           "player_name",
           "game_date"
@@ -306,6 +329,7 @@
       "provider_context_updates": {
         "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/data/provider_context_updates.csv",
         "granularity": "one row per player-game provider context",
+        "allow_additional_columns": true,
         "required_columns": [
           "player_name",
           "game_date"
@@ -325,6 +349,7 @@
       "predictions": {
         "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/predictions.csv",
         "granularity": "one row per player-game projection",
+        "allow_additional_columns": true,
         "required_columns": [
           "player_name",
           "game_date",
@@ -347,6 +372,7 @@
       "prizepicks_edges": {
         "canonical_path": "/Users/josephdelallera/Documents/Playground 2/nba_model/models/prizepicks_edges.csv",
         "granularity": "one row per player-market edge computation",
+        "allow_additional_columns": true,
         "required_columns": [
           "player_name",
           "game_date",

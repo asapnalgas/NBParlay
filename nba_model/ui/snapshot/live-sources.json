@@ -1,6 +1,6 @@
 {
   "running": true,
-  "updated_at": "2026-03-11T18:22:23.449937+00:00",
+  "updated_at": "2026-03-13T01:01:30.377366+00:00",
   "sources": [
     {
       "name": "PrizePicks Board (Manual)",
@@ -26,7 +26,7 @@
       "description": "Official upcoming game schedule JSON used for slate generation.",
       "url": "https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_9.json",
       "enabled": true,
-      "rows": 31,
+      "rows": 37,
       "last_error": null
     },
     {
@@ -34,7 +34,7 @@
       "description": "Official same-day live game status and scoreboard feed.",
       "url": "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
       "enabled": true,
-      "rows": 6,
+      "rows": 9,
       "last_error": null
     },
     {
@@ -44,6 +44,33 @@
       "enabled": true,
       "rows": 0,
       "last_error": null
+    },
+    {
+      "name": "Live Game Notes Stream",
+      "description": "10-second live game action notes derived from active boxscores.",
+      "url": "/downloads/live_game_actions.csv",
+      "enabled": true,
+      "rows": 3159,
+      "last_error": null,
+      "note": "No completed game rows were available this cycle."
+    },
+    {
+      "name": "Postgame Review Notes",
+      "description": "Per-player postgame review signals compiled from final games and recap text.",
+      "url": "/downloads/postgame_reviews.csv",
+      "enabled": true,
+      "rows": 0,
+      "last_error": null,
+      "note": "No completed game rows were available this cycle."
+    },
+    {
+      "name": "Compiled Game Notes Context",
+      "description": "Daily compiled notes context merged into projection features.",
+      "url": "/downloads/game_notes_daily.csv",
+      "enabled": true,
+      "rows": 250,
+      "last_error": null,
+      "note": "No completed game rows were available this cycle."
     },
     {
       "name": "NBA Stats Playstyle Profiles",
@@ -70,7 +97,7 @@
       "url": "https://news.google.com/rss/search?q={query}&hl=en-US&gl=US&ceid=US:en",
       "docs_url": "https://news.google.com/",
       "enabled": true,
-      "rows": 213,
+      "rows": 198,
       "last_error": null,
       "note": null
     },
@@ -80,7 +107,7 @@
       "url": "https://api.the-odds-api.com/v4",
       "docs_url": "https://the-odds-api.com/liveapi/guides/v4/",
       "enabled": true,
-      "rows": 179,
+      "rows": 176,
       "last_error": "Command '['curl', '-fsSL', '--retry', '0', '--connect-timeout', '8', '--max-time', '8', '--http1.1', '-A', 'NBAPredictionEngine/1.0', 'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey=[redacted]&regions=us&markets=spreads%2Ctotals&bookmakers=draftkings%2Cfanduel&oddsFormat=american&dateFormat=iso']' returned non-zero exit status 22.",
       "note": "Odds provider returned data, but none of the events matched the current slate."
     },
@@ -100,7 +127,7 @@
       "url": "https://www.rotowire.com/picks/api/lines.php",
       "page_url": "https://www.rotowire.com/picks/prizepicks/",
       "enabled": true,
-      "rows": 73,
+      "rows": 20,
       "last_error": null,
       "note": null
     },
@@ -119,17 +146,26 @@
       "description": "Formal benchmark of model vs market-line anchor over rolling completed games.",
       "url": "/downloads/rotowire_benchmark_report.json",
       "enabled": true,
-      "rows": 451,
+      "rows": 704,
       "last_error": null,
-      "note": "Last report generated at 2026-03-11T18:17:45.130032+00:00"
+      "note": "Last report generated at 2026-03-13T01:36:30.406844+00:00"
+    },
+    {
+      "name": "Adaptive Miss-Learning Loop",
+      "description": "Detects misses from completed outcomes, updates a miss log, and refreshes adaptive bias corrections used in projections.",
+      "url": "/downloads/prediction_miss_log.csv",
+      "enabled": true,
+      "rows": 704,
+      "last_error": null,
+      "note": "14d miss rate: 37.64% | last run: 2026-03-12T08:41:51.042136+00:00"
     },
     {
       "name": "NBA Daily Lineups Feed",
       "description": "Confirmed/expected lineup statuses and positions for starter context.",
       "url": "https://stats.nba.com/js/data/leaders/00_daily_lineups_YYYYMMDD.json",
       "enabled": true,
-      "rows": 60,
-      "last_error": "Command '['curl', '-fsSL', '--retry', '0', '--connect-timeout', '8', '--max-time', '8', '--http1.1', '-A', 'NBAPredictionEngine/1.0', '-H', 'Accept: application/json, text/plain, */*', '-H', 'Referer: https://www.nba.com/', 'https://stats.nba.com/js/data/leaders/00_daily_lineups_20260312.json']' returned non-zero exit status 22.",
+      "rows": 197,
+      "last_error": null,
       "note": null
     },
     {
@@ -138,18 +174,37 @@
       "url": "https://api.balldontlie.io/v1/player_injuries",
       "docs_url": "https://docs.balldontlie.io/",
       "enabled": true,
-      "rows": 25,
-      "last_error": "Command '['curl', '-fsSL', '--retry', '0', '--connect-timeout', '10', '--max-time', '10', '--http1.1', '-A', 'NBAPredictionEngine/1.0', '-H', 'Authorization: [redacted]', 'https://api.balldontlie.io/v1/player_injuries?per_page=100&team_ids%5B%5D=2&team_ids%5B%5D=4&team_ids%5B%5D=6&team_ids%5B%5D=8&team_ids%5B%5D=11&team_ids%5B%5D=13&team_ids%5B%5D=18&team_ids%5B%5D=19&team_ids%5B%5D=20&team_ids%5B%5D=21&team_ids%5B%5D=22&team_ids%5B%5D=26&team_ids%5B%5D=28&team_ids%5B%5D=29']' returned non-zero exit status 22.",
+      "rows": 62,
+      "last_error": "Command '['curl', '-fsSL', '--retry', '0', '--connect-timeout', '10', '--max-time', '10', '--http1.1', '-A', 'NBAPredictionEngine/1.0', '-H', 'Authorization: [redacted]', 'https://api.balldontlie.io/v1/player_injuries?per_page=100&team_ids%5B%5D=1&team_ids%5B%5D=2&team_ids%5B%5D=5&team_ids%5B%5D=7&team_ids%5B%5D=8&team_ids%5B%5D=12&team_ids%5B%5D=14&team_ids%5B%5D=15&team_ids%5B%5D=16&team_ids%5B%5D=17&team_ids%5B%5D=21&team_ids%5B%5D=22&team_ids%5B%5D=24&team_ids%5B%5D=27&team_ids%5B%5D=30']' returned non-zero exit status 22.",
       "note": "BALDONTLIE request failed in this cycle; using official NBA injury report fallback."
     },
     {
       "name": "NBA Official Injury Report",
       "description": "Official NBA injury report page and latest report PDF when discovered.",
-      "url": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-03-11_12_45PM.pdf",
+      "url": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-03-12_12_45PM.pdf",
       "page_url": "https://official.nba.com/nba-injury-report-2025-26-season/",
       "enabled": true,
-      "rows": 33,
+      "rows": 110,
       "last_error": null
+    },
+    {
+      "name": "Cloud Archive Bundle",
+      "description": "Cloud-backed historical bundle storing every pulled dataset snapshot for continuous learning.",
+      "url": "/Users/josephdelallera/Library/Mobile Documents/com~apple~CloudDocs/nba_model_cloud_archive",
+      "enabled": true,
+      "rows": 10,
+      "last_error": null,
+      "note": "Archived 10 dataset updates to cloud storage."
+    },
+    {
+      "name": "Neon Postgres Sync",
+      "description": "Optional Neon Postgres archive stream for remote dataset backups and recovery.",
+      "url": "https://ep-hidden-sun-akffxgnk-pooler.c-3.us-west-2.aws.neon.tech",
+      "docs_url": "https://neon.tech/docs/",
+      "enabled": true,
+      "rows": 14,
+      "last_error": null,
+      "note": "Synced 14 dataset update(s) to Neon."
     }
   ],
   "local_links": [
@@ -169,6 +224,21 @@
       "url": "/downloads/provider_context_updates.csv"
     },
     {
+      "name": "Live Game Actions (CSV)",
+      "description": "Rolling 10-second live game action notes history.",
+      "url": "/downloads/live_game_actions.csv"
+    },
+    {
+      "name": "Postgame Reviews (CSV)",
+      "description": "Per-player postgame review notes generated from completed games.",
+      "url": "/downloads/postgame_reviews.csv"
+    },
+    {
+      "name": "Game Notes Daily (CSV)",
+      "description": "Compiled daily game-notes context used in live projections.",
+      "url": "/downloads/game_notes_daily.csv"
+    },
+    {
       "name": "Historical Training Data (CSV)",
       "description": "Canonical one-row-per-player-game training history file.",
       "url": "/downloads/training_data.csv"
@@ -177,6 +247,16 @@
       "name": "Live Sync State (JSON)",
       "description": "Current live sync state, provider stats, and latest sync metadata.",
       "url": "/downloads/live_sync_state.json"
+    },
+    {
+      "name": "Prediction Miss Log (CSV)",
+      "description": "Historical log of projection misses and residuals from completed games.",
+      "url": "/downloads/prediction_miss_log.csv"
+    },
+    {
+      "name": "Adaptive Learning Profile (JSON)",
+      "description": "Current self-correction profile derived from miss history.",
+      "url": "/downloads/adaptive_learning_profile.json"
     },
     {
       "name": "Engine Metrics (JSON)",

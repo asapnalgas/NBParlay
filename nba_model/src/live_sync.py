@@ -173,12 +173,21 @@ DEFAULT_LIVE_CONFIG = {
     "auto_start_on_app_launch": True,
     "poll_interval_seconds": MIN_SYNC_INTERVAL_SECONDS,
     "force_provider_refresh_every_poll": True,
+    "force_provider_refresh_allowlist": [
+        "odds",
+        "player_props",
+        "rotowire_prizepicks",
+        "lineups",
+        "live_rosters",
+        "injuries",
+        "espn_live",
+    ],
     "fetch_retry_attempts": 1,
     "fetch_retry_base_delay_seconds": 0.3,
     "fetch_retry_jitter_seconds": 0.1,
     "auto_backfill_recent_history": True,
     "history_backfill_days": 42,
-    "history_backfill_max_games_per_cycle": 180,
+    "history_backfill_max_games_per_cycle": 120,
     "history_backfill_max_runtime_seconds": DEFAULT_BACKFILL_MAX_RUNTIME_SECONDS,
     "history_backfill_min_interval_hours": 12,
     "auto_build_upcoming_slate": True,
@@ -190,11 +199,11 @@ DEFAULT_LIVE_CONFIG = {
     "live_projection_horizon_hours": 48,
     "max_upcoming_rows_per_cycle": 250,
     "auto_retrain_on_new_results": True,
-    "auto_retrain_each_interval": True,
+    "auto_retrain_each_interval": False,
     "retrain_interval_seconds": MIN_RETRAIN_INTERVAL_SECONDS,
     "auto_predict_after_sync": False,
-    "capture_benchmark_snapshot_on_projection_refresh": True,
-    "auto_run_rotowire_benchmark": True,
+    "capture_benchmark_snapshot_on_projection_refresh": False,
+    "auto_run_rotowire_benchmark": False,
     "benchmark_run_interval_minutes": 10,
     "benchmark_run_interval_seconds": MIN_BENCHMARK_INTERVAL_SECONDS,
     "benchmark_run_lookback_days": 28,
@@ -251,7 +260,7 @@ DEFAULT_LIVE_CONFIG = {
             "sport": "basketball_nba",
             "refresh_interval_seconds": DEFAULT_PLAYER_PROPS_REFRESH_INTERVAL_SECONDS,
             "request_timeout_seconds": DEFAULT_PROVIDER_REQUEST_TIMEOUT_SECONDS,
-            "max_events_per_cycle": 8,
+            "max_events_per_cycle": 6,
             "regions": "us",
             "bookmakers": "draftkings,fanduel",
             "markets": (
@@ -294,7 +303,7 @@ DEFAULT_LIVE_CONFIG = {
             "enabled": True,
             "refresh_interval_seconds": MIN_PROFILE_REFRESH_INTERVAL_SECONDS,
             "refresh_interval_hours": 24,
-            "max_players_per_cycle": 120,
+            "max_players_per_cycle": 80,
             "cache_path": str(DEFAULT_PROFILE_CACHE_PATH),
             "wikipedia_summary_template": "https://en.wikipedia.org/api/rest_v1/page/summary/{title}",
         },
@@ -302,7 +311,7 @@ DEFAULT_LIVE_CONFIG = {
             "enabled": True,
             "refresh_interval_seconds": MIN_PLAYSTYLE_REFRESH_INTERVAL_SECONDS,
             "remote_refresh_interval_seconds": 1800,
-            "max_players_per_cycle": 700,
+            "max_players_per_cycle": 250,
             "remote_fetch_mode": "light",
             "cache_path": str(DEFAULT_PLAYSTYLE_CACHE_PATH),
             "base_url": "https://stats.nba.com/stats",
@@ -330,7 +339,7 @@ DEFAULT_LIVE_CONFIG = {
             "refresh_interval_minutes": 5,
             "refresh_interval_seconds": MIN_NEWS_REFRESH_INTERVAL_SECONDS,
             "lookback_hours": 24,
-            "max_queries_per_cycle": 8,
+            "max_queries_per_cycle": 5,
             "max_articles_per_query": 25,
             "request_timeout_seconds": DEFAULT_PROVIDER_REQUEST_TIMEOUT_SECONDS,
             "max_runtime_seconds": DEFAULT_NEWS_MAX_RUNTIME_SECONDS,
@@ -363,7 +372,7 @@ DEFAULT_LIVE_CONFIG = {
             "scoreboard_url_template": ESPN_SCOREBOARD_URL_TEMPLATE,
             "summary_url_template": ESPN_SUMMARY_URL_TEMPLATE,
             "max_dates_per_cycle": 2,
-            "max_events_per_cycle": 20,
+            "max_events_per_cycle": 12,
             "max_rows_retained": 500_000,
             "store_path": str(DEFAULT_ESPN_LIVE_GAMES_PATH),
             "include_pregame_events": False,
@@ -389,6 +398,11 @@ DEFAULT_LIVE_CONFIG = {
         },
     },
 }
+
+_LIVE_CONFIG_CACHE_PATH: Path | None = None
+_LIVE_CONFIG_CACHE_SIG: tuple[int, int] | None = None
+_LIVE_CONFIG_CACHE_VALUE: dict | None = None
+_LIVE_CONFIG_CACHE_LOCK = threading.Lock()
 
 UPCOMING_CONTEXT_COLUMNS = [
     "team",
@@ -1881,22 +1895,53 @@ def _normalize_live_config_intervals(config: dict) -> tuple[dict, bool]:
 
 
 def load_live_config(config_path: Path = DEFAULT_LIVE_CONFIG_PATH) -> dict:
+    global _LIVE_CONFIG_CACHE_PATH, _LIVE_CONFIG_CACHE_SIG, _LIVE_CONFIG_CACHE_VALUE
     _load_provider_env_file()
     config_path.parent.mkdir(parents=True, exist_ok=True)
     if not config_path.exists():
         config_path.write_text(json.dumps(DEFAULT_LIVE_CONFIG, indent=2), encoding="utf-8")
+        with _LIVE_CONFIG_CACHE_LOCK:
+            _LIVE_CONFIG_CACHE_PATH = config_path.resolve()
+            _LIVE_CONFIG_CACHE_SIG = (
+                config_path.stat().st_mtime_ns,
+                config_path.stat().st_size,
+            )
+            _LIVE_CONFIG_CACHE_VALUE = dict(DEFAULT_LIVE_CONFIG)
         return dict(DEFAULT_LIVE_CONFIG)
+
+    resolved_path = config_path.resolve()
+    stat = config_path.stat()
+    signature = (stat.st_mtime_ns, stat.st_size)
+    with _LIVE_CONFIG_CACHE_LOCK:
+        if (
+            _LIVE_CONFIG_CACHE_VALUE is not None
+            and _LIVE_CONFIG_CACHE_PATH == resolved_path
+            and _LIVE_CONFIG_CACHE_SIG == signature
+        ):
+            return dict(_LIVE_CONFIG_CACHE_VALUE)
 
     loaded = json.loads(config_path.read_text(encoding="utf-8"))
     normalized, changed = _normalize_live_config_intervals(loaded)
     if changed:
         save_live_config(normalized, config_path=config_path)
+    else:
+        with _LIVE_CONFIG_CACHE_LOCK:
+            _LIVE_CONFIG_CACHE_PATH = resolved_path
+            _LIVE_CONFIG_CACHE_SIG = signature
+            _LIVE_CONFIG_CACHE_VALUE = dict(normalized)
     return normalized
 
 
 def save_live_config(config: dict, config_path: Path = DEFAULT_LIVE_CONFIG_PATH) -> None:
+    global _LIVE_CONFIG_CACHE_PATH, _LIVE_CONFIG_CACHE_SIG, _LIVE_CONFIG_CACHE_VALUE
     config_path.parent.mkdir(parents=True, exist_ok=True)
     config_path.write_text(json.dumps(config, indent=2), encoding="utf-8")
+    resolved_path = config_path.resolve()
+    stat = config_path.stat()
+    with _LIVE_CONFIG_CACHE_LOCK:
+        _LIVE_CONFIG_CACHE_PATH = resolved_path
+        _LIVE_CONFIG_CACHE_SIG = (stat.st_mtime_ns, stat.st_size)
+        _LIVE_CONFIG_CACHE_VALUE = dict(config)
 
 
 def load_live_state(state_path: Path = DEFAULT_LIVE_STATE_PATH) -> dict:
@@ -3293,6 +3338,23 @@ def _estimate_expected_minutes(upcoming_frame: pd.DataFrame, training_path: Path
     projected = upcoming_frame.copy()
     projected["player_key"] = projected["player_name"].map(_normalize_player_key)
     projected["team_key"] = projected["team"].map(_normalize_team_code)
+
+    # Guard against repeated sync cycles where historical-suffix columns are already present.
+    # Without this cleanup, pandas merge can fail with duplicate-suffix collisions.
+    historical_columns = [
+        "minutes_avg_last_3",
+        "minutes_avg_last_5",
+        "minutes_avg_last_10",
+        "minutes_std_last_10",
+        "minutes_season_avg",
+        "minutes_games_played",
+        "starter_rate_last_10",
+    ]
+    historical_suffix_columns = [f"{column}__hist" for column in historical_columns]
+    duplicate_hist_columns = [column for column in historical_suffix_columns if column in projected.columns]
+    if duplicate_hist_columns:
+        projected = projected.drop(columns=duplicate_hist_columns)
+
     projected = projected.merge(
         latest.drop(columns=["player_name", "team"]),
         on=["player_key", "team_key"],
@@ -3408,19 +3470,19 @@ def _estimate_expected_minutes(upcoming_frame: pd.DataFrame, training_path: Path
             minutes_to_tipoff = float((tipoff_timestamp.to_pydatetime() - now_utc).total_seconds() / 60.0)
             if minutes_to_tipoff <= 5.0 and minutes_to_tipoff >= -30.0:
                 lock_window_stage = "t_minus_5"
-                lock_window_confidence_boost = 0.22
-                lock_window_pull_boost = 0.22
-                lock_window_starter_hint_boost = 0.16
+                lock_window_confidence_boost = 0.30
+                lock_window_pull_boost = 0.30
+                lock_window_starter_hint_boost = 0.24
             elif minutes_to_tipoff <= 30.0 and minutes_to_tipoff >= -30.0:
                 lock_window_stage = "t_minus_30"
-                lock_window_confidence_boost = 0.15
-                lock_window_pull_boost = 0.15
-                lock_window_starter_hint_boost = 0.11
+                lock_window_confidence_boost = 0.21
+                lock_window_pull_boost = 0.20
+                lock_window_starter_hint_boost = 0.16
             elif minutes_to_tipoff <= 90.0 and minutes_to_tipoff >= -30.0:
                 lock_window_stage = "t_minus_90"
-                lock_window_confidence_boost = 0.09
-                lock_window_pull_boost = 0.08
-                lock_window_starter_hint_boost = 0.07
+                lock_window_confidence_boost = 0.14
+                lock_window_pull_boost = 0.12
+                lock_window_starter_hint_boost = 0.10
             elif minutes_to_tipoff > 90.0:
                 lock_window_stage = "pre_t_minus_90"
             else:
@@ -3429,7 +3491,7 @@ def _estimate_expected_minutes(upcoming_frame: pd.DataFrame, training_path: Path
         starter_certainty_hint = pd.to_numeric(pd.Series([row.get("starter_certainty")]), errors="coerce").iloc[0]
         lineup_confidence_hint = pd.to_numeric(pd.Series([row.get("lineup_status_confidence")]), errors="coerce").iloc[0]
         if pd.notna(starter_certainty_hint):
-            blend_weight = (0.62 if pd.notna(starter_numeric) else 0.48) + lock_window_starter_hint_boost
+            blend_weight = (0.68 if pd.notna(starter_numeric) else 0.54) + lock_window_starter_hint_boost
             blend_weight = float(max(0.18, min(0.9, blend_weight)))
             starter_prob = float(
                 max(
@@ -3442,7 +3504,7 @@ def _estimate_expected_minutes(upcoming_frame: pd.DataFrame, training_path: Path
             )
         if pd.notna(lineup_confidence_hint) and pd.notna(starter_numeric):
             confidence_direction = 1.0 if float(starter_numeric) >= 0.5 else -1.0
-            lineup_hint_gain = 0.12 + 0.5 * lock_window_starter_hint_boost
+            lineup_hint_gain = 0.14 + 0.55 * lock_window_starter_hint_boost
             starter_prob = float(
                 max(
                     0.0,
@@ -3478,13 +3540,13 @@ def _estimate_expected_minutes(upcoming_frame: pd.DataFrame, training_path: Path
             + (starter_cert_component * 0.2)
             + (pregame_line_freshness * 0.18)
             + (news_conf_component * (1.0 - news_risk_component) * 0.16)
-            + (lock_window_confidence_boost * (0.55 + 0.45 * lineup_conf_component))
+            + (lock_window_confidence_boost * (0.62 + 0.38 * lineup_conf_component))
         )
         pregame_lock_confidence = float(max(0.0, min(1.0, pregame_lock_confidence)))
         if pd.notna(starter_numeric):
             target_probability = 1.0 if float(starter_numeric) >= 0.5 else 0.0
-            lock_pull = 0.08 + (0.24 * pregame_lock_confidence) + lock_window_pull_boost
-            lock_pull = float(max(0.08, min(0.75, lock_pull)))
+            lock_pull = 0.10 + (0.28 * pregame_lock_confidence) + lock_window_pull_boost
+            lock_pull = float(max(0.10, min(0.82, lock_pull)))
             starter_prob = float(
                 max(
                     0.0,
@@ -3614,10 +3676,10 @@ def _estimate_expected_minutes(upcoming_frame: pd.DataFrame, training_path: Path
 
         if lock_window_stage in {"t_minus_30", "t_minus_5"}:
             if role in {"rotation", "bench"} and starter_prob < 0.45:
-                reduction = 0.9 if lock_window_stage == "t_minus_30" else 0.82
+                reduction = 0.84 if lock_window_stage == "t_minus_30" else 0.72
                 projected_minutes = projected_minutes * reduction
             if role in {"star", "core"} and starter_prob >= 0.65 and baseline >= 20.0:
-                floor_scale = 0.78 if lock_window_stage == "t_minus_30" else 0.84
+                floor_scale = 0.82 if lock_window_stage == "t_minus_30" else 0.90
                 projected_minutes = max(projected_minutes, baseline * floor_scale)
 
         season_avg = pd.to_numeric(pd.Series([row.get("minutes_season_avg")]), errors="coerce").iloc[0]
@@ -3633,8 +3695,8 @@ def _estimate_expected_minutes(upcoming_frame: pd.DataFrame, training_path: Path
         projected_minutes = projected_minutes * multiplier
         if starter_prob < 0.2:
             projected_minutes = min(projected_minutes, 24.0)
-        if pregame_lock_confidence >= 0.75 and starter_prob >= 0.6 and baseline >= 20.0:
-            projected_minutes = max(projected_minutes, baseline * 0.72)
+        if pregame_lock_confidence >= 0.70 and starter_prob >= 0.6 and baseline >= 20.0:
+            projected_minutes = max(projected_minutes, baseline * 0.78)
 
         games_played = pd.to_numeric(pd.Series([row.get("minutes_games_played")]), errors="coerce").fillna(0).iloc[0]
         minutes_volatility = pd.to_numeric(pd.Series([row.get("minutes_std_last_10")]), errors="coerce").fillna(7.0).iloc[0]
@@ -9787,6 +9849,28 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
     )
     run_heavy_model_tasks = bool(config.get("run_heavy_model_tasks_in_live_sync", False))
     force_provider_refresh_every_poll = bool(config.get("force_provider_refresh_every_poll", True))
+    force_provider_refresh_allowlist_raw = config.get(
+        "force_provider_refresh_allowlist",
+        ["odds", "player_props", "rotowire_prizepicks", "lineups", "live_rosters", "injuries", "espn_live"],
+    )
+    if isinstance(force_provider_refresh_allowlist_raw, str):
+        allowlist_tokens = [token.strip() for token in force_provider_refresh_allowlist_raw.split(",")]
+    elif isinstance(force_provider_refresh_allowlist_raw, (list, tuple, set)):
+        allowlist_tokens = [str(token).strip() for token in force_provider_refresh_allowlist_raw]
+    else:
+        allowlist_tokens = []
+    force_provider_refresh_allowlist = {
+        token.lower()
+        for token in allowlist_tokens
+        if token
+    }
+
+    def _force_provider_refresh(provider_key: str) -> bool:
+        return bool(
+            force_provider_refresh_every_poll
+            and str(provider_key or "").strip().lower() in force_provider_refresh_allowlist
+        )
+
     auto_self_optimize = bool(config.get("auto_self_optimize_hourly", True))
     auto_retrain_each_interval = bool(config.get("auto_retrain_each_interval", False))
     retrain_interval_seconds = _clamp_interval(
@@ -9835,6 +9919,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
         capture_benchmark_snapshot_on_refresh = False
     if not module_enabled(support_modules_config, "live_ingest", default=True):
         force_provider_refresh_every_poll = False
+        force_provider_refresh_allowlist = set()
 
     adaptive_profile_payload: dict = {}
     if DEFAULT_ADAPTIVE_LEARNING_PROFILE_PATH.exists():
@@ -9901,6 +9986,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
             "optimization_interval_seconds": optimization_interval_seconds,
             "run_heavy_model_tasks_in_live_sync": run_heavy_model_tasks,
             "force_provider_refresh_every_poll": force_provider_refresh_every_poll,
+            "force_provider_refresh_allowlist": sorted(force_provider_refresh_allowlist),
             "auto_self_optimize_hourly": auto_self_optimize,
             "auto_retrain_each_interval": auto_retrain_each_interval,
             "retrain_interval_seconds": retrain_interval_seconds,
@@ -10114,7 +10200,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
                 fallback=DEFAULT_ODDS_REFRESH_INTERVAL_SECONDS,
                 minimum=MIN_PROVIDER_REFRESH_INTERVAL_SECONDS,
             )
-            if force_provider_refresh_every_poll:
+            if _force_provider_refresh("odds"):
                 odds_refresh_seconds = MIN_PROVIDER_REFRESH_INTERVAL_SECONDS
             odds_due, next_odds_due = _is_due_seconds(
                 state.get("last_odds_refresh_at"),
@@ -10205,7 +10291,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
                 fallback=900,
                 minimum=60,
             )
-            if force_provider_refresh_every_poll:
+            if _force_provider_refresh("game_notes"):
                 game_notes_live_refresh_seconds = MIN_IN_GAME_REFRESH_INTERVAL_SECONDS
                 game_notes_postgame_refresh_seconds = MIN_IN_GAME_REFRESH_INTERVAL_SECONDS
                 game_notes_daily_refresh_seconds = MIN_IN_GAME_REFRESH_INTERVAL_SECONDS
@@ -10330,7 +10416,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
                 fallback=MIN_IN_GAME_REFRESH_INTERVAL_SECONDS,
                 minimum=MIN_PROVIDER_REFRESH_INTERVAL_SECONDS,
             )
-            if force_provider_refresh_every_poll:
+            if _force_provider_refresh("espn_live"):
                 espn_live_refresh_seconds = MIN_PROVIDER_REFRESH_INTERVAL_SECONDS
             espn_live_due, next_espn_live_due = _is_due_seconds(
                 state.get("last_espn_live_refresh_at"),
@@ -10376,7 +10462,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
                 fallback=DEFAULT_LINEUPS_REFRESH_INTERVAL_SECONDS,
                 minimum=MIN_PROVIDER_REFRESH_INTERVAL_SECONDS,
             )
-            if force_provider_refresh_every_poll:
+            if _force_provider_refresh("lineups"):
                 lineups_refresh_seconds = MIN_PROVIDER_REFRESH_INTERVAL_SECONDS
             lineups_due, next_lineups_due = _is_due_seconds(
                 state.get("last_lineups_refresh_at"),
@@ -10419,7 +10505,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
                 fallback=DEFAULT_LIVE_ROSTER_REFRESH_INTERVAL_SECONDS,
                 minimum=MIN_PROVIDER_REFRESH_INTERVAL_SECONDS,
             )
-            if force_provider_refresh_every_poll:
+            if _force_provider_refresh("live_rosters"):
                 live_rosters_refresh_seconds = MIN_PROVIDER_REFRESH_INTERVAL_SECONDS
             live_rosters_due, next_live_rosters_due = _is_due_seconds(
                 state.get("last_live_rosters_refresh_at"),
@@ -10488,7 +10574,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
                 fallback=DEFAULT_PLAYER_PROPS_REFRESH_INTERVAL_SECONDS,
                 minimum=MIN_PROVIDER_REFRESH_INTERVAL_SECONDS,
             )
-            if force_provider_refresh_every_poll:
+            if _force_provider_refresh("player_props"):
                 player_props_refresh_seconds = MIN_PROVIDER_REFRESH_INTERVAL_SECONDS
             player_props_due, next_player_props_due = _is_due_seconds(
                 state.get("last_player_props_refresh_at"),
@@ -10535,7 +10621,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
                 fallback=DEFAULT_ROTOWIRE_REFRESH_INTERVAL_SECONDS,
                 minimum=MIN_PROVIDER_REFRESH_INTERVAL_SECONDS,
             )
-            if force_provider_refresh_every_poll:
+            if _force_provider_refresh("rotowire_prizepicks"):
                 rotowire_refresh_seconds = MIN_PROVIDER_REFRESH_INTERVAL_SECONDS
             rotowire_due, next_rotowire_due = _is_due_seconds(
                 state.get("last_rotowire_refresh_at"),
@@ -10602,7 +10688,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
                 fallback=DEFAULT_INJURY_REFRESH_INTERVAL_SECONDS,
                 minimum=MIN_PROVIDER_REFRESH_INTERVAL_SECONDS,
             )
-            if force_provider_refresh_every_poll:
+            if _force_provider_refresh("injuries"):
                 injury_refresh_seconds = MIN_PROVIDER_REFRESH_INTERVAL_SECONDS
             injury_due, next_injury_due = _is_due_seconds(
                 state.get("last_injury_refresh_at"),
@@ -10702,7 +10788,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
                 fallback=MIN_NEWS_REFRESH_INTERVAL_SECONDS,
                 minimum=MIN_NEWS_REFRESH_INTERVAL_SECONDS,
             )
-            if force_provider_refresh_every_poll:
+            if _force_provider_refresh("news"):
                 news_refresh_seconds = MIN_NEWS_REFRESH_INTERVAL_SECONDS
             news_due, next_news_due = _is_due_seconds(
                 state.get("last_news_refresh_at"),
@@ -11368,7 +11454,7 @@ def run_live_sync(config_path: Path = DEFAULT_LIVE_CONFIG_PATH, state_path: Path
                 fallback=MIN_NEWS_REFRESH_INTERVAL_SECONDS,
                 minimum=MIN_NEWS_REFRESH_INTERVAL_SECONDS,
             )
-            if force_provider_refresh_every_poll:
+            if _force_provider_refresh("news"):
                 news_refresh_seconds = MIN_NEWS_REFRESH_INTERVAL_SECONDS
             _, next_news_due_at = _is_due_seconds(
                 state.get("last_news_refresh_at"),

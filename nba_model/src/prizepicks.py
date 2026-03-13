@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import json
 from pathlib import Path
 
@@ -241,27 +242,47 @@ def _uncertainty_band(row: pd.Series) -> float:
     return float(max(base_threshold, blended))
 
 
-def load_prizepicks_lines(path: Path = DEFAULT_PRIZEPICKS_LINES_PATH) -> dict | None:
+def _csv_columns(path: Path) -> list[str]:
+    try:
+        with path.open("r", encoding="utf-8", errors="ignore", newline="") as input_file:
+            return [str(column) for column in next(csv.reader(input_file), [])]
+    except OSError:
+        return []
+
+
+def load_prizepicks_lines(path: Path = DEFAULT_PRIZEPICKS_LINES_PATH, include_preview: bool = True) -> dict | None:
     if not path.exists():
         return None
-    frame = pd.read_csv(path, nrows=25)
+    if include_preview:
+        frame = pd.read_csv(path, nrows=25)
+        columns = list(frame.columns)
+        preview = frame.head(25).fillna("").to_dict(orient="records")
+    else:
+        columns = _csv_columns(path)
+        preview = []
     return {
         "path": str(path),
         "rows": int(csv_data_row_count(path)),
-        "columns": list(frame.columns),
-        "preview": frame.head(25).fillna("").to_dict(orient="records"),
+        "columns": columns,
+        "preview": preview,
     }
 
 
-def load_prizepicks_edges(path: Path = DEFAULT_PRIZEPICKS_EDGES_PATH) -> dict | None:
+def load_prizepicks_edges(path: Path = DEFAULT_PRIZEPICKS_EDGES_PATH, include_preview: bool = True) -> dict | None:
     if not path.exists():
         return None
-    frame = pd.read_csv(path, nrows=25)
+    if include_preview:
+        frame = pd.read_csv(path, nrows=25)
+        columns = list(frame.columns)
+        preview = frame.head(25).fillna("").to_dict(orient="records")
+    else:
+        columns = _csv_columns(path)
+        preview = []
     return {
         "path": str(path),
         "rows": int(csv_data_row_count(path)),
-        "columns": list(frame.columns),
-        "preview": frame.head(25).fillna("").to_dict(orient="records"),
+        "columns": columns,
+        "preview": preview,
     }
 
 

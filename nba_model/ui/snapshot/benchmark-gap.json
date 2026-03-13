@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-03-13T01:36:30.406844+00:00",
+  "rows_evaluated": 704,
+  "rows_with_actionable_picks": 32,
+  "model_projection_mae": 5.0339,
+  "rotowire_line_mae": 4.5135,
+  "mae_delta_vs_rotowire_line": -0.5204,
+  "hit_rate": 0.4062,
+  "avg_clv": -0.1562,
+  "per_market": [
+    {
+      "market": "assists",
+      "rows": 104,
+      "projection_mae": 1.7193,
+      "line_mae": 1.625,
+      "mae_delta_vs_line": -0.0943,
+      "graded_picks": 4,
+      "hit_rate": 0.75,
+      "avg_clv": 0.0
+    },
+    {
+      "market": "points",
+      "rows": 219,
+      "projection_mae": 6.0125,
+      "line_mae": 5.6027,
+      "mae_delta_vs_line": -0.4098,
+      "graded_picks": 6,
+      "hit_rate": 0.3333,
+      "avg_clv": -0.25
+    },
+    {
+      "market": "pra",
+      "rows": 218,
+      "projection_mae": 7.6896,
+      "line_mae": 6.7087,
+      "mae_delta_vs_line": -0.9808,
+      "graded_picks": 8,
+      "hit_rate": 0.5,
+      "avg_clv": -0.0625
+    },
+    {
+      "market": "rebounds",
+      "rows": 163,
+      "projection_mae": 2.2821,
+      "line_mae": 1.9571,
+      "mae_delta_vs_line": -0.325,
+      "graded_picks": 14,
+      "hit_rate": 0.2857,
+      "avg_clv": -0.2143
+    }
+  ],
+  "notes": {
+    "delta_definition": "rotowire_line_mae - model_projection_mae (positive means model better)",
+    "target": "mae_delta_vs_rotowire_line > 0 and sustained positive CLV"
+  }
+}

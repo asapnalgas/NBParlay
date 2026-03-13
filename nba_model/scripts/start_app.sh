@@ -11,6 +11,7 @@ HOST="${APP_HOST:-127.0.0.1}"
 DAEMON="${DAEMONIZE:-0}"
 PID_FILE="$APP_DIR/app.pid"
 SINGLE_INSTANCE="${SINGLE_INSTANCE:-1}"
+PYTHON_BIN="${PYTHON_BIN:-}"
 
 mkdir -p "$LOG_DIR"
 cd "$ROOT"
@@ -18,6 +19,29 @@ cd "$ROOT"
 if [ -f "$ENV_FILE" ]; then
   source "$ENV_FILE"
 fi
+
+resolve_python_bin() {
+  if [ -n "${PYTHON_BIN:-}" ] && [ -x "$PYTHON_BIN" ]; then
+    echo "$PYTHON_BIN"
+    return 0
+  fi
+
+  local candidates=(
+    "$ROOT/venv311/bin/python"
+    "$ROOT/venv/bin/python"
+    "$(command -v python3 2>/dev/null || true)"
+    "$(command -v python 2>/dev/null || true)"
+  )
+  local candidate=""
+  for candidate in "${candidates[@]}"; do
+    if [ -n "$candidate" ] && [ -x "$candidate" ]; then
+      echo "$candidate"
+      return 0
+    fi
+  done
+
+  return 1
+}
 
 stop_existing_instances() {
   local stopped=0
@@ -82,14 +106,22 @@ if [ "$SINGLE_INSTANCE" = "1" ]; then
 fi
 
 PORT="$(find_free_port "$PORT")"
+PYTHON_BIN="$(resolve_python_bin || true)"
+if [ -z "$PYTHON_BIN" ]; then
+  echo "Could not find a usable Python interpreter."
+  echo "Set PYTHON_BIN=/absolute/path/to/python and retry."
+  exit 1
+fi
+
 echo "Starting NBA prediction engine at http://${HOST}:$PORT"
 echo "PID file: $PID_FILE"
 echo "Log file: $LOG_DIR/app.log"
+echo "Python: $PYTHON_BIN"
 
 export PYTHONUNBUFFERED=1
 
 if [ "$DAEMON" = "1" ]; then
-  nohup "$ROOT/venv/bin/python" "$APP_DIR/app.py" --host "$HOST" --port "$PORT" \
+  nohup "$PYTHON_BIN" "$APP_DIR/app.py" --host "$HOST" --port "$PORT" \
     </dev/null >"$LOG_DIR/app.log" 2>&1 &
   app_pid=$!
   echo "$app_pid" > "$PID_FILE"
@@ -119,4 +151,4 @@ if [ "$DAEMON" = "1" ]; then
   exit 0
 fi
 
-exec "$ROOT/venv/bin/python" "$APP_DIR/app.py" --host "$HOST" --port "$PORT"
+exec "$PYTHON_BIN" "$APP_DIR/app.py" --host "$HOST" --port "$PORT"

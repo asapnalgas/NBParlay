@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 import sys
+from unittest.mock import patch
 
 import pandas as pd
 
@@ -16,7 +17,9 @@ from src.engine import (
     _apply_anchor_projection_blend,
     _apply_prediction_intervals_and_error_estimates,
     _filter_modeling_history_rows,
+    _generic_csv_preview,
     _prediction_quality_gate,
+    load_predictions,
 )
 from src.importers import import_prizepicks_lines_text, import_season_priors_text
 from src.live_sync import (
@@ -25,10 +28,40 @@ from src.live_sync import (
     _completed_games_from_schedule,
     _extract_rotowire_prizepicks_rows,
 )
-from src.prizepicks import generate_prizepicks_edges
+from src.prizepicks import generate_prizepicks_edges, load_prizepicks_edges, load_prizepicks_lines
 
 
 class RegressionTests(unittest.TestCase):
+    def test_status_helpers_skip_pandas_reads_when_preview_disabled(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            temp_dir_path = Path(temp_dir)
+            generic_path = temp_dir_path / "generic.csv"
+            predictions_path = temp_dir_path / "predictions.csv"
+            lines_path = temp_dir_path / "prizepicks_lines.csv"
+            edges_path = temp_dir_path / "prizepicks_edges.csv"
+
+            generic_path.write_text("a,b\n1,2\n", encoding="utf-8")
+            predictions_path.write_text("player_name,predicted_points\nA,19.5\n", encoding="utf-8")
+            lines_path.write_text("player_name,market,line\nA,points,19.5\n", encoding="utf-8")
+            edges_path.write_text("player_name,market,edge\nA,points,2.1\n", encoding="utf-8")
+
+            with patch("src.engine.pd.read_csv", side_effect=AssertionError("engine pandas read_csv should not run")):
+                generic_payload = _generic_csv_preview(generic_path, include_preview=False)
+                predictions_payload = load_predictions(predictions_path, include_preview=False)
+
+            with patch("src.prizepicks.pd.read_csv", side_effect=AssertionError("prizepicks pandas read_csv should not run")):
+                lines_payload = load_prizepicks_lines(lines_path, include_preview=False)
+                edges_payload = load_prizepicks_edges(edges_path, include_preview=False)
+
+        self.assertEqual(generic_payload["columns"], ["a", "b"])
+        self.assertEqual(generic_payload["preview"], [])
+        self.assertEqual(predictions_payload["columns"], ["player_name", "predicted_points"])
+        self.assertEqual(predictions_payload["preview"], [])
+        self.assertEqual(lines_payload["columns"], ["player_name", "market", "line"])
+        self.assertEqual(lines_payload["preview"], [])
+        self.assertEqual(edges_payload["columns"], ["player_name", "market", "edge"])
+        self.assertEqual(edges_payload["preview"], [])
+
     def test_filter_modeling_history_rows_enforces_integrity(self) -> None:
         frame = pd.DataFrame(
             [

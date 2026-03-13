@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import csv
 import json
 import os
 import re
@@ -3181,6 +3182,43 @@ def _predict_target_with_strategy(
     return totals, predicted_minutes
 
 
+def _load_bundle_with_compatibility_fallback(bundle_path: Path) -> tuple[dict, bool]:
+    try:
+        return joblib.load(bundle_path), False
+    except Exception as exc:  # noqa: BLE001
+        message = str(exc)
+        compatibility_markers = (
+            "_RemainderColsList",
+            "Can't get attribute",
+            "ColumnTransformer",
+        )
+        if not any(marker in message for marker in compatibility_markers):
+            raise
+
+        training_path = resolve_training_data_path()
+        if not training_path.exists():
+            raise RuntimeError(
+                f"Model bundle is incompatible and fallback retraining data was not found: {training_path}"
+            ) from exc
+
+        lookback_days = TRAINING_LOOKBACK_DEFAULT_DAYS
+        if DEFAULT_METRICS_PATH.exists():
+            try:
+                metrics_payload = json.loads(DEFAULT_METRICS_PATH.read_text(encoding="utf-8"))
+                lookback_days = int(metrics_payload.get("training_lookback_days") or lookback_days)
+            except Exception:  # noqa: BLE001
+                lookback_days = TRAINING_LOOKBACK_DEFAULT_DAYS
+        lookback_days = max(7, lookback_days)
+
+        train_engine(
+            data_path=training_path,
+            bundle_path=bundle_path,
+            metrics_path=DEFAULT_METRICS_PATH,
+            lookback_days=lookback_days,
+        )
+        return joblib.load(bundle_path), True
+
+
 def predict_engine(
     input_path: Path | None = None,
     bundle_path: Path = DEFAULT_BUNDLE_PATH,
@@ -3191,7 +3229,7 @@ def predict_engine(
     if not bundle_path.exists():
         raise FileNotFoundError(f"Model bundle not found: {bundle_path}")
 
-    bundle = joblib.load(bundle_path)
+    bundle, bundle_retrained_for_compatibility = _load_bundle_with_compatibility_fallback(bundle_path)
     trained_targets = bundle["trained_targets"]
 
     history_path = Path(bundle.get("data_path") or resolve_training_data_path())
@@ -3508,6 +3546,7 @@ def predict_engine(
         "output_path": str(output_path),
         "rows": int(len(result)),
         "predictions": result.head(25).to_dict(orient="records"),
+        "bundle_retrained_for_compatibility": bool(bundle_retrained_for_compatibility),
         "trained_targets": trained_targets,
         "display_targets": [
             column.replace("predicted_", "")
@@ -4036,29 +4075,48 @@ def load_metrics(metrics_path: Path = DEFAULT_METRICS_PATH) -> dict | None:
     return json.loads(metrics_path.read_text(encoding="utf-8"))
 
 
+def _csv_columns(path: Path) -> list[str]:
+    try:
+        with path.open("r", encoding="utf-8", errors="ignore", newline="") as input_file:
+            return [str(column) for column in next(csv.reader(input_file), [])]
+    except OSError:
+        return []
+
+
 def load_predictions(output_path: Path = DEFAULT_PREDICTIONS_PATH, include_preview: bool = True) -> dict | None:
     if not output_path.exists():
         return None
-    preview_rows = 25 if include_preview else 0
-    frame = pd.read_csv(output_path, nrows=max(0, int(preview_rows)))
+    if include_preview:
+        frame = pd.read_csv(output_path, nrows=25)
+        columns = list(frame.columns)
+        preview = frame.head(25).fillna("").to_dict(orient="records")
+    else:
+        columns = _csv_columns(output_path)
+        preview = []
     return {
         "path": str(output_path),
         "rows": int(csv_data_row_count(output_path)),
-        "columns": list(frame.columns),
-        "preview": frame.head(25).fillna("").to_dict(orient="records") if include_preview else [],
+        "columns": columns,
+        "preview": preview,
     }
 
 
 def _generic_csv_preview(path: Path, rows: int = 5, include_preview: bool = True) -> dict | None:
     if not path.exists():
         return None
-    read_rows = max(1, int(rows)) if include_preview else 0
-    frame = pd.read_csv(path, nrows=read_rows)
+    if include_preview:
+        read_rows = max(1, int(rows))
+        frame = pd.read_csv(path, nrows=read_rows)
+        columns = list(frame.columns)
+        preview = frame.head(rows).fillna("").to_dict(orient="records")
+    else:
+        columns = _csv_columns(path)
+        preview = []
     return {
         "path": str(path),
         "rows": int(csv_data_row_count(path)),
-        "columns": list(frame.columns),
-        "preview": frame.head(rows).fillna("").to_dict(orient="records") if include_preview else [],
+        "columns": columns,
+        "preview": preview,
     }
 
 
@@ -4119,8 +4177,12 @@ def app_status(include_previews: bool = True) -> dict:
             else None
         ),
         "season_priors_dataset": season_priors_dataset,
-        "prizepicks_lines_dataset": load_prizepicks_lines(prizepicks_lines_path) if prizepicks_lines_path and prizepicks_lines_path.exists() else None,
-        "prizepicks_edges": load_prizepicks_edges(),
+        "prizepicks_lines_dataset": (
+            load_prizepicks_lines(prizepicks_lines_path, include_preview=include_previews)
+            if prizepicks_lines_path and prizepicks_lines_path.exists()
+            else None
+        ),
+        "prizepicks_edges": load_prizepicks_edges(include_preview=include_previews),
         "metrics": load_metrics(),
         "calibration_profile": calibration_profile,
         "predictions": predictions,

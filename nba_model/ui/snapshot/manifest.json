@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-03-11T18:22:58.802683+00:00",
+  "generated_at": "2026-03-13T01:37:51.469926+00:00",
   "snapshot_dir": "/Users/josephdelallera/Documents/Playground 2/nba_model/ui/snapshot",
   "available_dates": [
     "all",
-    "2026-03-11",
     "2026-03-12"
   ],
   "files": [
+    "benchmark-gap.json",
     "drift-audit.json",
     "live-sources.json",
     "manifest.json",

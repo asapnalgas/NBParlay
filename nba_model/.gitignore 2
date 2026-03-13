@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local runtime state
+app.pid
+.server.log
+logs/
+
+# Secrets
+config/providers.env
+config/assistant_runtime.json
+
+# Local DB/billing
+data/*.db
+data/*.sqlite*
+
+# Large/generated model artifacts
+models/*.pkl
+models/*.joblib
+models/*.zip
+models/*benchmark*.json
+models/*status*.json
+models/prizepicks_edges.csv
+models/predictions.csv
+
+# Generated live datasets
+data/live_*.csv
+data/postgame_*.csv
+data/game_notes_*.csv
+data/espn_live_games.csv
+data/provider_context_updates.csv
+data/upcoming_slate.csv
+data/live_sync_state.json
+
+# macOS
+.DS_Store
