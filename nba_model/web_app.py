@@ -297,4 +297,8 @@ if __name__ == '__main__':
     logger.info("📱 Open in Safari/Browser: http://localhost:5000")
     logger.info("=" * 60 + "\n")
     
-    app.run(host='127.0.0.1', port=5000, debug=False, use_reloader=False, threaded=True)
+    try:
+        app.run(host='0.0.0.0', port=8000, debug=False, use_reloader=False, threaded=True)
+    except Exception as e:
+        logger.error(f"Failed to start web server: {e}")
+        raise
