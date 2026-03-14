@@ -1,0 +1,9 @@
+# SayDeploy local workspace state
+/.saydeploy/
+/.SayDeploy/
+/.devnexus/
+.saydeploy.*.toml
+.SayDeploy.*.toml
+.devnexus.*.toml
+SayDeploy.toml
+DevNexus.toml

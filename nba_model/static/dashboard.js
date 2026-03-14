@@ -9,6 +9,14 @@ let refreshInterval = null;
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🎯 Dashboard initializing...');
     
+    // Add view toggle handler
+    const switchViewBtn = document.getElementById('switchViewBtn');
+    if (switchViewBtn) {
+        switchViewBtn.addEventListener('click', function() {
+            window.location.href = '/player-view';
+        });
+    }
+    
     // Initialize charts
     initCharts();
     

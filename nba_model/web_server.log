@@ -1,80 +1,235 @@
-2026-03-13 16:00:07,523 - __main__ - INFO - ============================================================
-2026-03-13 16:00:07,523 - __main__ - INFO - NBA SELF-LEARNING PREDICTION SYSTEM - WEB UI
-2026-03-13 16:00:07,523 - __main__ - INFO - ============================================================
-2026-03-13 16:00:07,523 - src.self_learning_integration - INFO - Initializing Self-Learning System
-2026-03-13 16:00:07,758 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
-2026-03-13 16:00:07,758 - src.simulation_engine - INFO - Depth chart features initialized successfully
-2026-03-13 16:00:08,116 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
-2026-03-13 16:00:08,117 - src.simulation_engine - INFO - Depth chart features initialized successfully
-2026-03-13 16:00:08,331 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
-2026-03-13 16:00:08,332 - src.simulation_engine - INFO - Depth chart features initialized successfully
-2026-03-13 16:00:08,479 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
-2026-03-13 16:00:08,479 - src.simulation_engine - INFO - Depth chart features initialized successfully
-2026-03-13 16:00:08,480 - src.continuous_learning - INFO - Continuous Learning Orchestrator initialized
-2026-03-13 16:00:08,480 - src.self_learning_integration - INFO - Self-Learning System initialized successfully
-2026-03-13 16:00:08,480 - __main__ - INFO - ✓ Self-learning system initialized
-2026-03-13 16:00:08,480 - __main__ - INFO - 
+2026-03-13 16:11:15,878 - __main__ - INFO - ============================================================
+2026-03-13 16:11:15,878 - __main__ - INFO - NBA SELF-LEARNING PREDICTION SYSTEM - WEB UI
+2026-03-13 16:11:15,878 - __main__ - INFO - ============================================================
+2026-03-13 16:11:15,878 - src.self_learning_integration - INFO - Initializing Self-Learning System
+2026-03-13 16:11:15,989 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 16:11:15,989 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 16:11:16,116 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 16:11:16,116 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 16:11:16,219 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 16:11:16,220 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 16:11:16,321 - src.depth_chart_features - INFO - Built depth charts for 185 team/position combinations
+2026-03-13 16:11:16,321 - src.simulation_engine - INFO - Depth chart features initialized successfully
+2026-03-13 16:11:16,322 - src.continuous_learning - INFO - Continuous Learning Orchestrator initialized
+2026-03-13 16:11:16,322 - src.self_learning_integration - INFO - Self-Learning System initialized successfully
+2026-03-13 16:11:16,323 - __main__ - INFO - ✓ Self-learning system initialized
+2026-03-13 16:11:16,323 - __main__ - INFO - 
 🎯 LAUNCHING WEB SERVER
-2026-03-13 16:00:08,480 - __main__ - INFO - 📱 Open in Safari/Browser: http://localhost:5000
-2026-03-13 16:00:08,480 - __main__ - INFO - ============================================================
+2026-03-13 16:11:16,323 - __main__ - INFO - 📱 Open in Safari/Browser: http://localhost:5000
+2026-03-13 16:11:16,323 - __main__ - INFO - ============================================================
 
  * Serving Flask app 'web_app'
  * Debug mode: off
-2026-03-13 16:00:08,521 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2026-03-13 16:11:16,328 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8000
  * Running on http://169.231.70.249:8000
-2026-03-13 16:00:08,521 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2026-03-13 16:00:13,847 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:13] "GET / HTTP/1.1" 200 -
-2026-03-13 16:00:15,802 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:15] "GET / HTTP/1.1" 200 -
-2026-03-13 16:00:16,093 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:16] "GET /static/style.css HTTP/1.1" 200 -
-2026-03-13 16:00:16,094 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:16] "GET /static/dashboard.js HTTP/1.1" 200 -
-2026-03-13 16:00:16,318 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:16] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:00:16,319 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:16] "GET /api/system-info HTTP/1.1" 200 -
-2026-03-13 16:00:16,319 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:16] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:00:16,320 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:16] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:00:16,324 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2026-03-13 16:00:26,719 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:26] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:00:26,721 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:26] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:00:26,723 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:26] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:00:36,724 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:36] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:00:36,725 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:36] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:00:36,741 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:36] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:00:36,982 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:36] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:00:36,983 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:36] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:00:36,984 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:36] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:00:46,323 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:46] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:00:46,324 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:46] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:00:46,325 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:46] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:00:46,983 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:46] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:00:46,984 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:46] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:00:46,987 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:46] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:00:51,604 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:51] "GET / HTTP/1.1" 200 -
-2026-03-13 16:00:51,631 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:51] "GET /static/style.css HTTP/1.1" 200 -
-2026-03-13 16:00:51,631 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:51] "GET /static/dashboard.js HTTP/1.1" 200 -
-2026-03-13 16:00:52,109 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:52] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:00:52,110 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:52] "GET /api/system-info HTTP/1.1" 200 -
-2026-03-13 16:00:52,110 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:52] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:00:52,111 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:52] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:00:52,155 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2026-03-13 16:00:56,588 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:56] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:00:56,588 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:56] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:00:56,591 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:00:56] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:01:02,118 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:02] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:01:02,120 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:02] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:01:02,122 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:02] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:01:06,715 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:06] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:01:06,718 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:06] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:01:06,719 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:06] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:01:12,129 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:12] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:01:12,130 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:12] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:01:12,132 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:12] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:01:16,716 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:16] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:01:16,717 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:16] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:01:16,822 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:16] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:01:20,915 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:20] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:01:20,916 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:20] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:01:20,920 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:20] "GET /api/metrics HTTP/1.1" 200 -
-2026-03-13 16:01:26,322 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:26] "GET /api/status HTTP/1.1" 200 -
-2026-03-13 16:01:26,322 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:26] "GET /api/learning-progress HTTP/1.1" 200 -
-2026-03-13 16:01:26,323 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:01:26] "GET /api/metrics HTTP/1.1" 200 -
+2026-03-13 16:11:16,328 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-13 16:11:19,626 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:11:19,627 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:11:19,632 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:11:19,632 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:11:19,672 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:11:19] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:11:21,810 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:11:21,810 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:11:21,814 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:11:21,814 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:11:21,819 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:11:21] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:12:10,889 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:12:10,891 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:12:10,903 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:12:10,903 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:12:10,908 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:10] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:12:21,293 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:12:21,293 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:12:21,297 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:12:21,297 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:12:21,300 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:21] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:12:23,972 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:12:23,972 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:12:23,975 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:12:23,975 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:12:23,978 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:23] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:12:26,857 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:26] "GET / HTTP/1.1" 200 -
+2026-03-13 16:12:43,002 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:43] "GET /player-view HTTP/1.1" 200 -
+2026-03-13 16:12:44,196 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:44] "GET /static/player_view.css HTTP/1.1" 200 -
+2026-03-13 16:12:44,196 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:44] "GET /static/player_view.js HTTP/1.1" 200 -
+2026-03-13 16:12:44,210 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:12:44,210 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:12:44,223 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:12:44,225 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:12:44,229 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:44] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:12:53,884 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:53] "GET / HTTP/1.1" 200 -
+2026-03-13 16:12:53,891 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:53] "GET /static/style.css HTTP/1.1" 200 -
+2026-03-13 16:12:53,891 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:53] "GET /static/dashboard.js HTTP/1.1" 200 -
+2026-03-13 16:12:53,989 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:53] "[33mGET /api/status HTTP/1.1[0m" 404 -
+2026-03-13 16:12:53,989 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:53] "GET /api/system-info HTTP/1.1" 200 -
+2026-03-13 16:12:53,990 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:53] "GET /api/learning-progress HTTP/1.1" 200 -
+2026-03-13 16:12:53,992 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:12:53] "GET /api/metrics HTTP/1.1" 200 -
+2026-03-13 16:13:00,408 - src.self_learner - INFO - Starting backtest cycle: 10 games from last 365 days
+2026-03-13 16:13:00,408 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:13:00] "POST /api/controls/backtest HTTP/1.1" 200 -
+2026-03-13 16:13:00,533 - src.self_learner - INFO - Loaded 987 unique games from training data
+2026-03-13 16:13:00,533 - src.self_learner - INFO - Backtest game 1/10: 2025-10-21 00:00:00 - 22500001
+2026-03-13 16:13:00,533 - src.simulation_engine - INFO - Predicting starters for 2025-10-21 00:00:00 - 22500001 - HOU
+2026-03-13 16:13:00,533 - src.simulation_engine - INFO - Using depth chart features for HOU
+2026-03-13 16:13:00,565 - src.simulation_engine - INFO - Predicting stat lines for 22500001
+2026-03-13 16:13:00,565 - src.simulation_engine - INFO - Predicting starters for 2025-10-21 00:00:00 - 22500001 - OKC
+2026-03-13 16:13:00,565 - src.simulation_engine - INFO - Using depth chart features for OKC
+2026-03-13 16:13:00,593 - src.simulation_engine - INFO - Predicting stat lines for 22500001
+2026-03-13 16:13:00,646 - src.simulation_engine - INFO - Comparing predictions with actual results for 22500001
+2026-03-13 16:13:00,647 - src.self_learner - INFO - Backtest game 2/10: 2025-10-21 00:00:00 - 22500002
+2026-03-13 16:13:00,647 - src.simulation_engine - INFO - Predicting starters for 2025-10-21 00:00:00 - 22500002 - LAL
+2026-03-13 16:13:00,647 - src.simulation_engine - INFO - Using depth chart features for LAL
+2026-03-13 16:13:00,676 - src.simulation_engine - INFO - Predicting stat lines for 22500002
+2026-03-13 16:13:00,676 - src.simulation_engine - INFO - Predicting starters for 2025-10-21 00:00:00 - 22500002 - GSW
+2026-03-13 16:13:00,676 - src.simulation_engine - INFO - Using depth chart features for GSW
+2026-03-13 16:13:00,703 - src.simulation_engine - INFO - Predicting stat lines for 22500002
+2026-03-13 16:13:00,750 - src.simulation_engine - INFO - Comparing predictions with actual results for 22500002
+2026-03-13 16:13:00,750 - src.self_learner - INFO - Backtest game 3/10: 2025-10-22 00:00:00 - 22500081
+2026-03-13 16:13:00,751 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500081 - ORL
+2026-03-13 16:13:00,751 - src.simulation_engine - INFO - Using depth chart features for ORL
+2026-03-13 16:13:00,776 - src.simulation_engine - INFO - Predicting stat lines for 22500081
+2026-03-13 16:13:00,776 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500081 - MIA
+2026-03-13 16:13:00,776 - src.simulation_engine - INFO - Using depth chart features for MIA
+2026-03-13 16:13:00,802 - src.simulation_engine - INFO - Predicting stat lines for 22500081
+2026-03-13 16:13:00,848 - src.simulation_engine - INFO - Comparing predictions with actual results for 22500081
+2026-03-13 16:13:00,849 - src.self_learner - INFO - Backtest game 4/10: 2025-10-22 00:00:00 - 22500080
+2026-03-13 16:13:00,849 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500080 - CHA
+2026-03-13 16:13:00,849 - src.simulation_engine - INFO - Using depth chart features for CHA
+2026-03-13 16:13:00,875 - src.simulation_engine - INFO - Predicting stat lines for 22500080
+2026-03-13 16:13:00,875 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500080 - BKN
+2026-03-13 16:13:00,875 - src.simulation_engine - INFO - Using depth chart features for BKN
+2026-03-13 16:13:00,901 - src.simulation_engine - INFO - Predicting stat lines for 22500080
+2026-03-13 16:13:00,948 - src.simulation_engine - INFO - Comparing predictions with actual results for 22500080
+2026-03-13 16:13:00,949 - src.self_learner - INFO - Backtest game 5/10: 2025-10-22 00:00:00 - 22500084
+2026-03-13 16:13:00,949 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500084 - DET
+2026-03-13 16:13:00,949 - src.simulation_engine - INFO - Using depth chart features for DET
+2026-03-13 16:13:00,974 - src.simulation_engine - INFO - Predicting stat lines for 22500084
+2026-03-13 16:13:00,974 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500084 - CHI
+2026-03-13 16:13:00,974 - src.simulation_engine - INFO - Using depth chart features for CHI
+2026-03-13 16:13:01,000 - src.simulation_engine - INFO - Predicting stat lines for 22500084
+2026-03-13 16:13:01,047 - src.simulation_engine - INFO - Comparing predictions with actual results for 22500084
+2026-03-13 16:13:01,048 - src.self_learner - INFO - Backtest game 6/10: 2025-10-22 00:00:00 - 22500085
+2026-03-13 16:13:01,048 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500085 - MEM
+2026-03-13 16:13:01,048 - src.simulation_engine - INFO - Using depth chart features for MEM
+2026-03-13 16:13:01,073 - src.simulation_engine - INFO - Predicting stat lines for 22500085
+2026-03-13 16:13:01,074 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500085 - NOP
+2026-03-13 16:13:01,074 - src.simulation_engine - INFO - Using depth chart features for NOP
+2026-03-13 16:13:01,100 - src.simulation_engine - INFO - Predicting stat lines for 22500085
+2026-03-13 16:13:01,149 - src.simulation_engine - INFO - Comparing predictions with actual results for 22500085
+2026-03-13 16:13:01,150 - src.self_learner - INFO - Backtest game 7/10: 2025-10-22 00:00:00 - 22500086
+2026-03-13 16:13:01,150 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500086 - MIL
+2026-03-13 16:13:01,150 - src.simulation_engine - INFO - Using depth chart features for MIL
+2026-03-13 16:13:01,176 - src.simulation_engine - INFO - Predicting stat lines for 22500086
+2026-03-13 16:13:01,176 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500086 - WAS
+2026-03-13 16:13:01,176 - src.simulation_engine - INFO - Using depth chart features for WAS
+2026-03-13 16:13:01,205 - src.simulation_engine - INFO - Predicting stat lines for 22500086
+2026-03-13 16:13:01,255 - src.simulation_engine - INFO - Comparing predictions with actual results for 22500086
+2026-03-13 16:13:01,257 - src.self_learner - INFO - Backtest game 8/10: 2025-10-22 00:00:00 - 22500087
+2026-03-13 16:13:01,257 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500087 - LAC
+2026-03-13 16:13:01,257 - src.simulation_engine - INFO - Using depth chart features for LAC
+2026-03-13 16:13:01,285 - src.simulation_engine - INFO - Predicting stat lines for 22500087
+2026-03-13 16:13:01,285 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500087 - UTA
+2026-03-13 16:13:01,285 - src.simulation_engine - INFO - Using depth chart features for UTA
+2026-03-13 16:13:01,313 - src.simulation_engine - INFO - Predicting stat lines for 22500087
+2026-03-13 16:13:01,364 - src.simulation_engine - INFO - Comparing predictions with actual results for 22500087
+2026-03-13 16:13:01,365 - src.self_learner - INFO - Backtest game 9/10: 2025-10-22 00:00:00 - 22500088
+2026-03-13 16:13:01,365 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500088 - PHX
+2026-03-13 16:13:01,365 - src.simulation_engine - INFO - Using depth chart features for PHX
+2026-03-13 16:13:01,393 - src.simulation_engine - INFO - Predicting stat lines for 22500088
+2026-03-13 16:13:01,393 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500088 - SAC
+2026-03-13 16:13:01,393 - src.simulation_engine - INFO - Using depth chart features for SAC
+2026-03-13 16:13:01,421 - src.simulation_engine - INFO - Predicting stat lines for 22500088
+2026-03-13 16:13:01,473 - src.simulation_engine - INFO - Comparing predictions with actual results for 22500088
+2026-03-13 16:13:01,474 - src.self_learner - INFO - Backtest game 10/10: 2025-10-22 00:00:00 - 22500089
+2026-03-13 16:13:01,474 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500089 - MIN
+2026-03-13 16:13:01,474 - src.simulation_engine - INFO - Using depth chart features for MIN
+2026-03-13 16:13:01,502 - src.simulation_engine - INFO - Predicting stat lines for 22500089
+2026-03-13 16:13:01,502 - src.simulation_engine - INFO - Predicting starters for 2025-10-22 00:00:00 - 22500089 - POR
+2026-03-13 16:13:01,502 - src.simulation_engine - INFO - Using depth chart features for POR
+2026-03-13 16:13:01,530 - src.simulation_engine - INFO - Predicting stat lines for 22500089
+2026-03-13 16:13:01,581 - src.simulation_engine - INFO - Comparing predictions with actual results for 22500089
+2026-03-13 16:13:01,582 - src.self_learner - INFO - Starter prediction accuracy low: 0.00%
+2026-03-13 16:13:01,582 - src.self_learner - INFO - Applying correction for starter predictions
+2026-03-13 16:13:01,582 - src.self_learner - INFO - Backtest cycle complete: 10 games, improvement: 0.00%
+2026-03-13 16:13:01,582 - __main__ - INFO - ✓ Backtest cycle completed
+2026-03-13 16:13:03,662 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:13:03] "GET /player-view HTTP/1.1" 200 -
+2026-03-13 16:13:03,664 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:13:03] "[36mGET /static/player_view.css HTTP/1.1[0m" 304 -
+2026-03-13 16:13:03,665 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:13:03] "[36mGET /static/player_view.js HTTP/1.1[0m" 304 -
+2026-03-13 16:13:03,669 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:13:03] "[36mGET /static/player_view.css HTTP/1.1[0m" 304 -
+2026-03-13 16:13:03,669 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:13:03] "[36mGET /static/player_view.js HTTP/1.1[0m" 304 -
+2026-03-13 16:13:03,673 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:13:03,673 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:13:03,677 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:13:03,677 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:13:03,683 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:13:03] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:13:33,691 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:13:33,694 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:13:33,713 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:13:33,714 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:13:33,723 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:13:33] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:14:03,721 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:14:03,721 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:14:03,732 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:14:03,732 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:14:03,737 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:14:03] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:14:33,737 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:14:33,738 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:14:33,758 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:14:33,758 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:14:33,765 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:14:33] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:15:03,754 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:15:03,755 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:15:03,773 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:15:03,773 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:15:03,781 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:15:03] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:15:33,730 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:15:33,731 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:15:33,740 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:15:33,740 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:15:33,747 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:15:33] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:16:03,830 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:16:03,830 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:16:03,839 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:16:03,839 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:16:03,843 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:16:03] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:16:42,260 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:16:42,261 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:16:42,271 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:16:42,272 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:16:42,278 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:16:42] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:17:22,033 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:17:22,034 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:17:22,037 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:17:22,037 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:17:22,040 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:17:22] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:18:36,655 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:18:36,656 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:18:36,682 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:18:36,683 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:18:36,690 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:18:36] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:18:59,445 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:18:59,446 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:18:59,460 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:18:59,461 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:18:59,465 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:18:59] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:19:14,001 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:19:14,002 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:19:14,014 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:19:14,014 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:19:14,018 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:19:14] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:19:17,892 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:19:17,892 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:19:17,895 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:19:17,896 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:19:17,899 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:19:17] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:20:05,435 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:20:05,435 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:20:05,447 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:20:05,447 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:20:05,452 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:20:05] "GET /api/player-projections HTTP/1.1" 200 -
+2026-03-13 16:20:14,127 - src.self_learner - WARNING - Historical learning not complete, proceed with caution
+2026-03-13 16:20:14,127 - src.self_learner - INFO - Generating forward projections
+2026-03-13 16:20:14,138 - src.self_learner - INFO - Loaded 0 upcoming games from 2026-03-13 to 2026-04-12
+2026-03-13 16:20:14,138 - src.self_learner - INFO - Generated forward projections for 0 games
+2026-03-13 16:20:14,146 - werkzeug - INFO - 127.0.0.1 - - [13/Mar/2026 16:20:14] "GET /api/player-projections HTTP/1.1" 200 -

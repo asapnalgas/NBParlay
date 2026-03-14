@@ -4,11 +4,11 @@
   "last_backtest": null,
   "last_learning_cycle": null,
   "last_projection_update": null,
-  "last_optimization": "2026-03-13T15:52:47.771479",
+  "last_optimization": "2026-03-13T16:49:48.607125",
   "total_runs": 0,
   "failed_runs": 2,
   "is_running": true,
   "learning_phase": "historical_learning",
   "status_messages": [],
-  "last_updated": "2026-03-13T15:52:47.771208"
+  "last_updated": "2026-03-13T16:49:48.606327"
 }

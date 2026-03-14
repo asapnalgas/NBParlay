@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBParlay - Player Projections</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='player_view.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="logo">NB<span class="accent">Parlay</span></h1>
+                    <span class="live-dot"></span>
+                    <span class="live-label">LIVE</span>
+                </div>
+                <div class="header-right">
+                    <button class="icon-btn" id="filterToggleBtn" title="Date filters">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+                    </button>
+                    <button class="icon-btn" id="viewToggle" title="Dashboard">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Date Filter Dock -->
+        <aside class="filter-dock" id="filterDock">
+            <div class="dock-header">
+                <h3>Dates</h3>
+                <button class="dock-close" id="dockCloseBtn">&times;</button>
+            </div>
+            <div class="dock-body">
+                <div class="date-select-all">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="selectAllDates" checked>
+                        <span>All Dates</span>
+                    </label>
+                </div>
+                <div class="date-filters" id="dateFilters"></div>
+            </div>
+        </aside>
+
+        <!-- Filter Bar -->
+        <section class="filter-bar">
+            <div class="filter-pills">
+                <button class="pill active" data-filter="all">All</button>
+                <button class="pill" data-filter="upcoming">Upcoming</button>
+                <button class="pill" data-filter="live">Live</button>
+                <button class="pill" data-filter="injured">Injured</button>
+            </div>
+            <div class="search-wrap">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <input type="text" id="playerSearch" placeholder="Search player, team..." class="search-input">
+            </div>
+        </section>
+
+        <!-- Card Grid -->
+        <main class="card-grid" id="gamesContainer">
+            <div class="loader">
+                <div class="loader-spinner"></div>
+                <p>Loading projections...</p>
+            </div>
+        </main>
+
+        <!-- Empty State -->
+        <section class="empty-state" id="emptyState" style="display: none;">
+            <p class="empty-icon">&#128270;</p>
+            <h2>No Players Found</h2>
+            <p>Try adjusting your filters</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <span>Updated <span id="lastUpdate">--:--</span></span>
+            <span class="footer-dot">&#183;</span>
+            <span id="playerCount">0 players</span>
+        </footer>
+    </div>
+
+    <!-- Expanded Card Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card" id="modalCard"></div>
+    </div>
+
+    <!-- Debug Panel -->
+    <div id="debugPanel" style="display:none; position:fixed; bottom:0; left:0; right:0; height:200px; background:#0d0d0d; color:#0f0; font-family:monospace; font-size:11px; overflow-y:auto; padding:8px; border-top:2px solid #00e87b; z-index:9999;"></div>
+    <button id="debugToggle" style="position:fixed; bottom:8px; right:8px; z-index:10000; background:rgba(0,232,123,0.15); color:#00e87b; border:1px solid #00e87b33; border-radius:50%; width:32px; height:32px; font-size:14px; cursor:pointer; opacity:0.5;">&#128027;</button>
+    <script>
+        (function() {
+            const panel = document.getElementById('debugPanel');
+            const toggle = document.getElementById('debugToggle');
+            let visible = false;
+            toggle.addEventListener('click', () => { visible = !visible; panel.style.display = visible ? 'block' : 'none'; toggle.style.bottom = visible ? '208px' : '8px'; });
+            const orig = { log: console.log, warn: console.warn, error: console.error };
+            function add(pre, col, args) { const d = document.createElement('div'); d.style.color = col; d.textContent = pre + ' ' + Array.from(args).map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '); panel.appendChild(d); panel.scrollTop = panel.scrollHeight; }
+            console.log = function() { orig.log.apply(console, arguments); add('[LOG]', '#0f0', arguments); };
+            console.warn = function() { orig.warn.apply(console, arguments); add('[WARN]', '#ff0', arguments); };
+            console.error = function() { orig.error.apply(console, arguments); add('[ERR]', '#f44', arguments); };
+            window.onerror = function(m, s, l) { add('[EXC]', '#f44', [m, s + ':' + l]); };
+        })();
+    </script>
+    <script src="{{ url_for('static', filename='player_view.js') }}"></script>
+</body>
+</html>
